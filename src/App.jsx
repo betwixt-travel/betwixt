@@ -1,11 +1,31 @@
-import { useEffect } from 'react';
-import { fetchPlaces } from './services/places';
+import { Route, Switch } from "react-router-dom";
+import Home from "./views/Home";
+import Auth from "./views/Auth";
+import Profile from "./views/Profile";
+import Results from "./views/Results";
+import ResultsDetail from "./views/ResultsDetail";
+
 export default function App() {
-  useEffect(() => {
-    const wait = async () => {
-      await fetchPlaces({ lat: '45.0', long: '-120.0' });
-    };
-    wait();
-  }, []);
-  return <h1>Hello World!</h1>;
+  
+  return (
+    <>
+      <Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
+        <Route path='/auth'>
+          <Auth />
+        </Route>
+        <Route path='/profile'>
+          <Profile />
+        </Route>
+        <Route path='/results'>
+          <Results />
+        </Route>
+        <Route path='/results/:city'>
+          <ResultsDetail />
+        </Route>
+      </Switch>
+    </>
+  );
 }
