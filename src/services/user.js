@@ -1,4 +1,4 @@
-import { client } from './client';
+import { client, parseData } from './client';
 
 export function getUser() {
   return client.auth.user();
@@ -27,3 +27,12 @@ export async function signOut() {
   const response = await client.auth.signOut();
   handleError(response);
 }
+
+export const updateProfileInfo = async (id, first_name, last_name) => {
+  const resp = await client
+    .from('profiles')
+    .update({ first_name, last_name })
+    .match({ id })
+    .single();
+  return parseData(resp);
+};

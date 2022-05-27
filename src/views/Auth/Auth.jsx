@@ -17,7 +17,9 @@ export default function Auth() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password, firstname, lastname } = formState;
-    isSigningIn ? await signIn(email, password) : await signUp(email, password);
+    isSigningIn
+      ? await signIn(email, password)
+      : await signUp(email, password, firstname, lastname);
   };
   const text = isSigningIn
     ? { title: 'Sign In', switch: 'New user? Sign up here.' }
