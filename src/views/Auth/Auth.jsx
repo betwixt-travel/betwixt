@@ -122,11 +122,13 @@ export default function Auth() {
     <>
       {signInFragment}
       <p onClick={() => setIsSigningIn(false)}>{text.switch}</p>
+      {error && <p>{error}</p>}
     </>
   ) : (
     <>
       {signUpFragment}
       <p onClick={() => setIsSigningIn(true)}>{text.switch}</p>
+      {error && <p>{error}</p>}
     </>
   );
 }
