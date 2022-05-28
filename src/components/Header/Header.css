@@ -5,12 +5,15 @@
 .header {
   background-color: var(--color5);
   font-family: 'Josefin Sans';
+  display: flex;
+  justify-content: space-between;
 }
 
 .nav {
   list-style: none;
   display: flex;
   margin: 10px;
+  padding: 0px;
 }
 
 .nav li {
