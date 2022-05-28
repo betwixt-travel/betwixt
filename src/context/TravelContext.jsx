@@ -7,20 +7,25 @@ export const TravelProvider = ({ children }) => {
   const [people, setPeople] = useState([
     { name: '', location: '', lat: '', long: '' },
   ]);
+
   const peopleToGeoJSON = (array) => {
-    const geoJSON = array.map(({ name, location, lat, long }) => {
+    console.log('array', array);
+    const geoJSON = array.map((location) => {
+      console.log('lat', location.lat);
       return {
         type: 'Feature',
+        properties: {
+          name: location.name,
+          location: location.location,
+        },
         geometry: {
           type: 'Point',
-          coordinates: [lat, long],
-        },
-        properties: {
-          name,
-          location,
+          coordinates: [+location.lat, +location.long],
         },
       };
     });
+    console.log('geoJSON in form', geoJSON);
+    return geoJSON;
   };
 
   const handleFormSubmit = (formValues) => {
