@@ -5,6 +5,7 @@ import styles from './Auth.css';
 
 export default function Auth() {
   const [isSigningIn, setIsSigningIn] = useState(true);
+  const [error, setError] = useState('');
   const inputs = {
     email: '',
     password: '',
@@ -16,10 +17,14 @@ export default function Auth() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password, firstname, lastname } = formState;
-    isSigningIn
-      ? await signIn(email, password)
-      : await signUp(email, password, firstname, lastname);
+    try {
+      const { email, password, firstname, lastname } = formState;
+      isSigningIn
+        ? await signIn(email, password)
+        : await signUp(email, password, firstname, lastname);
+    } catch (error) {
+      setError(error.message);
+    }
   };
   const text = isSigningIn
     ? { title: 'Sign In', switch: 'New user? Sign up here.' }
