@@ -1,3 +1,13 @@
+export const profileResponse = {
+  id: "12341234123456",
+  created_at: "2022-05-28T00:08:33.670442+00:00",
+  first_name: "upstanding",
+  last_name: "citizen",
+  home_lat: null,
+  home_long: null,
+  home_zip: null
+}
+
 export const mockedUser = {
   access_token: 'MOCKED_ACCESS_TOKEN',
   token_type: 'bearer',
