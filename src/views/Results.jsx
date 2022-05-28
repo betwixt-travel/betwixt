@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { fetchCoordinates } from '../services/maps';
 import { fetchPlaces } from '../services/places';
+import { Map } from 'react-map-gl';
 
 export default function Results() {
   useEffect(() => {
@@ -11,5 +12,10 @@ export default function Results() {
     wait();
   }, []);
 
-  return <div>Results</div>;
+  return (
+    <div>
+      Results
+      <Map />
+    </div>
+  );
 }
