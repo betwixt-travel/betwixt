@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { fetchCoordinates } from '../services/maps';
 import { fetchPlaces } from '../services/places';
-import { Map } from 'react-map-gl';
+import MapItem from '../components/Map/MapItem';
 
 export default function Results() {
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function Results() {
   return (
     <div>
       Results
-      <Map />
+      <MapItem />
     </div>
   );
 }
