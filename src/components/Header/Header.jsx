@@ -1,23 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import styles from './Header.css'
 
 export default function Header() {
   return (
-    <div>
-      <Link to="/">
+    <header className={styles.header}>
+      <NavLink to="/">
         <h1>betwiXt</h1>
-      </Link>
-      <ul style={{ listStyle: 'none' }}>
+      </NavLink>
+      <ul className={styles.nav}>
         <li>
-          <Link to="/auth">Auth</Link>
+          <NavLink to="/auth">Auth</NavLink>
         </li>
         <li>
-          <Link to="/results">Results</Link>
+          <NavLink to="/results">Results</NavLink>
         </li>
         <li>
-          <Link to="/profile">Profile</Link>
+          <NavLink to="/profile">Profile</NavLink>
         </li>
       </ul>
-    </div>
+    </header>
   );
 }

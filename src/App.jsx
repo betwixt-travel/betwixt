@@ -6,6 +6,7 @@ import Results from './views/Results';
 import ResultsDetail from './views/ResultsDetail';
 import Header from './components/Header/Header';
 import { TravelProvider } from './context/TravelContext';
+import styles from './App.css'
 
 export default function App() {
   return (
