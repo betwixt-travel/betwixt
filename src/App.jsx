@@ -5,28 +5,31 @@ import Profile from './views/Profile';
 import Results from './views/Results';
 import ResultsDetail from './views/ResultsDetail';
 import Header from './components/Header/Header';
+import { TravelProvider } from './context/TravelContext';
 
 export default function App() {
   return (
     <>
-      <Header />
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/auth">
-          <Auth />
-        </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route>
-        <Route path="/results">
-          <Results />
-        </Route>
-        <Route path="/results/:city">
-          <ResultsDetail />
-        </Route>
-      </Switch>
+      <TravelProvider>
+        <Header />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/auth">
+            <Auth />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/results">
+            <Results />
+          </Route>
+          <Route path="/results/:city">
+            <ResultsDetail />
+          </Route>
+        </Switch>
+      </TravelProvider>
     </>
   );
 }

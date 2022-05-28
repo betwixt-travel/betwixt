@@ -1,11 +1,14 @@
-import React from 'react';
 import { useState } from 'react';
-import { useForm } from '../../hooks/useForm';
+import { useHistory } from 'react-router-dom';
+import { useTravelContext } from '../../context/TravelContext';
 
 export default function TravelersIIntakeForm() {
+  const { people, handleFormSubmit } = useTravelContext();
+  const history = useHistory();
+
   const [formValues, setFormValues] = useState([
-    { name: '1', location: 'here' },
-    { name: '2', location: 'there' },
+    { name: '', location: '' },
+    { name: '', location: '' },
   ]);
 
   let handleChange = (i, e) => {
@@ -24,9 +27,10 @@ export default function TravelersIIntakeForm() {
     setFormValues(newFormValues);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('formValues', formValues);
+    await handleFormSubmit(formValues);
+    history.push('/results');
     // TODO: Add function to submit button
   };
 
