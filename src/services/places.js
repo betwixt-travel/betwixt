@@ -1,15 +1,5 @@
 const GEODB_API_KEY = process.env.REACT_APP_GEODB_API_KEY;
 
-// export async function fetchPlaces() {
-//   const lon = 0;
-//   const lat = 45;
-//   const data = await fetch(
-//     `http://geodb-free-service.wirefreethought.com/v1/geo/cities`
-//   );
-//   const resp = await data.json();
-//   console.log('resp', resp);
-// }
-
 export async function fetchPlaces({ lat, long }) {
   const params = new URLSearchParams();
   params.set('minPopulation', '100000');
