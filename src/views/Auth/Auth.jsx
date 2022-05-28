@@ -74,7 +74,7 @@ export default function Auth() {
               onChange={handleChange}
             />
           </label>
-          <button>submit</button>
+          <button>{text.title}</button>
         </fieldset>
       </form>
     </>

@@ -23,5 +23,23 @@ describe('behavioral testing for auth page', () => {
     const homePageHeader = await screen.findByText('Home');
     expect(homePageHeader).toBeInTheDocument();
   });
-  test('should be able to toggle to a sign up form and sign up a user', () => {});
+  test('should be able to toggle to a sign up form and sign up a user', async () => {
+    render(
+      <MemoryRouter initialEntries={['/auth']}>
+        <UserProvider>
+          <App />
+        </UserProvider>
+      </MemoryRouter>
+    );
+    const toggle = screen.getByText('New user? Sign up here.');
+    userEvent.click(toggle);
+    const emailField = screen.getByPlaceholderText('email');
+    const passwordField = screen.getByPlaceholderText('password');
+    userEvent.type(emailField, 'testuser@testuser.com');
+    userEvent.type(passwordField, 'testpassword');
+    const submitButton = screen.getByRole('button', { name: 'Sign Up' });
+    userEvent.click(submitButton);
+    const homePageHeader = await screen.findByText('Home');
+    expect(homePageHeader).toBeInTheDocument();
+  });
 });
