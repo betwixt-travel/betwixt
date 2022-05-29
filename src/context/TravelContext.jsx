@@ -5,47 +5,65 @@ export const TravelContext = createContext();
 
 export const TravelProvider = ({ children }) => {
   const [people, setPeople] = useState([
-    { name: '', location: '', lat: '', long: '' },
+    {
+      type: '',
+      properties: { name: '', location: '' },
+      geometry: { type: '', coordinates: [] },
+    },
   ]);
+  // const [geoJSON, setGeoJSON] = useState([]);
 
-  const peopleToGeoJSON = (array) => {
-    console.log('array', array);
-    const geoJSON = array.map((location) => {
-      console.log('lat', location.lat);
-      return {
-        type: 'Feature',
-        properties: {
-          name: location.name,
-          location: location.location,
-        },
-        geometry: {
-          type: 'Point',
-          coordinates: [+location.lat, +location.long],
-        },
-      };
-    });
-    console.log('geoJSON in form', geoJSON);
-    return geoJSON;
-  };
+  // const peopleToGeoJSON = (array) => {
+  //   console.log('array', array);
+  //   let newArray = [];
+  //   array.map(({ location }) => {
+  //     newArray.push({
+  //       lat: 'hello',
+  //       // type: 'Feature',
+  //       // properties: {
+  //       //   name: location.name,
+  //       //   location: location.location,
+  //       // },
+  //       // geometry: {
+  //       //   type: 'Point',
+  //       //   coordinates: [+location.lat, +location.long],
+  //       // },
+  //     });
+  //   });
+  //   console.log('newArray', newArray);
+  //   // console.log('geoJSON in form', geoJSON);
+  //   setGeoJSON(newArray);
+  // };
+  // console.log('geoJSON', geoJSON);
 
   const handleFormSubmit = (formValues) => {
+    console.log('formValues', formValues);
     let peopleArray = [];
     formValues.map(async (value) => {
       const coordinates = await fetchCoordinates({ zip: value.location });
+      console.log('coordinates', coordinates);
       peopleArray.push({
-        name: value.name,
-        location: value.location,
-        lat: coordinates[0],
-        long: coordinates[1],
+        type: 'Feature',
+        properties: {
+          name: value.name,
+          zip: value.location,
+          city: coordinates.place_name,
+        },
+        geometry: {
+          type: 'Point',
+          coordinates: coordinates.center,
+        },
+        // name: value.name,
+        // location: value.location,
+        // lat: coordinates[0],
+        // long: coordinates[1],
       });
     });
     setPeople(peopleArray);
   };
 
   return (
-    <TravelContext.Provider
-      value={{ people, handleFormSubmit, peopleToGeoJSON }}
-    >
+    <TravelContext.Provider value={{ people, handleFormSubmit }}>
       {children}
     </TravelContext.Provider>
   );
