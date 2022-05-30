@@ -6,10 +6,13 @@ import { useTravelContext } from '../../context/TravelContext';
 let API_KEY = process.env.REACT_APP_MAPBOX_API_KEY;
 
 export default function MapItem() {
-  const { people } = useTravelContext();
+  const { people, midpoint } = useTravelContext();
 
+  if (!midpoint.geometry) return <div>loading</div>;
+  const [long, lat] = midpoint.geometry.coordinates;
   const geoJSON = { type: 'FeatureCollection', features: people };
-
+  console.log('midpoint', midpoint);
+  const midpt = { type: 'FeatureCollection', features: midpoint };
   const layerStyle = {
     id: 'point',
     type: 'circle',
@@ -33,7 +36,10 @@ export default function MapItem() {
         <Source id="my-data" type="geojson" data={geoJSON}>
           <Layer {...layerStyle} />
         </Source>
-        <Marker longitude={-100} latitude={40} anchor="bottom"></Marker>
+        <Source id="my-data" type="geojson" data={midpoint}>
+          <Layer {...layerStyle} />
+        </Source>
+        <Marker longitude={long} latitude={lat} anchor="bottom"></Marker>
       </Map>
     </div>
   );
