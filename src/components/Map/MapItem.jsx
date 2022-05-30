@@ -1,8 +1,7 @@
-import Map, { Source, Layer } from 'react-map-gl';
+import Map, { Source, Layer, Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import styles from './Map.css';
 import { useTravelContext } from '../../context/TravelContext';
-import { useEffect, useState } from 'react';
 
 let API_KEY = process.env.REACT_APP_MAPBOX_API_KEY;
 
@@ -10,20 +9,6 @@ export default function MapItem() {
   const { people } = useTravelContext();
 
   const geoJSON = { type: 'FeatureCollection', features: people };
-
-  console.log('geoJSON', geoJSON);
-
-  // const [loading, setLoading] = useState(true);
-  // const [geoJSON, setGeoJSON] = useState([]);
-  // const { people, peopleToGeoJSON } = useTravelContext();
-
-  // useEffect(() => {
-  //   console.log('people on results', people);
-  //   const resultLocations = peopleToGeoJSON(people);
-  //   console.log('resultLocations', resultLocations);
-  //   setGeoJSON(resultLocations);
-  //   setLoading(false);
-  // }, [people]);
 
   const layerStyle = {
     id: 'point',
@@ -48,6 +33,7 @@ export default function MapItem() {
         <Source id="my-data" type="geojson" data={geoJSON}>
           <Layer {...layerStyle} />
         </Source>
+        <Marker longitude={-100} latitude={40} anchor="bottom"></Marker>
       </Map>
     </div>
   );
