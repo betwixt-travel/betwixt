@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { fetchCoordinates } from '../services/maps';
+import * as turf from '@turf/turf';
 
 export const TravelContext = createContext();
 
@@ -12,6 +13,7 @@ export const TravelProvider = ({ children }) => {
     },
   ]);
   const [coordinates, setCoordinates] = useState([]);
+  const [midpoint, setMidpoint] = useState([]);
 
   const handleFormSubmit = (formValues) => {
     let peopleArray = [];
@@ -33,6 +35,21 @@ export const TravelProvider = ({ children }) => {
     });
     setPeople(peopleArray);
   };
+
+  useEffect(()=> {
+    if (!coordinates) return;
+    console.log('coordinates', coordinates);
+    if (coordinates.length === 2) {
+      console.log('coordinates', coordinates);
+      const point1 = turf.point(coordinates[0]);
+      const point2 = turf.point(coordinates[1]);
+      const midpoint = turf.midpoint(point1, point2);
+      console.log('midpoint', midpoint);
+      setMidpoint(midpoint);
+    } else {
+      console.log('oops')
+    }
+  }, [people]);
 
   return (
     <TravelContext.Provider value={{ people, handleFormSubmit }}>
