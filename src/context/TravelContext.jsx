@@ -5,7 +5,11 @@ export const TravelContext = createContext();
 
 export const TravelProvider = ({ children }) => {
   const [people, setPeople] = useState([
-    { name: '', location: '', lat: '', long: '' },
+    {
+      type: '',
+      properties: { name: '', zip: '', city: '' },
+      geometry: { type: '', coordinates: [] },
+    },
   ]);
 
   const handleFormSubmit = (formValues) => {
@@ -13,10 +17,16 @@ export const TravelProvider = ({ children }) => {
     formValues.map(async (value) => {
       const coordinates = await fetchCoordinates({ zip: value.location });
       peopleArray.push({
-        name: value.name,
-        location: value.location,
-        lat: coordinates[0],
-        long: coordinates[1],
+        type: 'Feature',
+        properties: {
+          name: value.name,
+          zip: value.location,
+          city: coordinates.place_name,
+        },
+        geometry: {
+          type: 'Point',
+          coordinates: coordinates.center,
+        },
       });
     });
     setPeople(peopleArray);
