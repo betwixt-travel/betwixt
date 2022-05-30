@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { fetchCoordinates } from '../services/maps';
 
 export const TravelContext = createContext();
@@ -11,6 +11,7 @@ export const TravelProvider = ({ children }) => {
       geometry: { type: '', coordinates: [] },
     },
   ]);
+  const [coordinates, setCoordinates] = useState([]);
 
   const handleFormSubmit = (formValues) => {
     let peopleArray = [];
@@ -28,6 +29,7 @@ export const TravelProvider = ({ children }) => {
           coordinates: coordinates.center,
         },
       });
+      setCoordinates(prev => [...prev, coordinates.center]);
     });
     setPeople(peopleArray);
   };
