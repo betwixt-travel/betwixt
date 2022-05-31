@@ -19,20 +19,24 @@ export const TravelProvider = ({ children }) => {
     let peopleArray = [];
     for (const value of formValues) {
       const fetchCoordsAndPush = async () => {
-        const coordinates = await fetchCoordinates({ zip: value.location });
-        peopleArray.push({
-          type: 'Feature',
-          properties: {
-            name: value.name,
-            zip: value.location,
-            city: coordinates.place_name,
-          },
-          geometry: {
-            type: 'Point',
-            coordinates: coordinates.center,
-          },
-        });
-        setCoordinates((prev) => [...prev, coordinates.center]);
+        try {
+          const coordinates = await fetchCoordinates({ zip: value.location });
+          peopleArray.push({
+            type: 'Feature',
+            properties: {
+              name: value.name,
+              zip: value.location,
+              city: coordinates.place_name,
+            },
+            geometry: {
+              type: 'Point',
+              coordinates: coordinates.center,
+            },
+          });
+          setCoordinates((prev) => [...prev, coordinates.center]);
+        } catch (error) {
+          throw new Error();
+        }
       };
       fetchCoordsAndPush();
     }
@@ -41,8 +45,12 @@ export const TravelProvider = ({ children }) => {
   };
 
   const handleFormSubmit = async (formValues) => {
-    const peopleArray = await convertFormInput(formValues);
-    setPeople(peopleArray);
+    try {
+      const peopleArray = await convertFormInput(formValues);
+      setPeople(peopleArray);
+    } catch (error) {
+      throw new Error();
+    }
   };
 
   useEffect(() => {

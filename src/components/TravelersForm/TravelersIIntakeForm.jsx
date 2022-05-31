@@ -5,6 +5,7 @@ import { useTravelContext } from '../../context/TravelContext';
 export default function TravelersIIntakeForm() {
   const { people, handleFormSubmit } = useTravelContext();
   const history = useHistory();
+  const [error, setError] = useState('');
 
   const [formValues, setFormValues] = useState([
     { name: '', location: '' },
@@ -29,8 +30,12 @@ export default function TravelersIIntakeForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await handleFormSubmit(formValues);
-    history.push('/results');
+    try {
+      await handleFormSubmit(formValues);
+      history.push('/results');
+    } catch (error) {
+      setError('Please use a valid US zipcode.');
+    }
     // TODO: Add function to submit button
   };
 
@@ -38,6 +43,7 @@ export default function TravelersIIntakeForm() {
     <form onSubmit={handleSubmit}>
       {formValues.map((element, index) => (
         <div className="form-inline" key={index}>
+          Note: Zipcodes only from USA.
           <label>Name</label>
           <input
             type="text"
@@ -74,6 +80,7 @@ export default function TravelersIIntakeForm() {
         <button className="button submit" type="submit">
           Submit
         </button>
+        {error && <p>{error}</p>}
       </div>
     </form>
   );
