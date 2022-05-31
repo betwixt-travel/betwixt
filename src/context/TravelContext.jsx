@@ -21,6 +21,8 @@ export const TravelProvider = ({ children }) => {
 
   const handleFormSubmit = async (formValues) => {
     setFormError('');
+    setCoordinates([]);
+
     const data = formValues.map((value) => {
       const promise = new Promise((resolve, reject) => {
         fetchCoordinates(value).then((result) =>
@@ -31,64 +33,33 @@ export const TravelProvider = ({ children }) => {
     });
     console.log('data', data);
     const convertData = (array) => {
-      const formatedData = array.map((value) => {
-        const { geometry, place_name, text, name } = value;
-        return {
-          type: 'Feature',
-          properties: {
-            name,
-            zip: text,
-            city: place_name,
-          },
-          geometry,
-        };
-      });
+      try {
+        const formattedData = array.map((value) => {
+          console.log('value', value);
+          if (value.geometry === undefined) throw new Error('invalid zip');
+          const { geometry, place_name, text, name } = value;
+          setCoordinates((prev) => [...prev, geometry.coordinates]);
+          return {
+            type: 'Feature',
+            properties: {
+              name,
+              zip: text,
+              city: place_name,
+            },
+            geometry,
+          };
+        });
+        setPeople(formattedData);
+        setLoading(false);
+        history.push('/results');
+      } catch (error) {
+        console.log('error', error);
+        setFormError('Invalid zip code');
+      }
     };
 
     Promise.all(data).then(convertData);
   };
-
-  // const convertFormInput = async (formValues) => {
-  //   let peopleArray = [];
-  //   setFormError('');
-
-  //   for (const value of formValues) {
-  //     const fetchCoordsAndPush = async () => {
-  //       const coordinates = await fetchCoordinates({ zip: value.location });
-  //       if (coordinates === undefined) {
-  //         console.log('hit');
-  //         setFormError('Please enter a valid zipcode');
-  //       } else {
-  //         peopleArray.push({
-  //           type: 'Feature',
-  //           properties: {
-  //             name: value.name,
-  //             zip: value.location,
-  //             city: coordinates.place_name,
-  //           },
-  //           geometry: {
-  //             type: 'Point',
-  //             coordinates: coordinates.center,
-  //           },
-  //         });
-
-  //         setCoordinates((prev) => [...prev, coordinates.center]);
-  //       }
-  //     };
-  //     fetchCoordsAndPush();
-  //   }
-
-  //   setLoading(false);
-  //   return peopleArray;
-  // };
-
-  // const handleFormSubmit = async (formValues) => {
-  //   const peopleArray = await convertFormInput(formValues);
-  //   setPeople(peopleArray);
-  //   if (!loading && formError === '') {
-  //     history.push('/results');
-  //   }
-  // };
 
   useEffect(() => {
     if (!coordinates) return;
