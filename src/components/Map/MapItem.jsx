@@ -12,7 +12,10 @@ export default function MapItem() {
   const [long, lat] = midpoint.geometry.coordinates;
   const geoJSON = { type: 'FeatureCollection', features: people };
   console.log('midpoint', midpoint);
-  const midpt = { type: 'FeatureCollection', features: midpoint };
+  const midpt = {
+    type: 'FeatureCollection',
+    features: [midpoint],
+  }; /*don't use this currently*/
   const layerStyle = {
     id: 'point',
     type: 'circle',
@@ -26,9 +29,9 @@ export default function MapItem() {
       <Map
         mapboxAccessToken={API_KEY}
         initialViewState={{
-          latitude: 45.5,
-          longitude: -122.6,
-          zoom: 7,
+          latitude: lat,
+          longitude: long,
+          zoom: 7 /*TODO: Make this auto zoomed*/,
         }}
         style={{ width: 600, height: 400 }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
@@ -36,9 +39,9 @@ export default function MapItem() {
         <Source id="my-data" type="geojson" data={geoJSON}>
           <Layer {...layerStyle} />
         </Source>
-        <Source id="my-data" type="geojson" data={midpoint}>
+        {/* <Source id="my-data" type="geojson" data={midpt}>
           <Layer {...layerStyle} />
-        </Source>
+        </Source> */}
         <Marker longitude={long} latitude={lat} anchor="bottom"></Marker>
       </Map>
     </div>

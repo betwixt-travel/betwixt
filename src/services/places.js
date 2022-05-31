@@ -1,3 +1,5 @@
+// import { response } from 'msw';
+
 const GEODB_API_KEY = process.env.REACT_APP_GEODB_API_KEY;
 
 export async function fetchPlaces({ lat, long }) {
@@ -12,11 +14,17 @@ export async function fetchPlaces({ lat, long }) {
       'X-RapidAPI-Key': GEODB_API_KEY,
     },
   };
-  fetch(
+  const data = await fetch(
     `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${lat}${long}/nearbyCities?${params.toString()}`,
     options
-  )
-    .then((response) => response.json())
-    .then((response) => console.log(response))
-    .catch((err) => console.error(err));
+  );
+  // .then((response) => response.json())
+  // .then((response) => {
+  //   console.log(response);
+  //   return (response);
+  // })
+  // .catch((err) => console.error(err));
+  const response = await data.json();
+  console.log('response', response);
+  return response.data;
 }
