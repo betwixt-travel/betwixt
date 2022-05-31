@@ -11,7 +11,6 @@ export default function MapItem() {
   if (!midpoint.geometry) return <div>loading</div>;
   const [long, lat] = midpoint.geometry.coordinates;
   const geoJSON = { type: 'FeatureCollection', features: people };
-  console.log('midpoint', midpoint);
   const midpt = { type: 'FeatureCollection', features: midpoint };
   const layerStyle = {
     id: 'point',

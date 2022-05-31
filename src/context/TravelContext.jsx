@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { fetchCoordinates } from '../services/maps';
 import * as turf from '@turf/turf';
+import { useHistory } from 'react-router-dom';
 
 export const TravelContext = createContext();
 
@@ -14,13 +15,21 @@ export const TravelProvider = ({ children }) => {
   ]);
   const [coordinates, setCoordinates] = useState([]);
   const [midpoint, setMidpoint] = useState([]);
+  const [formError, setFormError] = useState('');
+  const [loading, setLoading] = useState(true);
+  const history = useHistory();
 
   const convertFormInput = async (formValues) => {
     let peopleArray = [];
+    setFormError('');
+
     for (const value of formValues) {
       const fetchCoordsAndPush = async () => {
-        try {
-          const coordinates = await fetchCoordinates({ zip: value.location });
+        const coordinates = await fetchCoordinates({ zip: value.location });
+        if (coordinates === undefined) {
+          console.log('hit');
+          setFormError('Please enter a valid zipcode');
+        } else {
           peopleArray.push({
             type: 'Feature',
             properties: {
@@ -33,50 +42,51 @@ export const TravelProvider = ({ children }) => {
               coordinates: coordinates.center,
             },
           });
+
           setCoordinates((prev) => [...prev, coordinates.center]);
-        } catch (error) {
-          throw new Error();
         }
       };
       fetchCoordsAndPush();
     }
 
+    setLoading(false);
     return peopleArray;
   };
 
   const handleFormSubmit = async (formValues) => {
-    try {
-      const peopleArray = await convertFormInput(formValues);
-      setPeople(peopleArray);
-    } catch (error) {
-      throw new Error();
+    const peopleArray = await convertFormInput(formValues);
+    setPeople(peopleArray);
+    if (!loading && formError === '') {
+      history.push('/results');
     }
   };
 
   useEffect(() => {
     if (!coordinates) return;
-    console.log('coordinates', coordinates);
     if (coordinates.length === 2) {
-      console.log('coordinates', coordinates);
       const point1 = turf.point(coordinates[0]);
       const point2 = turf.point(coordinates[1]);
       const midpoint = turf.midpoint(point1, point2);
-      console.log('midpoint', midpoint);
       setMidpoint(midpoint);
-    } else if (coordinates.length > 2) {
-      const array = [...coordinates];
-      console.log('array', array);
-      const features = turf.points(array);
+    }
+    if (coordinates.length > 2) {
+      const features = turf.points([...coordinates]);
       const midpoint = turf.center(features);
-      console.log('midpoint centroid', midpoint);
       setMidpoint(midpoint);
-    } else {
-      console.log('oops');
     }
   }, [coordinates]);
 
   return (
-    <TravelContext.Provider value={{ people, handleFormSubmit, midpoint }}>
+    <TravelContext.Provider
+      value={{
+        people,
+        handleFormSubmit,
+        midpoint,
+        formError,
+        loading,
+        setLoading,
+      }}
+    >
       {children}
     </TravelContext.Provider>
   );
