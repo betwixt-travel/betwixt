@@ -19,47 +19,77 @@ export const TravelProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const history = useHistory();
 
-  const convertFormInput = async (formValues) => {
-    let peopleArray = [];
-    setFormError('');
-
-    for (const value of formValues) {
-      const fetchCoordsAndPush = async () => {
-        const coordinates = await fetchCoordinates({ zip: value.location });
-        if (coordinates === undefined) {
-          console.log('hit');
-          setFormError('Please enter a valid zipcode');
-        } else {
-          peopleArray.push({
-            type: 'Feature',
-            properties: {
-              name: value.name,
-              zip: value.location,
-              city: coordinates.place_name,
-            },
-            geometry: {
-              type: 'Point',
-              coordinates: coordinates.center,
-            },
-          });
-
-          setCoordinates((prev) => [...prev, coordinates.center]);
-        }
-      };
-      fetchCoordsAndPush();
-    }
-
-    setLoading(false);
-    return peopleArray;
-  };
-
   const handleFormSubmit = async (formValues) => {
-    const peopleArray = await convertFormInput(formValues);
-    setPeople(peopleArray);
-    if (!loading && formError === '') {
-      history.push('/results');
-    }
+    setFormError('');
+    console.log('formValues', formValues);
+    //use zip code to find city info and create geoJSON objects
+    const data = formValues.map((value) => {
+      const coordinatesData = fetchCoordinates(value);
+      return coordinatesData;
+    });
+    console.log('data', data);
+    const convertData = (array) => {
+      const formatedData = array.map((value) => {
+        return {
+          type: 'Feature',
+          properties: {
+            name: value.name,
+            zip: value.location,
+            city: coordinates.place_name,
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: coordinates.center,
+          },
+        };
+      });
+      console.log('formatedData', formatedData);
+    };
+
+    Promise.all(data).then(convertData);
   };
+
+  // const convertFormInput = async (formValues) => {
+  //   let peopleArray = [];
+  //   setFormError('');
+
+  //   for (const value of formValues) {
+  //     const fetchCoordsAndPush = async () => {
+  //       const coordinates = await fetchCoordinates({ zip: value.location });
+  //       if (coordinates === undefined) {
+  //         console.log('hit');
+  //         setFormError('Please enter a valid zipcode');
+  //       } else {
+  //         peopleArray.push({
+  //           type: 'Feature',
+  //           properties: {
+  //             name: value.name,
+  //             zip: value.location,
+  //             city: coordinates.place_name,
+  //           },
+  //           geometry: {
+  //             type: 'Point',
+  //             coordinates: coordinates.center,
+  //           },
+  //         });
+
+  //         setCoordinates((prev) => [...prev, coordinates.center]);
+  //       }
+  //     };
+  //     fetchCoordsAndPush();
+  //   }
+
+  //   setLoading(false);
+  //   return peopleArray;
+  // };
+
+  // const handleFormSubmit = async (formValues) => {
+  //   const peopleArray = await convertFormInput(formValues);
+  //   setPeople(peopleArray);
+  //   if (!loading && formError === '') {
+  //     history.push('/results');
+  //   }
+  // };
 
   useEffect(() => {
     if (!coordinates) return;
