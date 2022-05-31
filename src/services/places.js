@@ -1,5 +1,3 @@
-// import { response } from 'msw';
-
 const GEODB_API_KEY = process.env.REACT_APP_GEODB_API_KEY;
 
 export async function fetchPlaces({ lat, long }) {
