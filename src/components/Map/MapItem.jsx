@@ -31,7 +31,7 @@ export default function MapItem() {
     },
   };
   return (
-    <div className={styles.sidebarStyle}>
+    <div className={styles.map_container}>
       <Map
         mapboxAccessToken={API_KEY}
         initialViewState={{

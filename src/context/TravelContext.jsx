@@ -39,7 +39,6 @@ export const TravelProvider = ({ children }) => {
       };
       fetchCoordsAndPush();
     }
-
     return peopleArray;
   };
 
@@ -57,9 +56,11 @@ export const TravelProvider = ({ children }) => {
       cityArray.push({
         type: 'Feature',
         properties: {
+          id: city.id,
           name: city.name,
-          zip: '84044',
-          city: city.city,
+          state: city.regionCode,
+          pop: city.population,
+          distance: city.distance
           // 'marker-symbol': 'monument',
           /* May want to add countryCode, region, regionCode, population, and distance from geoDB data */
         },
@@ -69,7 +70,7 @@ export const TravelProvider = ({ children }) => {
         },
       });
     }
-    setCities(cityArray);
+    setCities(cityArray.sort((a, b) => a.properties.distance > b.properties.distance ? 1 : -1));
   };
 
   useEffect(() => {
