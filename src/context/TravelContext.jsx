@@ -21,29 +21,28 @@ export const TravelProvider = ({ children }) => {
 
   const handleFormSubmit = async (formValues) => {
     setFormError('');
-    console.log('formValues', formValues);
-    //use zip code to find city info and create geoJSON objects
     const data = formValues.map((value) => {
-      const coordinatesData = fetchCoordinates(value);
-      return coordinatesData;
+      const promise = new Promise((resolve, reject) => {
+        fetchCoordinates(value).then((result) =>
+          resolve({ ...result, name: value.name })
+        );
+      });
+      return promise;
     });
     console.log('data', data);
     const convertData = (array) => {
       const formatedData = array.map((value) => {
+        const { geometry, place_name, text, name } = value;
         return {
           type: 'Feature',
           properties: {
-            name: value.name,
-            zip: value.location,
-            city: coordinates.place_name,
+            name,
+            zip: text,
+            city: place_name,
           },
-          geometry: {
-            type: 'Point',
-            coordinates: coordinates.center,
-          },
+          geometry,
         };
       });
-      console.log('formatedData', formatedData);
     };
 
     Promise.all(data).then(convertData);
