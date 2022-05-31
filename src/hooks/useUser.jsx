@@ -12,13 +12,21 @@ const useAuth = () => {
 
   const signIn = async (email, password) => {
     const response = await signInUser(email, password);
+    console.log('response sign in', response);
     setUser(response);
     history.push('/');
   };
 
   const signUp = async (email, password, firstname, lastname) => {
     const response = await signUpUser(email, password);
-    await updateProfileInfo(response.id, firstname, lastname);
+    console.log('response sign up', response);
+
+    const responseupdate = await updateProfileInfo(
+      response.id,
+      firstname,
+      lastname
+    );
+    console.log('responseupdate', responseupdate);
     setUser(response);
     history.push('/');
   };

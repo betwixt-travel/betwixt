@@ -2,7 +2,7 @@ import fetch from 'cross-fetch';
 global.fetch = fetch;
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
-import { mockedUser } from './tests/fixtures/mockdata';
+import { mockedUser, profileResponse } from './tests/fixtures/mockdata';
 
 const server = setupServer(
   rest.post('https://kyyzdtelzuxgssnlsorf.supabase.co/auth/v1/token',
@@ -15,7 +15,7 @@ const server = setupServer(
     }),
     rest.patch('https://kyyzdtelzuxgssnlsorf.supabase.co/rest/v1/profiles',
     (req, res, ctx) => {
-      return res(ctx.json(mockedUser));
+      return res(ctx.json(profileResponse));
     }),
   );
 
