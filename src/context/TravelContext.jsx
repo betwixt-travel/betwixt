@@ -28,6 +28,7 @@ export const TravelProvider = ({ children }) => {
             name: value.name,
             zip: value.location,
             city: coordinates.place_name,
+            // 'marker-symbol': 'monument',
           },
           geometry: {
             type: 'Point',
@@ -48,11 +49,27 @@ export const TravelProvider = ({ children }) => {
   };
 
   const getCities = async (midpoint) => {
-    console.log('midpoint.geometry.coordinates', midpoint.geometry.coordinates);
+    let cityArray = [];
     const [long, lat] = midpoint.geometry.coordinates;
     const cityData = await fetchPlaces({ lat, long });
     console.log('cityData', cityData);
-    setCities(cityData);
+    for (let city of cityData) {
+      cityArray.push({
+        type: 'Feature',
+        properties: {
+          name: city.name,
+          zip: '84044',
+          city: city.city,
+          // 'marker-symbol': 'monument',
+          /* May want to add countryCode, region, regionCode, population, and distance from geoDB data */
+        },
+        geometry: {
+          type: 'Point',
+          coordinates: [city.longitude, city.latitude],
+        },
+      });
+    }
+    setCities(cityArray);
   };
 
   useEffect(() => {
@@ -79,7 +96,9 @@ export const TravelProvider = ({ children }) => {
   }, [coordinates]);
 
   return (
-    <TravelContext.Provider value={{ people, handleFormSubmit, midpoint }}>
+    <TravelContext.Provider
+      value={{ people, handleFormSubmit, midpoint, cities }}
+    >
       {children}
     </TravelContext.Provider>
   );
