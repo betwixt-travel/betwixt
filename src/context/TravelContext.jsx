@@ -60,7 +60,9 @@ export const TravelProvider = ({ children }) => {
           name: city.name,
           state: city.regionCode,
           pop: city.population,
-          distance: city.distance
+          distance: city.distance,
+          latitude: city.latitude,
+          longitude: city.longitude
           // 'marker-symbol': 'monument',
           /* May want to add countryCode, region, regionCode, population, and distance from geoDB data */
         },

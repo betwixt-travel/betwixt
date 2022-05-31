@@ -12,7 +12,7 @@ export default function Results() {
         <ul>
           {cities.map((city) => (
             <li key={city.properties.id}>
-              <Link to={`/results/${city.properties.name}`}>
+              <Link to={`/results/lat=${city.properties.latitude}&long=${city.properties.longitude}`}>
                 {city.properties.name} - {city.properties.distance}
               </Link>
             </li>
