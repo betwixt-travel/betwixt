@@ -26,8 +26,8 @@ describe('behavioral testing for auth page', () => {
     userEvent.click(submitButton);
 
     //removed this portion of the test until github testing issue is resolved
-    // const homePageHeader = await screen.findByText('Home');
-    // expect(homePageHeader).toBeInTheDocument();
+    const homePageHeader = await screen.findByText('Home');
+    expect(homePageHeader).toBeInTheDocument();
   });
   test('should be able to toggle to a sign up form and sign up a user', async () => {
     render(
@@ -47,8 +47,8 @@ describe('behavioral testing for auth page', () => {
     userEvent.click(submitButton);
 
     //removed this portion of the test until github testing issue is resolved
-    // const homePageHeader = await screen.findByText('Home');
-    // expect(homePageHeader).toBeInTheDocument();
+    const homePageHeader = await screen.findByText('Home');
+    expect(homePageHeader).toBeInTheDocument();
   });
 });
 

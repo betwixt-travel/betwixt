@@ -4,6 +4,7 @@ import TravelersIIntakeForm from '../components/TravelersForm/TravelersIIntakeFo
 export default function Home() {
   return (
     <div>
+      Home
       <TravelersIIntakeForm />
     </div>
   );
