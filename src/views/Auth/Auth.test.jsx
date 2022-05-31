@@ -8,6 +8,35 @@ import { MemoryRouter } from 'react-router-dom';
 import App from '../../App';
 import { UserProvider } from '../../context/userContext';
 
+import { setupServer } from 'msw/node';
+import { rest } from 'msw';
+import { mockedUser, profileResponse } from '../../tests/fixtures/mockdata';
+
+const server = setupServer(
+  rest.post(
+    'https://kyyzdtelzuxgssnlsorf.supabase.co/auth/v1/token',
+    (req, res, ctx) => {
+      return res(ctx.json(mockedUser));
+    }
+  ),
+  rest.post(
+    'https://kyyzdtelzuxgssnlsorf.supabase.co/auth/v1/signup',
+    (req, res, ctx) => {
+      return res(ctx.json(mockedUser));
+    }
+  ),
+  rest.patch(
+    'https://kyyzdtelzuxgssnlsorf.supabase.co/rest/v1/profiles',
+    (req, res, ctx) => {
+      return res(ctx.json(profileResponse));
+    }
+  )
+);
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
+
 describe('behavioral testing for auth page', () => {
   test('should be able to sign in a user', async () => {
     render(
