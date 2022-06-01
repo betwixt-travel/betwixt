@@ -24,6 +24,7 @@ export const TravelProvider = ({ children }) => {
   const handleFormSubmit = async (formValues) => {
     setFormError('');
     setCoordinates([]);
+    setMidpoint([]);
 
     const data = formValues.map((value) => {
       const promise = new Promise((resolve, reject) => {
