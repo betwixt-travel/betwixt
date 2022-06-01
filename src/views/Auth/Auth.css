@@ -1,5 +1,25 @@
 .authForm {
   display: flex;
   flex-direction: column;
-  width: 50vw;
+  margin: 50px auto 0px auto;
+  width: 70%;
+}
+
+.authForm label {
+  margin: 10px auto;
+  width: 50%;
+}
+
+.authForm button {
+  width: 50%;
+  margin: 20px auto;
+}
+
+.toggle {
+  margin-top: 10px;
+  margin-left: 50px;
+}
+
+.toggle:hover {
+  cursor: pointer;
 }

@@ -20,7 +20,7 @@ export default function Header() {
             <NavLink to="/profile">Profile</NavLink>
           </li> :
           <li>
-            <NavLink to="/auth">Auth</NavLink>
+            <NavLink to="/auth">Sign in or sign up!</NavLink>
           </li>
         }
       </ul>
