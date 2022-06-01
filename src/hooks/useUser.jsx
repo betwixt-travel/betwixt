@@ -6,6 +6,7 @@ import {
   signUpUser,
   updateProfileInfo,
   fetchUserData,
+  signOutUser,
 } from '../services/user';
 
 const useAuth = () => {
@@ -16,23 +17,28 @@ const useAuth = () => {
   const history = useHistory();
 
   const signIn = async (email, password) => {
-    const response = await signInUser(email, password);
+    await signInUser(email, password);
     const profileData = await fetchUserData();
-    console.log('profileData', profileData);
-    setUser(response);
+    setUser({ email, ...profileData });
     history.push('/');
   };
 
   const signUp = async (email, password, firstname, lastname) => {
-    const response = await signUpUser(email, password);
+    await signUpUser(email, password);
     await updateProfileInfo(response.id, firstname, lastname);
     const profileData = await fetchUserData();
-    console.log('profileData', profileData);
-    setUser(response);
+    setUser({ email, ...profileData });
+
     history.push('/');
   };
 
-  return { signIn, signUp };
+  const signOut = async () => {
+    setUser({ email: null });
+    await signOutUser();
+  };
+  const userSignedIn = user.email;
+
+  return { signIn, signUp, signOut, userSignedIn };
 };
 
 export { useAuth };

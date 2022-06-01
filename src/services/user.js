@@ -23,7 +23,7 @@ export async function signUpUser(email, password) {
   return handleError(response);
 }
 
-export async function signOut() {
+export async function signOutUser() {
   const response = await client.auth.signOut();
   handleError(response);
 }
