@@ -1,0 +1,16 @@
+.homeBackground {
+  width: 100%;
+  height: 100vh;
+  background: url(../../assets/images/plane-mobile.jpg) no-repeat;
+  background-size: cover;
+  padding-top: 50px;
+}
+
+@media screen and (min-width: 440px) {
+  .homeBackground {
+    margin: 3% 10%;
+    width: 80%;
+    background: url(../../assets/images/plane.jpg) no-repeat;
+    background-size: cover;
+  }
+}

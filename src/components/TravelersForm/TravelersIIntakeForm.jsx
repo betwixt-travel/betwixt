@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTravelContext } from '../../context/TravelContext';
+import styles from './TravelersForm.css';
 
 export default function TravelersIIntakeForm() {
   const { people, handleFormSubmit, formError, loading } = useTravelContext();
@@ -35,7 +36,7 @@ export default function TravelersIIntakeForm() {
   console.log('formError', formError);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.travelersForm}>
       {formValues.map((element, index) => (
         <div className="form-inline" key={index}>
           Note: Zipcodes only from USA.
