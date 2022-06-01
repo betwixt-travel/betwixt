@@ -57,10 +57,4 @@ describe('behavioral testing for auth page', () => {
     const homePageHeader = await screen.findByText('betwiXt');
     expect(homePageHeader).toBeInTheDocument();
   });
-
-  //simple test
-
-  // test('should equal 1', () => {
-  //   expect(1).toEqual(1);
-  // });
 });
