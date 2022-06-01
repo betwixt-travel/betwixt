@@ -13,7 +13,8 @@ export default function AboutUs() {
             <span>Located in:</span> Portland, OR
           </p>
           <p>
-            <span>Next travel destination:</span> XXX
+            <span>Next travel destination:</span> The Boundary Waters in Lake
+            County, Minnesota
           </p>
           <div className="icons">
             <Link
