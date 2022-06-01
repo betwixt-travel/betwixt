@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import ProfileForm from '../components/ProfileDetails/ProfileForm';
 import { useAuth } from '../hooks/useUser';
 import { deleteUserCity, getUserCities } from '../services/places';
+import toast from 'react-hot-toast';
 
 export default function Profile() {
   const { user } = useAuth();
@@ -10,9 +11,10 @@ export default function Profile() {
   const [cities, setCities] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const deleteHandler = async (id) => {
+  const deleteHandler = async (id, location) => {
     await deleteUserCity(id);
     setCities((prev) => prev.filter((city) => id !== city.id));
+    toast.success(`Successfully deleted your trip to ${location}.`);
   };
 
   useEffect(() => {
@@ -54,7 +56,8 @@ export default function Profile() {
             <div key={id}>
               {' '}
               <h3>
-                {location} <span onClick={() => deleteHandler(id)}>❌</span>
+                {location}{' '}
+                <span onClick={() => deleteHandler(id, location)}>❌</span>
               </h3>
             </div>
           ))

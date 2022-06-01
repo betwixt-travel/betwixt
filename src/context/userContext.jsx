@@ -1,12 +1,10 @@
 import { createContext, useEffect, useState } from 'react';
-import { getUser } from '../services/user';
 
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const defaultValue = { email: null };
   const [user, setUser] = useState(defaultValue);
-  const value = { user, setUser };
 
   useEffect(() => {
     if (user !== defaultValue) {
@@ -20,6 +18,7 @@ const UserProvider = ({ children }) => {
     }
   }, []);
 
+  const value = { user, setUser };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 

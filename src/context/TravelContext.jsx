@@ -4,6 +4,7 @@ import * as turf from '@turf/turf';
 import { fetchPlaces, saveCity } from '../services/places';
 import { useHistory } from 'react-router-dom';
 import { getUser } from '../services/user';
+import toast from 'react-hot-toast';
 
 export const TravelContext = createContext();
 
@@ -119,6 +120,7 @@ export const TravelProvider = ({ children }) => {
     const city = { location, creator_id: getUser().id };
     await saveCity(city);
     history.push('/results');
+    toast.success(`Successfully added ${location} to your saved trips.`);
   };
 
   return (
