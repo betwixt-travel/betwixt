@@ -24,7 +24,7 @@ describe('behavioral testing for auth page', () => {
     const submitButton = screen.getByRole('button', { name: 'Sign In' });
     userEvent.click(submitButton);
 
-    const homePageHeader = await screen.findByText('Home');
+    const homePageHeader = await screen.findByText('betwiXt');
 
     expect(homePageHeader).toBeInTheDocument();
   });
@@ -54,7 +54,7 @@ describe('behavioral testing for auth page', () => {
     const submitButton = screen.getByRole('button', { name: 'Sign Up' });
     userEvent.click(submitButton);
 
-    const homePageHeader = await screen.findByText('Home');
+    const homePageHeader = await screen.findByText('betwiXt');
     expect(homePageHeader).toBeInTheDocument();
   });
 
