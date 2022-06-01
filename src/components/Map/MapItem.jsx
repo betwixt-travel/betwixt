@@ -8,7 +8,7 @@ let API_KEY = process.env.REACT_APP_MAPBOX_API_KEY;
 export default function MapItem() {
   const { people, midpoint, cities } = useTravelContext();
 
-  if (!midpoint.geometry) return <div>loading</div>;
+  if (!midpoint.geometry) return <div>Loading...</div>;
   const [long, lat] = midpoint.geometry.coordinates;
   const geoJSON = {
     type: 'FeatureCollection',

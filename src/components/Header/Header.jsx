@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import {} from 'react-router-dom/cjs/react-router-dom.min';
+import { useAuth } from '../../hooks/useUser';
 
 export default function Header() {
+  const { signOut, userSignedIn, user } = useAuth();
+  const history = useHistory();
+  const location = useLocation();
+  const onAuthPage = location.pathname === '/auth';
   return (
     <div>
       <Link to="/">
@@ -18,6 +25,15 @@ export default function Header() {
           <Link to="/profile">Profile</Link>
         </li>
       </ul>
+      {!onAuthPage &&
+        (userSignedIn ? (
+          <>
+            <p>Welcome {user.first_name || 'traveler'}</p>
+            <button onClick={signOut}>Sign Out</button>
+          </>
+        ) : (
+          <button onClick={() => history.push('/auth')}>Log In</button>
+        ))}
     </div>
   );
 }
