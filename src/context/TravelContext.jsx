@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { fetchCoordinates } from '../services/maps';
 import * as turf from '@turf/turf';
+import { fetchPlaces } from '../services/places';
 import { useHistory } from 'react-router-dom';
 
 export const TravelContext = createContext();
@@ -17,6 +18,7 @@ export const TravelProvider = ({ children }) => {
   const [midpoint, setMidpoint] = useState([]);
   const [formError, setFormError] = useState('');
   const [loading, setLoading] = useState(true);
+  const [cities, setCities] = useState([]);
   const history = useHistory();
 
   const handleFormSubmit = async (formValues) => {
@@ -61,19 +63,53 @@ export const TravelProvider = ({ children }) => {
     Promise.all(data).then(convertData);
   };
 
+  const getCities = async (midpoint) => {
+    let cityArray = [];
+    const [long, lat] = midpoint.geometry.coordinates;
+    const cityData = await fetchPlaces({ lat, long });
+    for (let city of cityData) {
+      cityArray.push({
+        type: 'Feature',
+        properties: {
+          id: city.id,
+          name: city.name,
+          state: city.regionCode,
+          pop: city.population,
+          distance: city.distance,
+          latitude: city.latitude,
+          longitude: city.longitude
+          // 'marker-symbol': 'monument',
+          /* May want to add countryCode, region, regionCode, population, and distance from geoDB data */
+        },
+        geometry: {
+          type: 'Point',
+          coordinates: [city.longitude, city.latitude],
+        },
+      });
+    }
+    setCities(cityArray.sort((a, b) => a.properties.distance > b.properties.distance ? 1 : -1));
+  };
+
   useEffect(() => {
     if (!coordinates) return;
-    if (coordinates.length === 2) {
-      const point1 = turf.point(coordinates[0]);
-      const point2 = turf.point(coordinates[1]);
-      const midpoint = turf.midpoint(point1, point2);
-      setMidpoint(midpoint);
-    }
-    if (coordinates.length > 2) {
-      const features = turf.points([...coordinates]);
-      const midpoint = turf.center(features);
-      setMidpoint(midpoint);
-    }
+
+    const handleMidpoint = async () => {
+      if (coordinates.length === 2) {
+        const point1 = turf.point(coordinates[0]);
+        const point2 = turf.point(coordinates[1]);
+        const midpoint = turf.midpoint(point1, point2);
+        await getCities(midpoint);
+        setMidpoint(midpoint);
+      }
+      if (coordinates.length > 2) {
+        const array = [...coordinates];
+        const features = turf.points(array);
+        const midpoint = turf.center(features);
+        await getCities(midpoint);
+        setMidpoint(midpoint);
+      }
+    };
+    handleMidpoint();
   }, [coordinates]);
 
   return (
@@ -85,6 +121,7 @@ export const TravelProvider = ({ children }) => {
         formError,
         loading,
         setLoading,
+        cities
       }}
     >
       {children}

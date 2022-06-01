@@ -22,11 +22,11 @@ export default function App() {
           <Route path="/profile">
             <Profile />
           </Route>
+          <Route exact path="/results/:city">
+            <ResultsDetail />
+          </Route>
           <Route path="/results">
             <Results />
-          </Route>
-          <Route path="/results/:city">
-            <ResultsDetail />
           </Route>
         </Switch>
       </TravelProvider>
