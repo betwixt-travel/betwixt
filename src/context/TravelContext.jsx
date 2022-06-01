@@ -15,7 +15,6 @@ export const TravelProvider = ({ children }) => {
       geometry: { type: '', coordinates: [] },
     },
   ]);
-  const [savedCities, setSavedCities] = useState([]);
   const [coordinates, setCoordinates] = useState([]);
   const [midpoint, setMidpoint] = useState([]);
   const [formError, setFormError] = useState('');
@@ -117,8 +116,9 @@ export const TravelProvider = ({ children }) => {
   }, [coordinates]);
 
   const saveHandler = async (location) => {
-    const created = await saveCity({ location, creator_id: getUser().id });
-    setSavedCities((prev) => [...prev, created]);
+    const city = { location, creator_id: getUser().id };
+    await saveCity(city);
+    history.push('/results');
   };
 
   return (
