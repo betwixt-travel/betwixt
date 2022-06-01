@@ -24,6 +24,8 @@ export async function fetchPlaces({ lat, long }) {
 
 export async function fetchCity({ lat, long }) {
   const params = new URLSearchParams();
+  console.log('lat', lat);
+  console.log('long', long);
   params.set('minPopulation', '100000');
   params.set('radius', '5');
   params.set('types', 'CITY');

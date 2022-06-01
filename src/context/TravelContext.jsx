@@ -51,7 +51,6 @@ export const TravelProvider = ({ children }) => {
     let cityArray = [];
     const [long, lat] = midpoint.geometry.coordinates;
     const cityData = await fetchPlaces({ lat, long });
-    console.log('cityData', cityData);
     for (let city of cityData) {
       cityArray.push({
         type: 'Feature',
