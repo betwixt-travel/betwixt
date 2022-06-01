@@ -33,17 +33,20 @@
   margin: 0, auto;
 }
 
-.buttonSection button {
+button {
   background-color: black;
   padding: 10px;
   font-size: 1.2rem;
   font-weight: 500;
   font-family: 'Josefin Sans';
   border-radius: 5px;
+  color: white;
+}
+
+.buttonSection button {
   position: relative;
   left: 50px;
   bottom: 15px;
-  color: white;
   margin: auto;
 }
 
@@ -56,7 +59,21 @@
   bottom: 20px;
 }
 
+.removeButton {
+  font-family: 'Helvetica';
+  font-weight: 500;
+  font-size: 1.8rem;
+  padding-left: 50px;
+  position: relative;
+  right: 44px;
+  bottom: 10px;
+}
+
 .addButton:hover {
+  cursor: pointer;
+}
+
+.removeButton:hover {
   cursor: pointer;
 }
 

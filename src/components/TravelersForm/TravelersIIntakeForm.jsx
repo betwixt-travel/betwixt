@@ -58,13 +58,12 @@ export default function TravelersIIntakeForm() {
               onChange={(e) => handleChange(index, e)}
             />
             {index > 1 ? (
-              <button
-                type="button"
-                className="button remove"
+              <p
+                className={styles.removeButton}
                 onClick={() => removeFormFields(index)}
               >
-                Remove
-              </button>
+                -
+              </p>
             ) : null}
           </div>
         ))}
