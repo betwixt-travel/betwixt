@@ -18,3 +18,7 @@ form {
   font-family: 'Playfair Display';
 }
 
+button:hover {
+  cursor: pointer;
+}
+

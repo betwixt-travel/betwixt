@@ -11,16 +11,21 @@
 }
 
 .nav {
-  list-style: none;
+  display: flex;
+  align-items: center;
   margin: 10px;
   padding: 0px;
 }
 
-.nav li {
-  margin: 5px;
+.nav * {
+  margin: 0px 15px;
 }
 
-.nav li:hover {
+.nav a {
+  text-decoration: none;
+}
+
+.nav a:hover {
   text-decoration: underline;
   text-underline-offset: 5px;
 }
