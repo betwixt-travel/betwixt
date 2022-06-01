@@ -1,8 +1,9 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { fetchCoordinates } from '../services/maps';
 import * as turf from '@turf/turf';
-import { fetchPlaces } from '../services/places';
+import { fetchPlaces, saveCity } from '../services/places';
 import { useHistory } from 'react-router-dom';
+import { getUser } from '../services/user';
 
 export const TravelContext = createContext();
 
@@ -14,6 +15,7 @@ export const TravelProvider = ({ children }) => {
       geometry: { type: '', coordinates: [] },
     },
   ]);
+  const [savedCities, setSavedCities] = useState([]);
   const [coordinates, setCoordinates] = useState([]);
   const [midpoint, setMidpoint] = useState([]);
   const [formError, setFormError] = useState('');
@@ -114,6 +116,11 @@ export const TravelProvider = ({ children }) => {
     handleMidpoint();
   }, [coordinates]);
 
+  const saveHandler = async (location) => {
+    const created = await saveCity({ location, creator_id: getUser().id });
+    setSavedCities((prev) => [...prev, created]);
+  };
+
   return (
     <TravelContext.Provider
       value={{
@@ -124,6 +131,7 @@ export const TravelProvider = ({ children }) => {
         loading,
         setLoading,
         cities,
+        saveHandler,
       }}
     >
       {children}
