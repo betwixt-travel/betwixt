@@ -3,14 +3,14 @@ import { useHistory } from 'react-router-dom';
 import { useTravelContext } from '../../context/TravelContext';
 
 export default function TravelersIIntakeForm() {
-  const { people, handleFormSubmit } = useTravelContext();
+  const { people, handleFormSubmit, formError, loading } = useTravelContext();
   const history = useHistory();
 
   const [formValues, setFormValues] = useState([
     { name: '', location: '' },
     { name: '', location: '' },
   ]);
-
+  if (!people) return;
   let handleChange = (i, e) => {
     let newFormValues = [...formValues];
     newFormValues[i][e.target.name] = e.target.value;
@@ -30,14 +30,15 @@ export default function TravelersIIntakeForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await handleFormSubmit(formValues);
-    history.push('/results');
     // TODO: Add function to submit button
   };
+  console.log('formError', formError);
 
   return (
     <form onSubmit={handleSubmit}>
       {formValues.map((element, index) => (
         <div className="form-inline" key={index}>
+          Note: Zipcodes only from USA.
           <label>Name</label>
           <input
             type="text"
@@ -74,6 +75,7 @@ export default function TravelersIIntakeForm() {
         <button className="button submit" type="submit">
           Submit
         </button>
+        {formError && <p>{formError}</p>}
       </div>
     </form>
   );

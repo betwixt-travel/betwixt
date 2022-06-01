@@ -1,10 +1,7 @@
 import MapItem from '../components/Map/MapItem';
+import { useTravelContext } from '../context/TravelContext';
 
 export default function Results() {
-  return (
-    <div>
-      Results
-      <MapItem />
-    </div>
-  );
+  const { loading } = useTravelContext();
+  return <div>Results {loading ? <div>loading....</div> : <MapItem />}</div>;
 }

@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { fetchCoordinates } from '../services/maps';
 import * as turf from '@turf/turf';
+import { useHistory } from 'react-router-dom';
 
 export const TravelContext = createContext();
 
@@ -14,35 +15,50 @@ export const TravelProvider = ({ children }) => {
   ]);
   const [coordinates, setCoordinates] = useState([]);
   const [midpoint, setMidpoint] = useState([]);
-
-  const convertFormInput = async (formValues) => {
-    let peopleArray = [];
-    for (const value of formValues) {
-      const fetchCoordsAndPush = async () => {
-        const coordinates = await fetchCoordinates({ zip: value.location });
-        peopleArray.push({
-          type: 'Feature',
-          properties: {
-            name: value.name,
-            zip: value.location,
-            city: coordinates.place_name,
-          },
-          geometry: {
-            type: 'Point',
-            coordinates: coordinates.center,
-          },
-        });
-        setCoordinates((prev) => [...prev, coordinates.center]);
-      };
-      fetchCoordsAndPush();
-    }
-
-    return peopleArray;
-  };
+  const [formError, setFormError] = useState('');
+  const [loading, setLoading] = useState(true);
+  const history = useHistory();
 
   const handleFormSubmit = async (formValues) => {
-    const peopleArray = await convertFormInput(formValues);
-    setPeople(peopleArray);
+    setFormError('');
+    setCoordinates([]);
+
+    const data = formValues.map((value) => {
+      const promise = new Promise((resolve, reject) => {
+        fetchCoordinates(value).then((result) =>
+          resolve({ ...result, name: value.name })
+        );
+      });
+      return promise;
+    });
+    console.log('data', data);
+    const convertData = (array) => {
+      try {
+        const formattedData = array.map((value) => {
+          console.log('value', value);
+          if (value.geometry === undefined) throw new Error('invalid zip');
+          const { geometry, place_name, text, name } = value;
+          setCoordinates((prev) => [...prev, geometry.coordinates]);
+          return {
+            type: 'Feature',
+            properties: {
+              name,
+              zip: text,
+              city: place_name,
+            },
+            geometry,
+          };
+        });
+        setPeople(formattedData);
+        setLoading(false);
+        history.push('/results');
+      } catch (error) {
+        console.log('error', error);
+        setFormError('Invalid zip code');
+      }
+    };
+
+    Promise.all(data).then(convertData);
   };
 
   useEffect(() => {
@@ -52,17 +68,25 @@ export const TravelProvider = ({ children }) => {
       const point2 = turf.point(coordinates[1]);
       const midpoint = turf.midpoint(point1, point2);
       setMidpoint(midpoint);
-    } else if (coordinates.length > 2) {
-      const array = [...coordinates];
-      const features = turf.points(array);
+    }
+    if (coordinates.length > 2) {
+      const features = turf.points([...coordinates]);
       const midpoint = turf.center(features);
       setMidpoint(midpoint);
-    } else {
     }
   }, [coordinates]);
 
   return (
-    <TravelContext.Provider value={{ people, handleFormSubmit, midpoint }}>
+    <TravelContext.Provider
+      value={{
+        people,
+        handleFormSubmit,
+        midpoint,
+        formError,
+        loading,
+        setLoading,
+      }}
+    >
       {children}
     </TravelContext.Provider>
   );
