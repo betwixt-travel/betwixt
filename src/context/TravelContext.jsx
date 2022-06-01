@@ -47,7 +47,6 @@ export const TravelProvider = ({ children }) => {
 
   useEffect(() => {
     if (!coordinates) return;
-    console.log('coordinates', coordinates);
     if (coordinates.length === 2) {
       const point1 = turf.point(coordinates[0]);
       const point2 = turf.point(coordinates[1]);
