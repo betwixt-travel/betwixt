@@ -36,48 +36,52 @@ export default function TravelersIIntakeForm() {
   console.log('formError', formError);
 
   return (
-    <form onSubmit={handleSubmit} className={styles.travelersForm}>
-      {formValues.map((element, index) => (
-        <div className="form-inline" key={index}>
-          Note: Zipcodes only from USA.
-          <label>Name</label>
-          <input
-            type="text"
-            name="name"
-            value={element.name || ''}
-            onChange={(e) => handleChange(index, e)}
-          />
-          <label>Location</label>
-          <input
-            type="text"
-            name="location"
-            value={element.location || ''}
-            onChange={(e) => handleChange(index, e)}
-          />
-          {index > 1 ? (
-            <button
-              type="button"
-              className="button remove"
-              onClick={() => removeFormFields(index)}
-            >
-              Remove
-            </button>
-          ) : null}
-        </div>
-      ))}
-      <div className="button-section">
-        <button
-          className="button add"
-          type="button"
+    <div>
+      <form onSubmit={handleSubmit} className={styles.travelersForm}>
+        <p>
+          Enter zip codes* to figure out where to meet up:
+        </p>
+        {formValues.map((element, index) => (
+          <div className={styles.formSection} key={index}>
+            <label>Name:</label>
+            <input
+              type="text"
+              name="name"
+              value={element.name || ''}
+              onChange={(e) => handleChange(index, e)}
+            />
+            <label>Zip code:</label>
+            <input
+              type="text"
+              name="location"
+              value={element.location || ''}
+              onChange={(e) => handleChange(index, e)}
+            />
+            {index > 1 ? (
+              <button
+                type="button"
+                className="button remove"
+                onClick={() => removeFormFields(index)}
+              >
+                Remove
+              </button>
+            ) : null}
+          </div>
+        ))}
+        <p
+          className={styles.addButton}
           onClick={() => addFormFields()}
         >
-          Add
-        </button>
-        <button className="button submit" type="submit">
-          Submit
-        </button>
-        {formError && <p>{formError}</p>}
-      </div>
-    </form>
+          +
+        </p>
+        <div className={styles.buttonSection}>
+          <button className="button submit" type="submit">
+            Submit
+          </button>
+          {formError && <p>{formError}</p>}
+        </div>
+        <p className={styles.disclaimer}>*US only, for now</p>
+      </form>
+    </div>
   );
 }

@@ -2,4 +2,74 @@
   width: 80%;
   background: white;
   margin: auto;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-family: 'Playfair Display';
+}
+
+.travelersForm p {
+  margin: 10px;
+}
+
+.travelersForm button {
+  margin: auto;
+}
+
+.formSection {
+  width: 70%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.formSection input {
+  font-family: 'Josefin Sans';
+  font-size: 1.2rem;
+  padding: 10px;
+  margin: 5px;
+}
+
+.buttonSection {
+  margin: 0, auto;
+}
+
+.buttonSection button {
+  background-color: black;
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: 'Josefin Sans';
+  border-radius: 5px;
+  position: relative;
+  left: 50px;
+  bottom: 15px;
+  color: white;
+  margin: auto;
+}
+
+.addButton {
+  font-family: 'Helvetica';
+  font-weight: 500;
+  font-size: 1.8rem;
+  padding-left: 50px;
+  position: relative;
+  bottom: 20px;
+}
+
+.addButton:hover {
+  cursor: pointer;
+}
+
+.disclaimer {
+  font-size: 0.6rem;
+}
+
+@media screen and (min-width: 440px) {
+  .travelersForm {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 10px;
+  }
 }
