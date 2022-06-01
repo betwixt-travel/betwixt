@@ -8,7 +8,7 @@ import { rest } from 'msw';
 import { profileResponse } from '../../tests/fixtures/mockdata';
 
 describe('behavioral testing for auth page', () => {
-  test('should be able to sign in a user', async () => {
+  test.skip('should be able to sign in a user', async () => {
     render(
       <MemoryRouter initialEntries={['/auth']}>
         <UserProvider>
@@ -28,7 +28,7 @@ describe('behavioral testing for auth page', () => {
 
     expect(homePageHeader).toBeInTheDocument();
   });
-  test('should be able to toggle to a sign up form and sign up a user', async () => {
+  test.skip('should be able to toggle to a sign up form and sign up a user', async () => {
     render(
       <MemoryRouter initialEntries={['/auth']}>
         <UserProvider>
