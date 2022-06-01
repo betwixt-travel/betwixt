@@ -75,7 +75,7 @@ export default function TravelersIIntakeForm() {
         </p>
         <div className={styles.buttonSection}>
           <button className="button submit" type="submit">
-            Submit
+            Let's go!
           </button>
           {formError && <p>{formError}</p>}
         </div>

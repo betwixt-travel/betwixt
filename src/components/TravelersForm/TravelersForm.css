@@ -83,10 +83,47 @@ button {
 
 @media screen and (min-width: 440px) {
   .travelersForm {
-    width: 60%;
+    width: 65%;
     display: flex;
     flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .travelersForm {
+    width: 40%;
     position: absolute;
-    left: 10px;
+    left: 90px;
+    top: 250px;
+    font-size: 0.8rem;
+  }
+
+  .formSection {
+    width: 60%;
+    font-size: 0.8rem;
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 1450px) {
+  .formSection {
+    width: 80%;
+    font-size: 0.8rem;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .removeButton {
+    position: absolute;
+    bottom: 150px;
+    right: 20px;
+  }
+}
+
+@media screen and (min-width: 1650px) {
+  .removeButton {
+    position: absolute;
+    bottom: 150px;
+    right: 80px;
   }
 }
