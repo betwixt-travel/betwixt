@@ -19,7 +19,9 @@ const useAuth = () => {
   const signIn = async (email, password) => {
     await signInUser(email, password);
     const profileData = await fetchUserData();
-    setUser({ email, ...profileData });
+    const user = { email, ...profileData };
+    setUser(user);
+    localStorage.setItem('user', JSON.stringify(user));
     history.push('/');
   };
 
@@ -27,13 +29,14 @@ const useAuth = () => {
     const response = await signUpUser(email, password);
     await createProfile(response.id, firstname, lastname);
     const profileData = await fetchUserData();
-    setUser({ email, ...profileData });
-
+    const user = { email, ...profileData };
+    setUser(user);
     history.push('/');
   };
 
   const signOut = async () => {
     setUser({ email: null });
+    localStorage.removeItem('user');
     await signOutUser();
   };
   const userSignedIn = user.email;
