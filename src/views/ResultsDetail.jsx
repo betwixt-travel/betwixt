@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useTravelContext } from '../context/TravelContext';
 import { fetchCity } from '../services/places';
 
 export default function ResultsDetail() {
   const { city } = useParams();
+  const { saveHandler } = useTravelContext();
   const [lat, setLat] = useState();
   const [long, setLong] = useState();
   const [cityInfo, setCityInfo] = useState();
@@ -34,6 +36,7 @@ export default function ResultsDetail() {
       </h2>
       <p>{cityInfo.country}</p>
       <p>Population: {cityInfo.population}</p>
+      <button onClick={() => saveHandler()}>Save this trip</button>
     </>
   );
 }
