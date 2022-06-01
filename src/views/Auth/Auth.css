@@ -10,16 +10,37 @@
   width: 50%;
 }
 
+.authForm input {
+  font-size: 1rem;
+  padding: 8px;
+}
+
 .authForm button {
   width: 50%;
   margin: 20px auto;
 }
 
 .toggle {
-  margin-top: 10px;
-  margin-left: 50px;
+  margin: 20px;
+  text-align: center;
 }
 
 .toggle:hover {
   cursor: pointer;
+}
+
+@media screen and (min-width: 545px) {
+  .authForm label {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 820px) {
+  .authForm {
+    width: 550px;
+  }
+  
+  .authForm label {
+    width: 40%;
+  }
 }
