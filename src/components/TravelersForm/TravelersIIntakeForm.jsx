@@ -32,7 +32,6 @@ export default function TravelersIIntakeForm() {
     await handleFormSubmit(formValues);
     // TODO: Add function to submit button
   };
-  console.log('formError', formError);
 
   return (
     <form onSubmit={handleSubmit}>

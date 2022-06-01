@@ -8,35 +8,6 @@ import { MemoryRouter } from 'react-router-dom';
 import App from '../../App';
 import { UserProvider } from '../../context/userContext';
 
-import { setupServer } from 'msw/node';
-import { rest } from 'msw';
-import { mockedUser, profileResponse } from '../../tests/fixtures/mockdata';
-
-const server = setupServer(
-  rest.post(
-    `${process.env.REACT_APP_SUPABASE_URL}/auth/v1/token`,
-    (req, res, ctx) => {
-      return res(ctx.json(mockedUser));
-    }
-  ),
-  rest.post(
-    `${process.env.REACT_APP_SUPABASE_URL}/auth/v1/signup`,
-    (req, res, ctx) => {
-      return res(ctx.json(mockedUser));
-    }
-  ),
-  rest.patch(
-    `${process.env.REACT_APP_SUPABASE_URL}/rest/v1/profiles`,
-    (req, res, ctx) => {
-      return res(ctx.json(profileResponse));
-    }
-  )
-);
-
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
-
 describe('behavioral testing for auth page', () => {
   test('should be able to sign in a user', async () => {
     render(
@@ -55,11 +26,7 @@ describe('behavioral testing for auth page', () => {
     userEvent.click(submitButton);
 
     //removed this portion of the test until github testing issue is resolved
-    const homePageHeader = await screen.findByText(
-      'Home',
-      {},
-      { timeout: 4000 }
-    );
+    const homePageHeader = await screen.findByText('Home');
 
     expect(homePageHeader).toBeInTheDocument();
   });
@@ -81,11 +48,7 @@ describe('behavioral testing for auth page', () => {
     userEvent.click(submitButton);
 
     //removed this portion of the test until github testing issue is resolved
-    const homePageHeader = await screen.findByText(
-      'Home',
-      {},
-      { timeout: 4000 }
-    );
+    const homePageHeader = await screen.findByText('Home');
     expect(homePageHeader).toBeInTheDocument();
   });
 });
