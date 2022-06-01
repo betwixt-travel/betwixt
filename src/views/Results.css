@@ -2,3 +2,9 @@
   position: absolute;
   top: 550px;
 }
+
+.resultsList {
+  list-style: none;
+  font-family: 'Josefin Sans';
+  font-size: 1.8rem;
+}

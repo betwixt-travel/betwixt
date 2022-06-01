@@ -21,7 +21,7 @@ export default function Results() {
             </button>
           </>
         ) : (
-          <ul>
+          <ul className={styles.resultsList}>
             {cities.map((city) => (
               <li key={city.properties.id}>
                 <Link
