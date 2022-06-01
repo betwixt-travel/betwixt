@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useHistory, useLocation } from 'react-router-dom';
-import {} from 'react-router-dom/cjs/react-router-dom.min';
 import { useAuth } from '../../hooks/useUser';
+import styles from './Header.css'
 
 export default function Header() {
   const { signOut, userSignedIn, user } = useAuth();
@@ -10,30 +10,20 @@ export default function Header() {
   const location = useLocation();
   const onAuthPage = location.pathname === '/auth';
   return (
-    <div>
-      <Link to="/">
+    <header className={styles.header}>
+      <NavLink to="/">
         <h1>betwiXt</h1>
-      </Link>
-      <ul style={{ listStyle: 'none' }}>
-        <li>
-          <Link to="/auth">Auth</Link>
-        </li>
-        <li>
-          <Link to="/results">Results</Link>
-        </li>
-        <li>
-          <Link to="/profile">Profile</Link>
-        </li>
-      </ul>
+      </NavLink>
       {!onAuthPage &&
         (userSignedIn ? (
-          <>
-            <p>Welcome {user.first_name || 'traveler'}</p>
+          <div className={styles.nav}>
+            <p>Welcome, {user.first_name || 'traveler'}</p>
+            <NavLink to="/profile">Profile</NavLink>
             <button onClick={signOut}>Sign Out</button>
-          </>
+          </div>
         ) : (
-          <button onClick={() => history.push('/auth')}>Log In</button>
+          <NavLink to="/auth">Sign in or sign up!</NavLink>
         ))}
-    </div>
+    </header>
   );
 }

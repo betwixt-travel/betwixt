@@ -121,13 +121,23 @@ export default function Auth() {
   return isSigningIn ? (
     <>
       {signInFragment}
-      <p onClick={() => setIsSigningIn(false)}>{text.switch}</p>
+      <p 
+        onClick={() => setIsSigningIn(false)}
+        className={styles.toggle}
+      >
+        {text.switch}
+      </p>
       {error && <p>{error}</p>}
     </>
   ) : (
     <>
       {signUpFragment}
-      <p onClick={() => setIsSigningIn(true)}>{text.switch}</p>
+      <p 
+        onClick={() => setIsSigningIn(true)}
+        className={styles.toggle}
+      >
+        {text.switch}
+      </p>
       {error && <p>{error}</p>}
     </>
   );
