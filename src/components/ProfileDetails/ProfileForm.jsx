@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from '../../hooks/useForm';
 import { useAuth } from '../../hooks/useUser';
 import { updateProfile } from '../../services/user';
+import toast from 'react-hot-toast';
 
 export default function ProfileForm({ setIsEditing }) {
   const { user, updateUserState } = useAuth();
@@ -17,6 +18,7 @@ export default function ProfileForm({ setIsEditing }) {
     const resp = await updateProfile({ ...formState });
     updateUserState(resp);
     setIsEditing(false);
+    toast.success('Successfully updated your profile!');
   };
 
   return (
