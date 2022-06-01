@@ -48,3 +48,8 @@ export const getUserCities = async () => {
   const res = await client.from('trips').select();
   return parseData(res);
 };
+
+export const deleteUserCity = async (id) => {
+  const res = await client.from('trips').delete().match({ id });
+  return parseData(res);
+};
