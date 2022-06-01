@@ -7,10 +7,12 @@ import ResultsDetail from './views/ResultsDetail';
 import Header from './components/Header/Header';
 import { TravelProvider } from './context/TravelContext';
 import styles from './App.css'
+import { Toaster } from 'react-hot-toast';
 
 export default function App() {
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       <TravelProvider>
         <Header />
         <Switch>
@@ -23,7 +25,7 @@ export default function App() {
           <Route path="/profile">
             <Profile />
           </Route>
-          <Route exact path="/results/:city">
+          <Route exact path="/city">
             <ResultsDetail />
           </Route>
           <Route path="/results">
