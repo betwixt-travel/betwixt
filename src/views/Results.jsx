@@ -25,7 +25,7 @@ export default function Results() {
             {cities.map((city) => (
               <li key={city.properties.id}>
                 <Link
-                  to={`/results/${city.properties.latitude}+${city.properties.longitude}`}
+                  to={`/city?lat=${city.properties.latitude}&long=${city.properties.longitude}`}
                 >
                   {city.properties.name} - {city.properties.distance}
                 </Link>

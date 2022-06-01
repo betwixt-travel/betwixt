@@ -24,7 +24,7 @@ export default function App() {
           <Route path="/profile">
             <Profile />
           </Route>
-          <Route exact path="/results/:city">
+          <Route exact path="/city">
             <ResultsDetail />
           </Route>
           <Route path="/results">
