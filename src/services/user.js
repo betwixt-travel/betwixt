@@ -28,10 +28,18 @@ export async function signOutUser() {
   handleError(response);
 }
 
-export const updateProfileInfo = async (id, first_name, last_name) => {
+export const createProfile = async (id, first_name, last_name) => {
   const resp = await client
     .from('profiles')
     .update({ first_name, last_name })
+    .match({ id })
+    .single();
+  return parseData(resp);
+};
+export const updateProfile = async ({ first_name, last_name, home_zip, id }) => {
+  const resp = await client
+    .from('profiles')
+    .update({ first_name, last_name, home_zip })
     .match({ id })
     .single();
   return parseData(resp);

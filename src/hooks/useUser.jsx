@@ -4,7 +4,7 @@ import { UserContext } from '../context/userContext';
 import {
   signInUser,
   signUpUser,
-  updateProfileInfo,
+  createProfile,
   fetchUserData,
   signOutUser,
 } from '../services/user';
@@ -25,7 +25,7 @@ const useAuth = () => {
 
   const signUp = async (email, password, firstname, lastname) => {
     const response = await signUpUser(email, password);
-    await updateProfileInfo(response.id, firstname, lastname);
+    await createProfile(response.id, firstname, lastname);
     const profileData = await fetchUserData();
     setUser({ email, ...profileData });
 
