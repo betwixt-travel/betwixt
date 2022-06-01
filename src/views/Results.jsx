@@ -3,8 +3,10 @@ import MapItem from '../components/Map/MapItem';
 import { useTravelContext } from '../context/TravelContext';
 
 export default function Results() {
-  const { cities } = useTravelContext();
-
+  const { cities, loading } = useTravelContext();
+  
+  if (loading) return <div>loading...</div>
+  
   return (
     <div>
       <div>

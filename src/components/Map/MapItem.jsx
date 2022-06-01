@@ -14,10 +14,6 @@ export default function MapItem() {
     type: 'FeatureCollection',
     features: [...people, ...cities],
   };
-  console.log('geoJSON', geoJSON);
-  // const geoJSONCities = { type: 'FeatureCollection', features: cities };
-  // console.log('geoJSONCities', geoJSONCities);
-  console.log('midpoint', midpoint);
   const midpt = {
     type: 'FeatureCollection',
     features: [midpoint],
