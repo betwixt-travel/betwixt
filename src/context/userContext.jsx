@@ -1,16 +1,26 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
+import { getUser } from '../services/user';
 
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({});
-  const value = {user, setUser};
+  const defaultValue = { email: null };
+  const [user, setUser] = useState(defaultValue);
+  const value = { user, setUser };
 
-  return (
-    <UserContext.Provider value={value}>
-      {children}
-    </UserContext.Provider>
-  )
-}
+  useEffect(() => {
+    if (user !== defaultValue) {
+      localStorage.setItem('user', JSON.stringify(user));
+    }
+  }, [user]);
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      setUser(user);
+    }
+  }, []);
 
-export { UserContext, UserProvider }
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+};
+
+export { UserContext, UserProvider };
