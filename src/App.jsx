@@ -8,7 +8,7 @@ import Header from './components/Header/Header';
 import { TravelProvider } from './context/TravelContext';
 import styles from './App.css'
 import { Toaster } from 'react-hot-toast';
-import AboutUs from './views/AboutUs';
+import AboutUs from './views/AboutUs/AboutUs';
 
 export default function App() {
   return (
