@@ -24,7 +24,7 @@ const useAuth = () => {
   };
 
   const signUp = async (email, password, firstname, lastname) => {
-    await signUpUser(email, password);
+    const response = await signUpUser(email, password);
     await updateProfileInfo(response.id, firstname, lastname);
     const profileData = await fetchUserData();
     setUser({ email, ...profileData });
@@ -38,7 +38,7 @@ const useAuth = () => {
   };
   const userSignedIn = user.email;
 
-  return { signIn, signUp, signOut, userSignedIn };
+  return { signIn, signUp, signOut, userSignedIn, user };
 };
 
 export { useAuth };

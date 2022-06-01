@@ -5,7 +5,7 @@ import {} from 'react-router-dom/cjs/react-router-dom.min';
 import { useAuth } from '../../hooks/useUser';
 
 export default function Header() {
-  const { signOut, userSignedIn } = useAuth();
+  const { signOut, userSignedIn, user } = useAuth();
   const history = useHistory();
   const location = useLocation();
   const onAuthPage = location.pathname === '/auth';
@@ -27,7 +27,10 @@ export default function Header() {
       </ul>
       {!onAuthPage &&
         (userSignedIn ? (
-          <button onClick={signOut}>Sign Out</button>
+          <>
+            <p>Welcome {user.first_name || 'traveler'}</p>
+            <button onClick={signOut}>Sign Out</button>
+          </>
         ) : (
           <button onClick={() => history.push('/auth')}>Log In</button>
         ))}
