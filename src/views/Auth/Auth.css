@@ -1,5 +1,46 @@
 .authForm {
   display: flex;
   flex-direction: column;
-  width: 50vw;
+  margin: 50px auto 0px auto;
+  width: 70%;
+}
+
+.authForm label {
+  margin: 10px auto;
+  width: 50%;
+}
+
+.authForm input {
+  font-size: 1rem;
+  padding: 8px;
+}
+
+.authForm button {
+  width: 50%;
+  margin: 20px auto;
+}
+
+.toggle {
+  margin: 20px;
+  text-align: center;
+}
+
+.toggle:hover {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 545px) {
+  .authForm label {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 820px) {
+  .authForm {
+    width: 550px;
+  }
+  
+  .authForm label {
+    width: 40%;
+  }
 }
