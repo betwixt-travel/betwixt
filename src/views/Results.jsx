@@ -1,15 +1,29 @@
-import { useEffect } from 'react';
-import { fetchCoordinates } from '../services/maps';
-import { fetchPlaces } from '../services/places';
+import { Link } from 'react-router-dom';
+import MapItem from '../components/Map/MapItem';
+import { useTravelContext } from '../context/TravelContext';
 
 export default function Results() {
-  useEffect(() => {
-    const wait = async () => {
-      //await fetchPlaces({ lat: '45.0', long: '-120.0' });
-      await fetchCoordinates({ zip: '98672' });
-    };
-    wait();
-  }, []);
-
-  return <div>Results</div>;
+  const { cities, loading } = useTravelContext();
+  
+  if (loading) return <div>loading...</div>
+  
+  return (
+    <div>
+      <div>
+        Results
+        <ul>
+          {cities.map((city) => (
+            <li key={city.properties.id}>
+              <Link
+                to={`/results/${city.properties.latitude}+${city.properties.longitude}`}
+              >
+                {city.properties.name} - {city.properties.distance}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <MapItem />
+    </div>
+  );
 }
