@@ -47,23 +47,17 @@ export const TravelProvider = ({ children }) => {
 
   useEffect(() => {
     if (!coordinates) return;
-    console.log('coordinates', coordinates);
     if (coordinates.length === 2) {
-      console.log('coordinates', coordinates);
       const point1 = turf.point(coordinates[0]);
       const point2 = turf.point(coordinates[1]);
       const midpoint = turf.midpoint(point1, point2);
-      console.log('midpoint', midpoint);
       setMidpoint(midpoint);
     } else if (coordinates.length > 2) {
       const array = [...coordinates];
-      console.log('array', array);
       const features = turf.points(array);
       const midpoint = turf.center(features);
-      console.log('midpoint centroid', midpoint);
       setMidpoint(midpoint);
     } else {
-      console.log('oops');
     }
   }, [coordinates]);
 
