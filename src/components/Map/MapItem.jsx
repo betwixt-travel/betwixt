@@ -35,7 +35,7 @@ export default function MapItem() {
           longitude: long,
           zoom: 7 /*TODO: Make this auto zoomed*/,
         }}
-        style={{ width: 600, height: 400 }}
+        // style={{ width: 600, height: 400 }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
         <Source id="my-data" type="geojson" data={geoJSON}>
