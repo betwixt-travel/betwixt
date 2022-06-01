@@ -24,7 +24,7 @@ describe('behavioral testing for auth page', () => {
     const submitButton = screen.getByRole('button', { name: 'Sign In' });
     userEvent.click(submitButton);
 
-    const homePageHeader = await screen.findByText('Home');
+    const homePageHeader = await screen.findByText('betwixt');
 
     expect(homePageHeader).toBeInTheDocument();
   });
