@@ -1,8 +1,10 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { fetchCoordinates } from '../services/maps';
 import * as turf from '@turf/turf';
-import { fetchPlaces } from '../services/places';
+import { fetchPlaces, saveCity } from '../services/places';
 import { useHistory } from 'react-router-dom';
+import { getUser } from '../services/user';
+import toast from 'react-hot-toast';
 
 export const TravelContext = createContext();
 
@@ -114,6 +116,13 @@ export const TravelProvider = ({ children }) => {
     handleMidpoint();
   }, [coordinates]);
 
+  const saveHandler = async (location) => {
+    const city = { location, creator_id: getUser().id };
+    await saveCity(city);
+    history.push('/results');
+    toast.success(`Successfully added ${location} to your saved trips.`);
+  };
+
   return (
     <TravelContext.Provider
       value={{
@@ -124,6 +133,7 @@ export const TravelProvider = ({ children }) => {
         loading,
         setLoading,
         cities,
+        saveHandler,
       }}
     >
       {children}

@@ -12,16 +12,11 @@ export default function ResultsDetail() {
   const lat = params.get('lat');
   const long = params.get('long');
   const { saveHandler } = useTravelContext();
-  // const [lat, setLat] = useState();
-  // const [long, setLong] = useState();
   const [cityInfo, setCityInfo] = useState();
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    // const coordinates = city.split('+');
-    // setLat(coordinates[0]);
-    // setLong(coordinates[1]);
     const getCity = async () => {
       const cityData = await fetchCity({
         lat,
@@ -43,12 +38,9 @@ export default function ResultsDetail() {
     fetchImagesData();
   }, [cityInfo]);
 
-  console.log('images', images);
-
   if (loading) return <p>Loading...</p>;
   return (
     <>
-      {/* {loading && <p>Loading...</p>} */}
       <div>
         <h2>
           {cityInfo.city}, {cityInfo.region}

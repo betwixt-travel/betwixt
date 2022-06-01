@@ -1,13 +1,30 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProfileForm from '../components/ProfileDetails/ProfileForm';
 import { useAuth } from '../hooks/useUser';
+import { deleteUserCity, getUserCities } from '../services/places';
+import toast from 'react-hot-toast';
 
 export default function Profile() {
   const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
+  const [cities, setCities] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // if (isEditing) return <ProfileForm />;
+  const deleteHandler = async (id, location) => {
+    await deleteUserCity(id);
+    setCities((prev) => prev.filter((city) => id !== city.id));
+    toast.success(`Successfully deleted your trip to ${location}.`);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const usersTrips = await getUserCities();
+      setCities(usersTrips);
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -32,6 +49,19 @@ export default function Profile() {
       </div>
       <div className="right">
         <h1>Saved Trips</h1>
+        {loading ? (
+          <div>loading...</div>
+        ) : (
+          cities.map(({ id, location }) => (
+            <div key={id}>
+              {' '}
+              <h3>
+                {location}{' '}
+                <span onClick={() => deleteHandler(id, location)}>❌</span>
+              </h3>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

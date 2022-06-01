@@ -6,10 +6,12 @@ import Results from './views/Results';
 import ResultsDetail from './views/ResultsDetail';
 import Header from './components/Header/Header';
 import { TravelProvider } from './context/TravelContext';
+import { Toaster } from 'react-hot-toast';
 
 export default function App() {
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       <TravelProvider>
         <Header />
         <Switch>

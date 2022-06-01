@@ -1,3 +1,5 @@
+import { client, parseData } from './client';
+
 const GEODB_API_KEY = process.env.REACT_APP_GEODB_API_KEY;
 
 const options = {
@@ -33,3 +35,21 @@ export async function fetchCity({ lat, long }) {
   const response = await data.json();
   return response.data;
 }
+
+export const saveCity = async ({ creator_id, location }) => {
+  const res = await client
+    .from('trips')
+    .insert({ creator_id, location })
+    .single();
+  return parseData(res);
+};
+
+export const getUserCities = async () => {
+  const res = await client.from('trips').select();
+  return parseData(res);
+};
+
+export const deleteUserCity = async (id) => {
+  const res = await client.from('trips').delete().match({ id });
+  return parseData(res);
+};
