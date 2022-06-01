@@ -7,6 +7,7 @@ import ResultsDetail from './views/ResultsDetail';
 import Header from './components/Header/Header';
 import { TravelProvider } from './context/TravelContext';
 import { Toaster } from 'react-hot-toast';
+import AboutUs from './views/AboutUs';
 
 export default function App() {
   return (
@@ -29,6 +30,9 @@ export default function App() {
           </Route>
           <Route path="/results">
             <Results />
+          </Route>
+          <Route path="/about">
+            <AboutUs />
           </Route>
         </Switch>
       </TravelProvider>
