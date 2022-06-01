@@ -36,3 +36,9 @@ export const updateProfileInfo = async (id, first_name, last_name) => {
     .single();
   return parseData(resp);
 };
+
+export const fetchUserData = async () => {
+  const resp = await client.from('profiles').select().single();
+
+  return parseData(resp);
+};
