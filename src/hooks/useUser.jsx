@@ -18,6 +18,7 @@ const useAuth = () => {
 
   const signUp = async (email, password, firstname, lastname) => {
     const response = await signUpUser(email, password);
+
     await updateProfileInfo(response.id, firstname, lastname);
     setUser(response);
     history.push('/');
