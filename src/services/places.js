@@ -18,14 +18,11 @@ export async function fetchPlaces({ lat, long }) {
     options
   );
   const response = await data.json();
-  console.log('response', response);
   return response.data;
 }
 
 export async function fetchCity({ lat, long }) {
   const params = new URLSearchParams();
-  console.log('lat', lat);
-  console.log('long', long);
   params.set('minPopulation', '100000');
   params.set('radius', '5');
   params.set('types', 'CITY');
@@ -34,6 +31,5 @@ export async function fetchCity({ lat, long }) {
     options
   );
   const response = await data.json();
-  console.log('response', response);
   return response.data;
 }

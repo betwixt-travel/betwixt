@@ -23,7 +23,6 @@ export default function ResultsDetail() {
     };
     getCity();
   }, []);
-  console.log('cityInfo', cityInfo);
 
   if (loading) return <p>Loading...</p>;
   return (

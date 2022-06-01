@@ -34,6 +34,12 @@ const useAuth = () => {
     history.push('/');
   };
 
+  const updateUserState = (formState) => {
+    setUser((prev) => {
+      return { ...prev, ...formState };
+    });
+  };
+
   const signOut = async () => {
     setUser({ email: null });
     localStorage.removeItem('user');
@@ -41,7 +47,7 @@ const useAuth = () => {
   };
   const userSignedIn = user.email;
 
-  return { signIn, signUp, signOut, userSignedIn, user };
+  return { signIn, signUp, signOut, userSignedIn, user, updateUserState };
 };
 
 export { useAuth };

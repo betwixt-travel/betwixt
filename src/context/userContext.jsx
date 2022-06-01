@@ -10,7 +10,6 @@ const UserProvider = ({ children }) => {
 
   useEffect(() => {
     if (user !== defaultValue) {
-      console.log('user', user !== defaultValue);
       localStorage.setItem('user', JSON.stringify(user));
     }
   }, [user]);

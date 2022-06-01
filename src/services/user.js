@@ -36,7 +36,8 @@ export const createProfile = async (id, first_name, last_name) => {
     .single();
   return parseData(resp);
 };
-export const updateProfile = async ({ first_name, last_name, home_zip, id }) => {
+export const updateProfile = async ({ first_name, last_name, home_zip }) => {
+  const id = getUser().id;
   const resp = await client
     .from('profiles')
     .update({ first_name, last_name, home_zip })

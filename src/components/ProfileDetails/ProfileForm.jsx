@@ -1,10 +1,10 @@
 import React from 'react';
 import { useForm } from '../../hooks/useForm';
 import { useAuth } from '../../hooks/useUser';
-import { createProfile } from '../../services/user';
+import { updateProfile } from '../../services/user';
 
 export default function ProfileForm({ setIsEditing }) {
-  const { user } = useAuth();
+  const { user, updateUserState } = useAuth();
   const inputs = {
     home_zip: user?.home_zip || '',
     first_name: user?.first_name || '',
@@ -14,9 +14,8 @@ export default function ProfileForm({ setIsEditing }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('user.id', user.id);
-    const resp = await createProfile({ ...formState, id: user.id});
-    console.log('resp in profile form', resp);
+    const resp = await updateProfile({ ...formState });
+    updateUserState(resp);
     setIsEditing(false);
   };
 

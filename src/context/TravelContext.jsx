@@ -33,11 +33,9 @@ export const TravelProvider = ({ children }) => {
       });
       return promise;
     });
-    console.log('data', data);
     const convertData = (array) => {
       try {
         const formattedData = array.map((value) => {
-          console.log('value', value);
           if (value.geometry === undefined) throw new Error('invalid zip');
           const { geometry, place_name, text, name } = value;
           setCoordinates((prev) => [...prev, geometry.coordinates]);
@@ -55,7 +53,6 @@ export const TravelProvider = ({ children }) => {
         setLoading(false);
         history.push('/results');
       } catch (error) {
-        console.log('error', error);
         setFormError('Invalid zip code');
       }
     };
@@ -77,7 +74,7 @@ export const TravelProvider = ({ children }) => {
           pop: city.population,
           distance: city.distance,
           latitude: city.latitude,
-          longitude: city.longitude
+          longitude: city.longitude,
           // 'marker-symbol': 'monument',
           /* May want to add countryCode, region, regionCode, population, and distance from geoDB data */
         },
@@ -87,7 +84,11 @@ export const TravelProvider = ({ children }) => {
         },
       });
     }
-    setCities(cityArray.sort((a, b) => a.properties.distance > b.properties.distance ? 1 : -1));
+    setCities(
+      cityArray.sort((a, b) =>
+        a.properties.distance > b.properties.distance ? 1 : -1
+      )
+    );
   };
 
   useEffect(() => {
@@ -121,7 +122,7 @@ export const TravelProvider = ({ children }) => {
         formError,
         loading,
         setLoading,
-        cities
+        cities,
       }}
     >
       {children}

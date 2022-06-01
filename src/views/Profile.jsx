@@ -12,7 +12,9 @@ export default function Profile() {
   return (
     <div>
       <div className="left">
-        <h1>Profile</h1>
+        <h1>
+          Profile <span onClick={() => setIsEditing(true)}>✏️</span>
+        </h1>
         <h3>
           {user.first_name} {user.last_name}
         </h3>
@@ -26,7 +28,7 @@ export default function Profile() {
             </span>
           </p>
         )}
-        {isEditing && <ProfileForm setIsEditing={setIsEditing}/>}
+        {isEditing && <ProfileForm setIsEditing={setIsEditing} />}
       </div>
       <div className="right">
         <h1>Saved Trips</h1>
