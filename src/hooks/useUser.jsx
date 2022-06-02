@@ -22,7 +22,7 @@ const useAuth = () => {
     const user = { email, ...profileData };
     setUser(user);
     localStorage.setItem('user', JSON.stringify(user));
-    history.push('/');
+    history.goBack();
   };
 
   const signUp = async (email, password, firstname, lastname) => {
@@ -31,7 +31,7 @@ const useAuth = () => {
     const profileData = await fetchUserData();
     const user = { email, ...profileData };
     setUser(user);
-    history.push('/');
+    history.goBack();
   };
 
   const updateUserState = (formState) => {

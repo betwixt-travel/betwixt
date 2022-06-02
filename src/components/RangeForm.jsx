@@ -15,7 +15,7 @@ export default function RangeForm() {
     <form className={styles.slidecontainer} onSubmit={handleSubmit}>
       <input
         type="range"
-        min="10000"
+        min="100000"
         max="500000"
         defaultValue="100000"
         step="10000"

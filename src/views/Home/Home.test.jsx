@@ -30,7 +30,6 @@ describe('behavioral testing for home page', () => {
       { timeout: 2000 }
     );
 
-    // testing for behavior of the next page
     // TODO: mock endpoints for details page requests.
     userEvent.click(sacremento);
     const detailPageTitle = await screen.findByText(
