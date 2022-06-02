@@ -14,10 +14,7 @@ export default function MapItem() {
     type: 'FeatureCollection',
     features: [...people],
   };
-  const midpt = {
-    type: 'FeatureCollection',
-    features: [midpoint],
-  }; /*don't use this currently*/
+
   const layerStyle = {
     id: 'point',
     type: 'circle',
@@ -34,27 +31,21 @@ export default function MapItem() {
         initialViewState={{
           latitude: lat,
           longitude: long,
-          zoom: 7 /*TODO: Make this auto zoomed*/,
+          zoom: 7,
         }}
-        // style={{ width: 600, height: 400 }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
         <Source id="my-data" type="geojson" data={geoJSON}>
           <Layer {...layerStyle} />
         </Source>
-        {/* <Source id="my-data2" type="geojson" data={geoJSONCities}>
-          <Layer {...layerStyle} />
-        </Source> */}
-        {/* <Source id="my-data" type="geojson" data={midpt}>
-          <Layer {...layerStyle} />
-        </Source> */}
+
         <Marker longitude={long} latitude={lat} anchor="center"></Marker>
         {cities.map((city) => (
-          <Marker 
-            key={city.properties.distance} 
-            longitude={city.properties.longitude} 
-            latitude={city.properties.latitude} 
-            color='#DDDDDD'
+          <Marker
+            key={city.properties.distance}
+            longitude={city.properties.longitude}
+            latitude={city.properties.latitude}
+            color="#DDDDDD"
             anchor="center"
           />
         ))}

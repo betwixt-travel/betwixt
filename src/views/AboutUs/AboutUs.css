@@ -18,11 +18,9 @@
 }
 
 .creatorCard span {
-  /* font-weight: bold; */
   text-decoration: underline;
 }
 
 .creatorCard h3 {
   font-weight: bold;
-  /* text-decoration: underline; */
 }
