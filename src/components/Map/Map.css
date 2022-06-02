@@ -27,3 +27,32 @@
     height: 400px;
   }
 }
+
+.legend {
+  font-family: 'Playfair Display';
+  font-size: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.legendOption {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding-left: 20px;
+}
+
+.legend p {
+  margin: 5px;
+}
+
+.legend img {
+  height: 50px;
+  margin: 2px;
+}
