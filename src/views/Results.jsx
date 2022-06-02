@@ -14,31 +14,25 @@ export default function Results() {
   return (
     <div className={styles.container}>
       <div className={styles.resultsContainer}>
+        <RangeForm className={styles.rangeForm} />
         {cities.length < 1 ? (
-          <>
+          <div className={styles.noResults}>
             <p>Looks like there are no cities near this midpoint.</p>
             <button onClick={() => history.push('/')}>
               Click here to try again.
             </button>
-          </>
+          </div>
         ) : (
           <div className={styles.resultsList}>
-            <RangeForm className={styles.rangeForm} />
             <ul>
               {cities.map((city) => (
                 <li key={city.properties.id} className={styles.result}>
                   <Link
                     to={`/city?lat=${city.properties.latitude}&long=${city.properties.longitude}`}
                   >
-                    <span>
-                      {city.properties.name}
-                    </span>
-                    <span>
-                       - 
-                    </span>
-                    <span>
-                      {city.properties.distance}
-                    </span>
+                    <span>{city.properties.name}</span>
+                    <span>-</span>
+                    <span>{city.properties.distance}</span>
                   </Link>
                 </li>
               ))}
