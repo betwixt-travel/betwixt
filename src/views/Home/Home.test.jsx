@@ -24,8 +24,6 @@ describe('behavioral testing for home page', () => {
     userEvent.type(travelerTwoZip, '92008');
     const submitButton = screen.getByText(`Let's go!`);
     userEvent.click(submitButton);
-    const results = await screen.findByText('Results');
-    expect(results).toBeInTheDocument();
     const sacremento = await screen.findByText(
       'Sacramento - 107.66',
       {},
