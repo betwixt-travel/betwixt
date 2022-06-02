@@ -34,7 +34,6 @@ export default function TravelersIIntakeForm() {
     e.preventDefault();
     await handleFormSubmit(formValues);
   };
-  console.log('user', user);
 
   return (
     <div>
