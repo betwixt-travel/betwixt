@@ -6,10 +6,9 @@
   --color2: rgb(232, 216, 197);
   --color3: rgb(88, 78, 63);
   --color4: rgb(25, 116, 191);
-  --color5: rgb(246, 243, 236);
+  --color5: rgb(255, 255, 255);
 
   margin: 0;
-
   color: var(--color3);
 }
 

@@ -34,13 +34,18 @@
 }
 
 button {
-  background-color: black;
+  background-color: var(--color1);
   padding: 10px;
   font-size: 1.2rem;
   font-weight: 500;
   font-family: 'Josefin Sans';
+  border: 3px solid var(--color3);
   border-radius: 5px;
   color: white;
+}
+
+button:hover {
+  background-color: var(--color3);
 }
 
 .buttonSection button {
@@ -71,10 +76,12 @@ button {
 
 .addButton:hover {
   cursor: pointer;
+  color: var(--color1);
 }
 
 .removeButton:hover {
   cursor: pointer;
+  color: var(--color1);
 }
 
 .disclaimer {
