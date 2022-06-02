@@ -8,12 +8,6 @@
   border-bottom: 1px solid black;
 }
 
-@media screen and (min-width: 450px) {
-  .map_container {
-    top: 90px;
-  }
-}
-
 @media screen and (min-width: 700px) {
   .map_container {
     position: relative;
