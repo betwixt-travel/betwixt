@@ -6,11 +6,15 @@ import Results from './views/Results';
 import ResultsDetail from './views/ResultsDetail';
 import Header from './components/Header/Header';
 import { TravelProvider } from './context/TravelContext';
-import styles from './App.css'
+import styles from './App.css';
 import { Toaster } from 'react-hot-toast';
 import AboutUs from './views/AboutUs/AboutUs';
+import { useAuth } from './hooks/useUser';
+import { Redirect } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 export default function App() {
+  const { user } = useAuth();
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
@@ -20,12 +24,12 @@ export default function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/auth">
-            <Auth />
+          <Route path="/login">
+            {user.email ? <Redirect to={'/'} /> : <Auth />}
           </Route>
-          <Route path="/profile">
+          <PrivateRoute path="/profile">
             <Profile />
-          </Route>
+          </PrivateRoute>
           <Route exact path="/city">
             <ResultsDetail />
           </Route>

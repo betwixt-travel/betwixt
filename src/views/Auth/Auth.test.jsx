@@ -10,7 +10,7 @@ import { profileResponse } from '../../tests/fixtures/mockdata';
 describe('behavioral testing for auth page', () => {
   test('should be able to sign in a user', async () => {
     render(
-      <MemoryRouter initialEntries={['/auth']}>
+      <MemoryRouter initialEntries={['/login']}>
         <UserProvider>
           {' '}
           <App />
@@ -32,7 +32,7 @@ describe('behavioral testing for auth page', () => {
   });
   test('should be able to toggle to a sign up form and sign up a user', async () => {
     render(
-      <MemoryRouter initialEntries={['/auth']}>
+      <MemoryRouter initialEntries={['/login']}>
         <UserProvider>
           <App />
         </UserProvider>
@@ -46,6 +46,11 @@ describe('behavioral testing for auth page', () => {
         }
       )
     );
+    const signOut = screen.getByText('Sign Out');
+    userEvent.click(signOut);
+
+    const signIn = screen.getByText('Sign in or sign up!');
+    userEvent.click(signIn);
 
     const toggle = screen.getByText('New user? Sign up here.');
     userEvent.click(toggle);
