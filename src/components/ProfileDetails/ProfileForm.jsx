@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from '../../hooks/useForm';
 import { useAuth } from '../../hooks/useUser';
 import { updateProfile } from '../../services/user';
+import styles from './ProfileForm.css'
 import toast from 'react-hot-toast';
 
 export default function ProfileForm({ setIsEditing }) {
@@ -23,10 +24,11 @@ export default function ProfileForm({ setIsEditing }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <fieldset>
+      <fieldset className={styles.profileForm}>
         <legend>Edit Your Profile</legend>
         <label htmlFor="first_name">
           First name:
+          </label>
           <input
             type="text"
             name="first_name"
@@ -35,9 +37,9 @@ export default function ProfileForm({ setIsEditing }) {
             value={formState.first_name}
             onChange={handleChange}
           />
-        </label>
         <label htmlFor="last_name">
           Last name:
+          </label>
           <input
             type="text"
             name="last_name"
@@ -46,9 +48,9 @@ export default function ProfileForm({ setIsEditing }) {
             value={formState.last_name}
             onChange={handleChange}
           />
-        </label>
         <label htmlFor="home_zip">
           Zip-code:
+          </label>
           <input
             type="text"
             name="home_zip"
@@ -57,7 +59,6 @@ export default function ProfileForm({ setIsEditing }) {
             value={formState.home_zip}
             onChange={handleChange}
           />
-        </label>
         <button>Save</button>
       </fieldset>
     </form>

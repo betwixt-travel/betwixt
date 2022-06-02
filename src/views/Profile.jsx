@@ -5,6 +5,8 @@ import { useAuth } from '../hooks/useUser';
 import { deleteUserCity, getUserCities } from '../services/places';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import edit from '../assets/images/pencil.png';
+import styles from './Profile.css'
 
 export default function Profile() {
   const { user } = useAuth();
@@ -28,10 +30,13 @@ export default function Profile() {
   }, []);
 
   return (
-    <div>
-      <div className="left">
+    <div className={styles.profileContainer}>
+      <div className={styles.profile}>
         <h1>
-          Profile <span onClick={() => setIsEditing(true)}>✏️</span>
+          Profile 
+          <span onClick={() => setIsEditing(!isEditing)}>
+            <img className={styles.edit} src={edit} />
+          </span>
         </h1>
         <h3>
           {user.first_name} {user.last_name}
@@ -48,15 +53,15 @@ export default function Profile() {
         )}
         {isEditing && <ProfileForm setIsEditing={setIsEditing} />}
       </div>
-      <div className="right">
+      <div className={styles.saved}>
         <h1>Saved Trips</h1>
         {loading ? (
           <div>loading...</div>
         ) : cities.length === 0 ? (
-          <div>
+          <p>
             Looks like you haven't saved any trips, get out there and start
             looking!
-          </div>
+          </p>
         ) : (
           cities.map(({ id, location, url }) => (
             <div key={id}>

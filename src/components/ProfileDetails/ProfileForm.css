@@ -1,0 +1,19 @@
+.profileForm {
+  margin: 20px auto;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.profileForm * {
+  margin: 2px 0px;
+}
+
+.profileForm input {
+  width: 90%;
+}
+
+.profileForm button {
+  align-self: center;
+}

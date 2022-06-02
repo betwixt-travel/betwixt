@@ -1,0 +1,26 @@
+.profileContainer {
+  margin: 20px;
+}
+
+.profileContainer h1 {
+  font-family: 'Playfair Display';
+  margin-bottom: 10px;
+}
+
+.profileContainer p {
+  font-family: 'Josefin Sans';
+}
+
+.profile {
+  margin-bottom: 20px;
+}
+
+.edit {
+  height: 25px;
+  width: 25px;
+  margin: 0px 10px;
+}
+
+.edit:hover {
+  cursor: pointer;
+}
