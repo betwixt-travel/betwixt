@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTravelContext } from '../../context/TravelContext';
+import { useAuth } from '../../hooks/useUser';
 import styles from './TravelersForm.css';
 
 export default function TravelersIIntakeForm() {
   const { people, handleFormSubmit, formError, loading } = useTravelContext();
+  const { user } = useAuth();
   const history = useHistory();
 
   const [formValues, setFormValues] = useState([
-    { name: '', location: '' },
+    { name: user?.first_name || '', location: user?.home_zip || '' },
     { name: '', location: '' },
   ]);
   if (!people) return;
@@ -36,15 +38,14 @@ export default function TravelersIIntakeForm() {
   return (
     <div>
       <form onSubmit={handleSubmit} className={styles.travelersForm}>
-        <p>
-          Enter zip codes* to figure out where to meet up:
-        </p>
+        <p>Enter zip codes* to figure out where to meet up:</p>
         {formValues.map((element, index) => (
           <div className={styles.formSection} key={index}>
             <label>Name:</label>
             <input
               type="text"
               name="name"
+              placeholder={`Name for Traveler ${index + 1}`}
               value={element.name || ''}
               onChange={(e) => handleChange(index, e)}
             />
@@ -52,6 +53,7 @@ export default function TravelersIIntakeForm() {
             <input
               type="text"
               name="location"
+              placeholder={`Zip for Traveler ${index + 1}`}
               value={element.location || ''}
               onChange={(e) => handleChange(index, e)}
             />
@@ -65,10 +67,7 @@ export default function TravelersIIntakeForm() {
             ) : null}
           </div>
         ))}
-        <p
-          className={styles.addButton}
-          onClick={() => addFormFields()}
-        >
+        <p className={styles.addButton} onClick={() => addFormFields()}>
           +
         </p>
         <div className={styles.buttonSection}>

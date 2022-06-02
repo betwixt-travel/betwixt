@@ -34,7 +34,6 @@
   .container {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-template-areas: 
-      '.resultsContainer .mapItemContainer';
+    grid-template-areas: '.resultsContainer .mapItemContainer';
   }
 }

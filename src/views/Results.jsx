@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useTravelContext } from '../context/TravelContext';
 import MapItem from '../components/Map/MapItem';
 import styles from './Results.css';
+import RangeForm from '../components/RangeForm';
 
 export default function Results() {
   const { cities, loading } = useTravelContext();
@@ -21,17 +22,20 @@ export default function Results() {
             </button>
           </>
         ) : (
-          <ul className={styles.resultsList}>
-            {cities.map((city) => (
-              <li key={city.properties.id} className={styles.result}>
-                <Link
-                  to={`/city?lat=${city.properties.latitude}&long=${city.properties.longitude}`}
-                >
-                  {city.properties.name} - {city.properties.distance}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <>
+            <RangeForm />
+            <ul className={styles.resultsList}>
+              {cities.map((city) => (
+                <li key={city.properties.id} className={styles.result}>
+                  <Link
+                    to={`/city?lat=${city.properties.latitude}&long=${city.properties.longitude}`}
+                  >
+                    {city.properties.name} - {city.properties.distance}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </>
         )}
       </div>
       <div className={styles.mapItemContainer}>
