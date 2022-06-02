@@ -5,9 +5,22 @@ import MapItem from '../components/Map/MapItem';
 import styles from './Results.css';
 
 export default function Results() {
-  const { cities, loading, population, setPopulation, radius, setRadius } =
-    useTravelContext();
+  const {
+    cities,
+    loading,
+    population,
+    setPopulation,
+    radius,
+    setRadius,
+    getCities,
+    handleMidpoint,
+  } = useTravelContext();
   const history = useHistory();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleMidpoint();
+  };
 
   if (loading) return <div>Loading...</div>;
 
@@ -23,7 +36,7 @@ export default function Results() {
           </>
         ) : (
           <>
-            <form className={styles.slidecontainer}>
+            <form className={styles.slidecontainer} onSubmit={handleSubmit}>
               <input
                 type="range"
                 min="10000"
@@ -46,6 +59,7 @@ export default function Results() {
                 onInput={(e) => setRadius(e.target.value)}
               />
               <p>Radius: {radius} miles</p>
+              <button>Update search</button>
             </form>
             <ul className={styles.resultsList}>
               {cities.map((city) => (
