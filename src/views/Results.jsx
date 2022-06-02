@@ -23,7 +23,7 @@ export default function Results() {
         ) : (
           <ul className={styles.resultsList}>
             {cities.map((city) => (
-              <li key={city.properties.id}>
+              <li key={city.properties.id} className={styles.result}>
                 <Link
                   to={`/city?lat=${city.properties.latitude}&long=${city.properties.longitude}`}
                 >
