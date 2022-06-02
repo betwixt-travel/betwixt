@@ -1,0 +1,23 @@
+.resultsContainer {
+  position: absolute;
+  top: 550px;
+}
+
+.resultsList {
+  list-style: none;
+  font-family: 'Josefin Sans';
+  font-size: 1.8rem;
+}
+
+@media screen and (min-width: 700px) {
+  .resultsContainer {
+    position: relative;
+    top: 200px;
+  }
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: 
+      '.resultsContainer .mapItemContainer';
+  }
+}

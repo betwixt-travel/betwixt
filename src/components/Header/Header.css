@@ -1,0 +1,36 @@
+* {
+  font-weight: 300;
+}
+
+.header {
+  font-family: 'Josefin Sans';
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10px 5px 10px;
+  border-bottom: 1px solid black;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  padding: 0px;
+}
+
+.nav * {
+  margin: 0px 15px;
+}
+
+.nav a {
+  text-decoration: none;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color3);
+}

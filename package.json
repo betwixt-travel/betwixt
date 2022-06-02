@@ -67,8 +67,13 @@
     "webpack-dev-server": "^4.9.0"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^1.35.3",
+    "@turf/turf": "^6.5.0",
+    "mapbox-gl": "^2.8.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hot-toast": "^2.2.0",
+    "react-map-gl": "^7.0.15",
     "react-router-dom": "^5.3.3"
   }
 }
