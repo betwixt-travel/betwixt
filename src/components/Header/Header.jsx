@@ -19,10 +19,10 @@ export default function Header() {
           <div className={styles.nav}>
             <p>Welcome, {user.first_name || 'traveler'}</p>
             <NavLink to="/profile">Profile</NavLink>
-            <button onClick={signOut}>Sign Out</button>
+            <button className={styles.signOut} onClick={signOut}>Sign Out</button>
           </div>
         ) : (
-          <NavLink to="/login">Sign in or sign up!</NavLink>
+          <NavLink className={styles.auth} to="/login">Sign in or sign up!</NavLink>
         ))}
     </header>
   );

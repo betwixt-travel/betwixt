@@ -4,7 +4,7 @@ import { useTravelContext } from '../context/TravelContext';
 import { useAuth } from '../hooks/useUser';
 import { fetchImages } from '../services/images';
 import { fetchCity } from '../services/places';
-import Styles from '../views/ResultsDetails.css';
+import styles from '../views/ResultsDetails.css';
 
 export default function ResultsDetail() {
   const { user } = useAuth();
@@ -43,7 +43,7 @@ export default function ResultsDetail() {
   if (loading) return <p>Loading...</p>;
   return (
     <>
-      <div>
+      <div className={styles.cityInfo}>
         <h2>
           {cityInfo.city}, {cityInfo.region}
         </h2>
@@ -64,11 +64,11 @@ export default function ResultsDetail() {
           <button onClick={() => history.push('/login')}>Save this trip</button>
         )}
       </div>
-      <div className={Styles.cardList}>
+      <div className={styles.cardList}>
         {images.map((image) => (
-          <div className={Styles.card} key={image.id}>
+          <div className={styles.card} key={image.id}>
             <img
-              className={Styles.cardImage}
+              className={styles.cardImage}
               alt={image.alt_description}
               src={image.urls.full}
               width="50%"

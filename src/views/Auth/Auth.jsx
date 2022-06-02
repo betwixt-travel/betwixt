@@ -36,7 +36,7 @@ export default function Auth() {
           {' '}
           <legend>{text.title}</legend>
           <label htmlFor="firstname">
-            firstname:
+            first name:
             <input
               type="firstname"
               name="firstname"
@@ -47,7 +47,7 @@ export default function Auth() {
             />
           </label>
           <label htmlFor="lastname">
-            lastname:
+            last name:
             <input
               type="lastname"
               name="lastname"
@@ -58,7 +58,7 @@ export default function Auth() {
             />
           </label>
           <label htmlFor="email">
-            email:
+            email: *
             <input
               type="email"
               name="email"
@@ -69,7 +69,7 @@ export default function Auth() {
             />
           </label>
           <label htmlFor="password">
-            password:
+            password: *
             <input
               type="password"
               name="password"
@@ -78,6 +78,7 @@ export default function Auth() {
               value={formState.password}
               onChange={handleChange}
             />
+          <p className={styles.required}>* required</p>
           </label>
           <button>{text.title}</button>
         </fieldset>

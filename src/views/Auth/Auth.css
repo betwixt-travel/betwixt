@@ -11,22 +11,30 @@
 }
 
 .authForm input {
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding: 8px;
+  font-family: 'Josefin Sans';
 }
 
 .authForm button {
   width: 50%;
-  margin: 20px auto;
+  margin: 10px auto 20px auto;
 }
 
 .toggle {
   margin: 20px;
   text-align: center;
+  color: blue;
+  text-decoration: underline;
 }
 
 .toggle:hover {
   cursor: pointer;
+}
+
+.required {
+  font-size: 0.6rem;
+  margin-top: 10px;
 }
 
 @media screen and (min-width: 545px) {
