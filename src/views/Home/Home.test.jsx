@@ -1,4 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../../App';
@@ -27,7 +31,7 @@ describe('behavioral testing for home page', () => {
     const sacremento = await screen.findByText(
       'Sacramento',
       {},
-      { timeout: 2000 }
+      { timeout: 4000 }
     );
 
     // TODO: mock endpoints for details page requests.
@@ -35,7 +39,7 @@ describe('behavioral testing for home page', () => {
     const detailPageTitle = await screen.findByText(
       'Sacramento, California',
       {},
-      { timeout: 2000 }
+      { timeout: 4000 }
     );
     expect(detailPageTitle).toBeInTheDocument();
   });
