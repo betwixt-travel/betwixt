@@ -2,7 +2,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './views/Home/Home';
 import Auth from './views/Auth/Auth';
 import Profile from './views/Profile';
-import Results from './views/Results';
+import Results from './views/Results/Results';
 import ResultsDetail from './views/ResultsDetail';
 import Header from './components/Header/Header';
 import { TravelProvider } from './context/TravelContext';
