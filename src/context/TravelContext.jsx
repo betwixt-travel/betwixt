@@ -12,6 +12,7 @@ export const TravelProvider = ({ children }) => {
   const [people, setPeople] = useState([
     {
       type: '',
+      bbox: [],
       properties: { name: '', zip: '', city: '' },
       geometry: { type: '', coordinates: [] },
     },
@@ -40,10 +41,11 @@ export const TravelProvider = ({ children }) => {
       try {
         const formattedData = array.map((value) => {
           if (value.geometry === undefined) throw new Error('invalid zip');
-          const { geometry, place_name, text, name } = value;
+          const { geometry, place_name, text, bbox, name } = value;
           setCoordinates((prev) => [...prev, geometry.coordinates]);
           return {
             type: 'Feature',
+            bbox,
             properties: {
               name,
               zip: text,
@@ -62,6 +64,30 @@ export const TravelProvider = ({ children }) => {
 
     Promise.all(data).then(convertData);
   };
+
+  useEffect(() => {
+    if (!coordinates) return;
+    console.log('coordinates', coordinates);
+    let latArray = [];
+    let longArray = [];
+
+    coordinates.map((coord) => {
+      latArray.push(coord[0]);
+      longArray.push(coord[1]);
+    });
+
+    latArray.sort((a, b) => {
+      return a - b;
+    });
+    longArray.sort((a, b) => {
+      return a - b;
+    });
+    const sw = [latArray[0], longArray[0]];
+    console.log('sw', sw);
+    const ne = [latArray[latArray.length - 1], longArray[longArray.length - 1]];
+    console.log('ne', ne);
+    // sw corner lat < and long >  ne lat > long <+
+  }, [coordinates]);
 
   const getCities = async (midpoint) => {
     let cityArray = [];

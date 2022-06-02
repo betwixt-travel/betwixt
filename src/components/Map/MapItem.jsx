@@ -7,6 +7,9 @@ let API_KEY = process.env.REACT_APP_MAPBOX_API_KEY;
 
 export default function MapItem() {
   const { people, midpoint, cities } = useTravelContext();
+  // console.log('people', people);
+  // const bbox = people.bbox;
+  // console.log('bbox', bbox);
 
   if (!midpoint.geometry) return <div>Loading...</div>;
   const [long, lat] = midpoint.geometry.coordinates;
@@ -33,7 +36,8 @@ export default function MapItem() {
         initialViewState={{
           latitude: lat,
           longitude: long,
-          zoom: 7 /*TODO: Make this auto zoomed*/,
+          // fitBounds: { bbox },
+          //zoom: 7 /*TODO: Make this auto zoomed*/,
         }}
         style={{ width: 600, height: 400 }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
