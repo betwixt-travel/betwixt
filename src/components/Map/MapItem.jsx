@@ -60,7 +60,7 @@ export default function MapItem() {
       </Map>
       <div className={styles.legend}>
         <div className={styles.legendOption}>
-          <p>Starting Location:</p>{' '}
+          <p>People:</p>{' '}
           <div
             style={{
               backgroundColor: '#FF0000',
@@ -74,7 +74,7 @@ export default function MapItem() {
           <p>Midpoint:</p> <img src={markerImg} />
         </div>
         <div className={styles.legendOption}>
-          <p>Potential Destination:</p>
+          <p>Nearby Cities:</p>
           <img style={{ filter: 'grayscale(100%)' }} src={markerImg} />
         </div>
       </div>

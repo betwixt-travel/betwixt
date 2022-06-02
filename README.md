@@ -12,27 +12,28 @@ Do you have friends and family located across the US? It can be hard to find the
 
 ## How it works
 * Sign Up or Sign In (optional -- do this if you want to save your trips)
-* Choose a synth, make sure your volume level is set for comfort
-* Write your text in the musically-responsive text box
-* Give your piece a title
-* Hit "Playback," and lay back while you listen to the melody you've created
-* Save your work, and view + edit from your profile
+* Add the location of your travel party members into the form to find cities near the midpoint
+* Select a city to view photos of the city
+* Save the city to your profile
+* Share the link with your friends
+* Enjoy your trip!
 * Make sure to give us 5 ⭐️ in the app store 😉
 
 
 ## Deployed Site:
 
-[View our deployed site on Netlify.](https://storied-halva-befe02.netlify.app/)
+[View our deployed site on Netlify.](https://betwixt.netlify.app/)
 
 ## Our Plan:
 
-[Check out our Miro Board here.](https://miro.com/app/board/uXjVOKyLi0Q=/)
+[Check out our Miro Board here.](https://miro.com/app/board/uXjVOxrOYrE=/?share_link_id=540330123895)
 
 ## Technologies:
 
-| Frontend Tech   | Backend Tech    |
-|-----------------|-----------------|
-| HTML            | Supabase        |
-| CSS             |                 |
-| JavaScript      |                 |
-| React           |                 |
+| Frontend Tech   | Backend Tech    | Libraries           | APIs            | Testing              |
+|-----------------|-----------------|---------------------|-----------------|----------------------|
+| HTML            | Supabase        | React Map GL        | GeoDB           | React Testing Library|
+| CSS             |                 | MAPBOX              | Unsplash        | Jest                 |
+| JavaScript      |                 | Turf.js             | Mapbox          |                      |
+| React           |                 | React Hot Toast     |                 |                      |
+|                 |                 | @mapbox geo-viewport|                 |                      |
