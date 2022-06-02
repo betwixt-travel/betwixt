@@ -19,6 +19,7 @@ export default function Header() {
         (userSignedIn ? (
           <div className={styles.nav}>
             <p>Welcome, {user.first_name || 'traveler'}</p>
+            <NavLink exact to='/' className={styles.home}>Home</NavLink>
             <NavLink to="/profile">Profile</NavLink>
             <button className={styles.signOut} onClick={signOut}>Sign Out</button>
           </div>

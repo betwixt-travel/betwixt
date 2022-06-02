@@ -17,6 +17,10 @@
   margin: 10px 0px 10px 5px;
 }
 
+.home {
+  display: none;
+}
+
 .nav {
   display: flex;
   align-items: center;
@@ -67,4 +71,10 @@ a {
 
 .auth:hover {
   color: var(--color2);
+}
+
+@media screen and (min-width: 500px) {
+  .home {
+    display: inline;
+  }
 }
