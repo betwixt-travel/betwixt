@@ -36,7 +36,6 @@ export default function ResultsDetail() {
       setLoading(false);
     };
     fetchImagesData();
-    console.log('location', location.pathname + location.search);
   }, [cityInfo]);
 
   if (loading) return <p>Loading...</p>;
