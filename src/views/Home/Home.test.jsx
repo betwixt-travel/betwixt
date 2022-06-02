@@ -5,7 +5,7 @@ import App from '../../App';
 import { UserProvider } from '../../context/userContext';
 
 describe('behavioral testing for home page', () => {
-  test.only('should render a list of results with links to a details page', async () => {
+  test('should render a list of results with links to a details page', async () => {
     render(
       <MemoryRouter>
         <UserProvider>
@@ -29,6 +29,9 @@ describe('behavioral testing for home page', () => {
       {},
       { timeout: 2000 }
     );
+
+    // testing for behavior of the next page
+    // TODO: mock endpoints for details page requests.
     // userEvent.click(sacremento);
     // const detailPageTitle = await screen.findByText(
     //   'Sacramento, California',
