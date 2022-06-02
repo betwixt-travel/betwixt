@@ -8,19 +8,6 @@
   border-bottom: 1px solid black;
 }
 
-@media screen and (min-width: 700px) {
-  .map_container {
-    position: relative;
-    width: 90%;
-    height: 70vh;
-    border: 3px solid var(--color3);
-  }
-
-  .map {
-    width: 600px;
-    height: 400px;
-  }
-}
 
 .legend {
   font-family: 'Playfair Display';
@@ -29,7 +16,8 @@
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  margin: auto;
   padding: 10px;
 }
 
@@ -50,3 +38,22 @@
   height: 50px;
   margin: 2px;
 }
+
+@media screen and (min-width: 700px) {
+  .map_container {
+    position: relative;
+    width: 90%;
+    height: 70vh;
+    border: 3px solid var(--color3);
+  }
+  
+  .map {
+    width: 600px;
+    height: 400px;
+  }
+
+  .legend {
+    justify-content: flex-end;
+  }
+}
+
