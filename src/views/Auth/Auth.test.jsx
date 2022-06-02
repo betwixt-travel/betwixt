@@ -6,6 +6,7 @@ import { UserProvider } from '../../context/userContext';
 import { server } from '../../setupTests';
 import { rest } from 'msw';
 import { profileResponse } from '../../tests/fixtures/mockdata';
+import { sector } from '@turf/turf';
 
 describe('behavioral testing for auth page', () => {
   test('should be able to sign in a user', async () => {
@@ -46,6 +47,11 @@ describe('behavioral testing for auth page', () => {
         }
       )
     );
+    const signOut = screen.getByText('Sign Out');
+    userEvent.click(signOut);
+
+    const signIn = screen.getByText('Sign in or sign up!');
+    userEvent.click(signIn);
 
     const toggle = screen.getByText('New user? Sign up here.');
     userEvent.click(toggle);
