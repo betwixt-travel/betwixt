@@ -22,11 +22,13 @@ export const TravelProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [cities, setCities] = useState([]);
   const history = useHistory();
+  const [bounds, setBounds] = useState([]);
 
   const handleFormSubmit = async (formValues) => {
     setFormError('');
     setCoordinates([]);
     setMidpoint([]);
+    setBounds([]);
 
     const data = formValues.map((value) => {
       const promise = new Promise((resolve, reject) => {
@@ -62,6 +64,33 @@ export const TravelProvider = ({ children }) => {
 
     Promise.all(data).then(convertData);
   };
+
+  useEffect(() => {
+    if (!coordinates) return;
+    console.log('coordinates', coordinates);
+    let latArray = [];
+    let longArray = [];
+
+    coordinates.map((coord) => {
+      latArray.push(coord[0]);
+      longArray.push(coord[1]);
+    });
+
+    latArray.sort((a, b) => {
+      return a - b;
+    });
+    longArray.sort((a, b) => {
+      return a - b;
+    });
+    setBounds([
+      latArray[0],
+      longArray[0],
+      latArray[latArray.length - 1],
+      longArray[longArray.length - 1],
+    ]);
+
+    // sw corner lat < and long >  ne lat > long <+
+  }, [coordinates]);
 
   const getCities = async (midpoint) => {
     let cityArray = [];
@@ -132,6 +161,7 @@ export const TravelProvider = ({ children }) => {
         setLoading,
         cities,
         saveHandler,
+        bounds,
       }}
     >
       {children}
