@@ -36,10 +36,10 @@ export async function fetchCity({ lat, long }) {
   return response.data;
 }
 
-export const saveCity = async ({ creator_id, location }) => {
+export const saveCity = async ({ creator_id, location, url }) => {
   const res = await client
     .from('trips')
-    .insert({ creator_id, location })
+    .insert({ creator_id, location, url })
     .single();
   return parseData(res);
 };

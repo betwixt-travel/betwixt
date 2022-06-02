@@ -5,6 +5,5 @@ export async function fetchImages(city) {
     `https://api.unsplash.com/search/photos?page=1&query=${city}&order_by=popular&client_id=${API_KEY}`
   );
   const resp = await data.json();
-  console.log(resp);
   return resp;
 }

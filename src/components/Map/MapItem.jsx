@@ -14,47 +14,48 @@ export default function MapItem() {
   if (dynamicZoom.zoom > 2) {
     zoom = dynamicZoom.zoom - 2;
   } else zoom = dynamicZoom;
-  console.log('dynamicZoom', dynamicZoom);
+  
   if (!midpoint.geometry) return <div>Loading...</div>;
   const [long, lat] = midpoint.geometry.coordinates;
   const geoJSON = {
     type: 'FeatureCollection',
-    features: [...people, ...cities],
+    features: [...people],
   };
-  const midpt = {
-    type: 'FeatureCollection',
-    features: [midpoint],
-  }; /*don't use this currently*/
+
   const layerStyle = {
     id: 'point',
     type: 'circle',
     paint: {
-      'circle-radius': 10,
-      'circle-color': '#007cbf',
+      'circle-radius': 5,
+      'circle-color': '#FF0000',
     },
   };
   return (
     <div className={styles.map_container}>
       <Map
+        className={styles.map}
         mapboxAccessToken={API_KEY}
         initialViewState={{
           latitude: dynamicZoom.center[1],
           longitude: dynamicZoom.center[0],
           zoom: zoom,
         }}
-        style={{ width: 600, height: 400 }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
         <Source id="my-data" type="geojson" data={geoJSON}>
           <Layer {...layerStyle} />
         </Source>
-        {/* <Source id="my-data2" type="geojson" data={geoJSONCities}>
-          <Layer {...layerStyle} />
-        </Source> */}
-        {/* <Source id="my-data" type="geojson" data={midpt}>
-          <Layer {...layerStyle} />
-        </Source> */}
-        <Marker longitude={long} latitude={lat} anchor="bottom"></Marker>
+
+        <Marker longitude={long} latitude={lat} anchor="center"></Marker>
+        {cities.map((city) => (
+          <Marker
+            key={city.properties.distance}
+            longitude={city.properties.longitude}
+            latitude={city.properties.latitude}
+            color="#DDDDDD"
+            anchor="center"
+          />
+        ))}
       </Map>
     </div>
   );

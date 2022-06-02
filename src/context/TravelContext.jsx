@@ -107,8 +107,6 @@ export const TravelProvider = ({ children }) => {
           distance: city.distance,
           latitude: city.latitude,
           longitude: city.longitude,
-          // 'marker-symbol': 'monument',
-          /* May want to add countryCode, region, regionCode, population, and distance from geoDB data */
         },
         geometry: {
           type: 'Point',
@@ -145,8 +143,8 @@ export const TravelProvider = ({ children }) => {
     handleMidpoint();
   }, [coordinates]);
 
-  const saveHandler = async (location) => {
-    const city = { location, creator_id: getUser().id };
+  const saveHandler = async ({ location, url }) => {
+    const city = { location, creator_id: getUser().id, url };
     await saveCity(city);
     history.push('/results');
     toast.success(`Successfully added ${location} to your saved trips.`);

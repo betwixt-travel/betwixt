@@ -47,7 +47,16 @@ export default function ResultsDetail() {
         </h2>
         <p>{cityInfo.country}</p>
         <p>Population: {cityInfo.population}</p>
-        <button onClick={() => saveHandler()}>Save this trip</button>
+        <button
+          onClick={() =>
+            saveHandler({
+              location: cityInfo.city,
+              url: location.pathname + location.search,
+            })
+          }
+        >
+          Save this trip
+        </button>
       </div>
       <div className={Styles.cardList}>
         {images.map((image) => (
