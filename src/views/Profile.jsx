@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import edit from '../assets/images/pencil.png';
 import remove from '../assets/images/trash.png';
-import styles from './Profile.css'
+import styles from './Profile.css';
 
 export default function Profile() {
   const { user } = useAuth();
@@ -34,7 +34,7 @@ export default function Profile() {
     <div className={styles.profileContainer}>
       <div className={styles.profile}>
         <h1>
-          Profile 
+          Profile
           <span onClick={() => setIsEditing(!isEditing)}>
             <img className={styles.edit} src={edit} />
           </span>
@@ -48,7 +48,8 @@ export default function Profile() {
           <p>
             Looks like you don't have a default location set.{' '}
             <span onClick={() => setIsEditing(true)}>
-              <span className={styles.underline}>Click here</span> to finish setting up your profile.
+              <span className={styles.underline}>Click here</span> to finish
+              setting up your profile.
             </span>
           </p>
         )}
@@ -65,16 +66,14 @@ export default function Profile() {
           </p>
         ) : (
           cities.map(({ id, location, url }) => (
-            <div key={id}>
+            <div key={id} className={styles.savedTrips}>
               {' '}
               <Link to={url}>
-                <p>
-                  {location}{' '}
-                  <span onClick={() => deleteHandler(id, location)}>
-                    <img className={styles.remove} src={remove} />
-                  </span>
-                </p>
+                <p>{location} </p>
               </Link>
+              <span onClick={() => deleteHandler(id, location)}>
+                <img className={styles.remove} src={remove} />
+              </span>
             </div>
           ))
         )}

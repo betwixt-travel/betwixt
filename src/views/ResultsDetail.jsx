@@ -13,7 +13,7 @@ export default function ResultsDetail() {
   const lat = params.get('lat');
   const long = params.get('long');
   const history = useHistory();
-  const { saveHandler } = useTravelContext();
+  const { saveHandler, cities } = useTravelContext();
   const [cityInfo, setCityInfo] = useState();
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
@@ -27,6 +27,7 @@ export default function ResultsDetail() {
       setCityInfo(cityData[0]);
     };
     getCity();
+    console.log('history', history);
   }, [lat, long]);
 
   useEffect(() => {
@@ -43,6 +44,12 @@ export default function ResultsDetail() {
   if (loading) return <p>Loading...</p>;
   return (
     <>
+      <button
+        onClick={() => (cities.length ? history.goBack() : history.push('/'))}
+      >
+        Go back
+      </button>
+
       <div className={styles.cityInfo}>
         <h2>
           {cityInfo.city}, {cityInfo.region}
