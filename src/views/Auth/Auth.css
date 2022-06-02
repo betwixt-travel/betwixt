@@ -23,6 +23,8 @@
 .toggle {
   margin: 20px;
   text-align: center;
+  color: blue;
+  text-decoration: underline;
 }
 
 .toggle:hover {

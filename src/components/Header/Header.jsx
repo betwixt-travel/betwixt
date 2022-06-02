@@ -22,7 +22,7 @@ export default function Header() {
             <button onClick={signOut}>Sign Out</button>
           </div>
         ) : (
-          <NavLink to="/auth">Sign in or sign up!</NavLink>
+          <NavLink className={styles.auth} to="/auth">Sign in or sign up!</NavLink>
         ))}
     </header>
   );

@@ -6,23 +6,35 @@
   font-family: 'Josefin Sans';
   display: flex;
   justify-content: space-between;
-  padding: 20px 10px 5px 10px;
+  padding: 0px 10px 5px 10px;
   border-bottom: 1px solid black;
+  height: 65px;
+}
+
+.header h1 {
+  margin-top: 20px;
 }
 
 .nav {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin: 10px;
   padding: 0px;
 }
 
 .nav * {
-  margin: 0px 15px;
+  margin: 0px 10px;
 }
 
 .nav a {
   text-decoration: none;
+}
+
+.nav button {
+  font-size: .8rem;
+  width: 50px;
+  padding: 5px;
 }
 
 .nav a:hover {
@@ -33,4 +45,8 @@
 a {
   text-decoration: none;
   color: var(--color3);
+}
+
+.auth {
+  margin-top: 30px;
 }

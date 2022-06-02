@@ -6,6 +6,7 @@ import { deleteUserCity, getUserCities } from '../services/places';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import edit from '../assets/images/pencil.png';
+import remove from '../assets/images/trash.png';
 import styles from './Profile.css'
 
 export default function Profile() {
@@ -47,7 +48,7 @@ export default function Profile() {
           <p>
             Looks like you don't have a default location set.{' '}
             <span onClick={() => setIsEditing(true)}>
-              Click here to finish setting up your profile.
+              <span className={styles.underline}>Click here</span> to finish setting up your profile.
             </span>
           </p>
         )}
@@ -67,10 +68,12 @@ export default function Profile() {
             <div key={id}>
               {' '}
               <Link to={url}>
-                <h3>
+                <p>
                   {location}{' '}
-                  <span onClick={() => deleteHandler(id, location)}>❌</span>
-                </h3>
+                  <span onClick={() => deleteHandler(id, location)}>
+                    <img className={styles.remove} src={remove} />
+                  </span>
+                </p>
               </Link>
             </div>
           ))
