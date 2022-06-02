@@ -1,6 +1,6 @@
 # betwiXt
 
-## What is TypeTune? 
+## What is betwiXt? 
 Do you have friends and family located across the US? It can be hard to find the time to get together, and even harder to find a place. While we can't clear your schedule for you, we can help you find a meeting point -- a spot betwixt! Whether it's you and one other friend, or a small reunion, we can help you find a midpoint and the nearest cool cities. Select a city from the list of options to see photos.  
 
 ## DEV Team
