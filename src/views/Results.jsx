@@ -11,7 +11,7 @@ export default function Results() {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className={styles.container}>
       <div className={styles.resultsContainer}>
         {cities.length < 1 ? (
           <>

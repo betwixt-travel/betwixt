@@ -29,6 +29,7 @@ export default function MapItem() {
   return (
     <div className={styles.map_container}>
       <Map
+        className={styles.map}
         mapboxAccessToken={API_KEY}
         initialViewState={{
           latitude: lat,
