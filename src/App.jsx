@@ -6,7 +6,7 @@ import Results from './views/Results';
 import ResultsDetail from './views/ResultsDetail';
 import Header from './components/Header/Header';
 import { TravelProvider } from './context/TravelContext';
-import styles from './App.css'
+import styles from './App.css';
 import { Toaster } from 'react-hot-toast';
 import AboutUs from './views/AboutUs/AboutUs';
 
@@ -20,7 +20,7 @@ export default function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/auth">
+          <Route path="/login">
             <Auth />
           </Route>
           <Route path="/profile">

@@ -2,13 +2,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useUser';
-import styles from './Header.css'
+import styles from './Header.css';
 
 export default function Header() {
   const { signOut, userSignedIn, user } = useAuth();
   const history = useHistory();
   const location = useLocation();
-  const onAuthPage = location.pathname === '/auth';
+  const onAuthPage = location.pathname === '/login';
   return (
     <header className={styles.header}>
       <NavLink to="/">
@@ -22,7 +22,7 @@ export default function Header() {
             <button onClick={signOut}>Sign Out</button>
           </div>
         ) : (
-          <NavLink to="/auth">Sign in or sign up!</NavLink>
+          <NavLink to="/login">Sign in or sign up!</NavLink>
         ))}
     </header>
   );
