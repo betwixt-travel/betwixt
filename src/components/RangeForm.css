@@ -1,5 +1,23 @@
 .slidecontainer {
   width: 100%; /* Width of the outside container */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 20px;
+  max-width: 500px;
+}
+
+.slidecontainer label {
+  font-size: 1.2rem;
+}
+
+.slidecontainer input {
+  width: 100%;
+}
+
+.slidecontainer button {
+  margin: 15px 0px;
 }
 
 /* The slider itself */
@@ -18,4 +36,10 @@
 /* Mouse-over effects */
 .slider:hover {
   opacity: 1; /* Fully shown on mouse-over */
+}
+
+@media screen and (min-width: 1400px) {
+  .slidecontainer {
+    margin-left: 50px;
+  }
 }

@@ -1,17 +1,25 @@
 .resultsContainer {
   position: absolute;
-  top: 550px;
+  width: 80%;
+  top: 500px;
 }
 
 .resultsList {
-  list-style: none;
   font-family: 'Josefin Sans';
   font-size: 1.8rem;
+  width: 100%;
+}
+
+.resultsList ul {
+  list-style: none;
+  margin: auto;
+  padding-inline-start: 0px;
 }
 
 .result {
   padding: 10px;
   border: 1px solid lightgray;
+  text-decoration: none;
   margin: 0px 20px;
   width: 100%;
 }
@@ -24,7 +32,12 @@
 
 @media screen and (min-width: 700px) {
   .result {
-    width: 60%;
+    width: 80%;
+  }
+  
+  .result a {
+    display: flex;
+    justify-content: space-between;
   }
 
   .resultsContainer {

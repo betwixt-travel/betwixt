@@ -22,20 +22,28 @@ export default function Results() {
             </button>
           </>
         ) : (
-          <>
-            <RangeForm />
-            <ul className={styles.resultsList}>
+          <div className={styles.resultsList}>
+            <RangeForm className={styles.rangeForm} />
+            <ul>
               {cities.map((city) => (
                 <li key={city.properties.id} className={styles.result}>
                   <Link
                     to={`/city?lat=${city.properties.latitude}&long=${city.properties.longitude}`}
                   >
-                    {city.properties.name} - {city.properties.distance}
+                    <span>
+                      {city.properties.name}
+                    </span>
+                    <span>
+                       - 
+                    </span>
+                    <span>
+                      {city.properties.distance}
+                    </span>
                   </Link>
                 </li>
               ))}
             </ul>
-          </>
+          </div>
         )}
       </div>
       <div className={styles.mapItemContainer}>

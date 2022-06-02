@@ -25,20 +25,19 @@ describe('behavioral testing for home page', () => {
     const submitButton = screen.getByText(`Let's go!`);
     userEvent.click(submitButton);
     const sacremento = await screen.findByText(
-      'Sacramento - 107.66',
+      'Sacramento',
       {},
       { timeout: 2000 }
     );
 
-    // testing for behavior of the next page
     // TODO: mock endpoints for details page requests.
-    // userEvent.click(sacremento);
-    // const detailPageTitle = await screen.findByText(
-    //   'Sacramento, California',
-    //   {},
-    //   { timeout: 2000 }
-    // );
-    // expect(detailPageTitle).toBeInTheDocument();
+    userEvent.click(sacremento);
+    const detailPageTitle = await screen.findByText(
+      'Sacramento, California',
+      {},
+      { timeout: 2000 }
+    );
+    expect(detailPageTitle).toBeInTheDocument();
   });
   test('Should handle an error for an invalid zip', async () => {
     render(
