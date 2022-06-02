@@ -1,0 +1,28 @@
+.creators {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.creatorCard {
+  border: 2px black solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 50px;
+  background-color: white;
+  border-radius: 25px;
+  width: 30%;
+  padding: 10px;
+  margin: 20px;
+  text-align: center;
+}
+
+.creatorCard span {
+  /* font-weight: bold; */
+  text-decoration: underline;
+}
+
+.creatorCard h3 {
+  font-weight: bold;
+  /* text-decoration: underline; */
+}

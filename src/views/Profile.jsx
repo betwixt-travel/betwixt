@@ -4,6 +4,7 @@ import ProfileForm from '../components/ProfileDetails/ProfileForm';
 import { useAuth } from '../hooks/useUser';
 import { deleteUserCity, getUserCities } from '../services/places';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 export default function Profile() {
   const { user } = useAuth();
@@ -51,14 +52,21 @@ export default function Profile() {
         <h1>Saved Trips</h1>
         {loading ? (
           <div>loading...</div>
+        ) : cities.length === 0 ? (
+          <div>
+            Looks like you haven't saved any trips, get out there and start
+            looking!
+          </div>
         ) : (
-          cities.map(({ id, location }) => (
+          cities.map(({ id, location, url }) => (
             <div key={id}>
               {' '}
-              <h3>
-                {location}{' '}
-                <span onClick={() => deleteHandler(id, location)}>❌</span>
-              </h3>
+              <Link to={url}>
+                <h3>
+                  {location}{' '}
+                  <span onClick={() => deleteHandler(id, location)}>❌</span>
+                </h3>
+              </Link>
             </div>
           ))
         )}
