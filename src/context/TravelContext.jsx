@@ -12,7 +12,6 @@ export const TravelProvider = ({ children }) => {
   const [people, setPeople] = useState([
     {
       type: '',
-      bbox: [],
       properties: { name: '', zip: '', city: '' },
       geometry: { type: '', coordinates: [] },
     },
@@ -23,11 +22,13 @@ export const TravelProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [cities, setCities] = useState([]);
   const history = useHistory();
+  const [bounds, setBounds] = useState([]);
 
   const handleFormSubmit = async (formValues) => {
     setFormError('');
     setCoordinates([]);
     setMidpoint([]);
+    setBounds([]);
 
     const data = formValues.map((value) => {
       const promise = new Promise((resolve, reject) => {
@@ -41,11 +42,10 @@ export const TravelProvider = ({ children }) => {
       try {
         const formattedData = array.map((value) => {
           if (value.geometry === undefined) throw new Error('invalid zip');
-          const { geometry, place_name, text, bbox, name } = value;
+          const { geometry, place_name, text, name } = value;
           setCoordinates((prev) => [...prev, geometry.coordinates]);
           return {
             type: 'Feature',
-            bbox,
             properties: {
               name,
               zip: text,
@@ -82,10 +82,13 @@ export const TravelProvider = ({ children }) => {
     longArray.sort((a, b) => {
       return a - b;
     });
-    const sw = [latArray[0], longArray[0]];
-    console.log('sw', sw);
-    const ne = [latArray[latArray.length - 1], longArray[longArray.length - 1]];
-    console.log('ne', ne);
+    setBounds([
+      latArray[0],
+      longArray[0],
+      latArray[latArray.length - 1],
+      longArray[longArray.length - 1],
+    ]);
+
     // sw corner lat < and long >  ne lat > long <+
   }, [coordinates]);
 
@@ -160,6 +163,7 @@ export const TravelProvider = ({ children }) => {
         setLoading,
         cities,
         saveHandler,
+        bounds,
       }}
     >
       {children}

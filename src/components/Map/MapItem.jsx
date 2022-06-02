@@ -2,15 +2,19 @@ import Map, { Source, Layer, Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import styles from './Map.css';
 import { useTravelContext } from '../../context/TravelContext';
+import geoViewport from '@mapbox/geo-viewport';
 
 let API_KEY = process.env.REACT_APP_MAPBOX_API_KEY;
 
 export default function MapItem() {
-  const { people, midpoint, cities } = useTravelContext();
-  // console.log('people', people);
-  // const bbox = people.bbox;
-  // console.log('bbox', bbox);
+  const { people, midpoint, cities, bounds } = useTravelContext();
 
+  const dynamicZoom = geoViewport.viewport(bounds, [600, 400]);
+  let zoom;
+  if (dynamicZoom.zoom > 2) {
+    zoom = dynamicZoom.zoom - 2;
+  } else zoom = dynamicZoom;
+  console.log('dynamicZoom', dynamicZoom);
   if (!midpoint.geometry) return <div>Loading...</div>;
   const [long, lat] = midpoint.geometry.coordinates;
   const geoJSON = {
@@ -34,10 +38,9 @@ export default function MapItem() {
       <Map
         mapboxAccessToken={API_KEY}
         initialViewState={{
-          latitude: lat,
-          longitude: long,
-          // fitBounds: { bbox },
-          //zoom: 7 /*TODO: Make this auto zoomed*/,
+          latitude: dynamicZoom.center[1],
+          longitude: dynamicZoom.center[0],
+          zoom: zoom,
         }}
         style={{ width: 600, height: 400 }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
