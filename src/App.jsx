@@ -9,8 +9,11 @@ import { TravelProvider } from './context/TravelContext';
 import styles from './App.css';
 import { Toaster } from 'react-hot-toast';
 import AboutUs from './views/AboutUs/AboutUs';
+import { useAuth } from './hooks/useUser';
+import { Redirect } from 'react-router-dom';
 
 export default function App() {
+  const { user } = useAuth();
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
@@ -21,11 +24,11 @@ export default function App() {
             <Home />
           </Route>
           <Route path="/login">
-            <Auth />
+            {user.email ? <Redirect to={'/'} /> : <Auth />}
           </Route>
-          <Route path="/profile">
+          <PrivateRoute path="/profile">
             <Profile />
-          </Route>
+          </PrivateRoute>
           <Route exact path="/city">
             <ResultsDetail />
           </Route>
