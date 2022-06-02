@@ -25,9 +25,6 @@ export const TravelProvider = ({ children }) => {
   const [bounds, setBounds] = useState([]);
   const [population, setPopulation] = useState('100000');
   const [radius, setRadius] = useState('500');
-  // const [update, setUpdate] = useState(0);
-  // console.log('imediate population', population);
-  // console.log('imediate radius', radius);
 
   const handleFormSubmit = async (formValues) => {
     setFormError('');
@@ -74,7 +71,6 @@ export const TravelProvider = ({ children }) => {
 
   useEffect(() => {
     if (!coordinates) return;
-    console.log('coordinates', coordinates);
     let latArray = [];
     let longArray = [];
 
@@ -100,8 +96,6 @@ export const TravelProvider = ({ children }) => {
   }, [coordinates]);
 
   const getCities = async (midpoint) => {
-    console.log('context population', population);
-    console.log('context radius', radius);
     let cityArray = [];
     const [long, lat] = midpoint.geometry.coordinates;
     const cityData = await fetchPlaces({ lat, long, population, radius });

@@ -11,8 +11,6 @@ const options = {
 };
 
 export async function fetchPlaces({ lat, long, population, radius }) {
-  console.log('population', population);
-  console.log('radius', radius);
   const params = new URLSearchParams();
   params.set('minPopulation', population);
   params.set('radius', radius);

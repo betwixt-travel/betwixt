@@ -3,24 +3,11 @@ import { useHistory } from 'react-router-dom';
 import { useTravelContext } from '../context/TravelContext';
 import MapItem from '../components/Map/MapItem';
 import styles from './Results.css';
+import RangeForm from '../components/RangeForm';
 
 export default function Results() {
-  const {
-    cities,
-    loading,
-    population,
-    setPopulation,
-    radius,
-    setRadius,
-    getCities,
-    handleMidpoint,
-  } = useTravelContext();
+  const { cities, loading } = useTravelContext();
   const history = useHistory();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleMidpoint();
-  };
 
   if (loading) return <div>Loading...</div>;
 
@@ -36,31 +23,7 @@ export default function Results() {
           </>
         ) : (
           <>
-            <form className={styles.slidecontainer} onSubmit={handleSubmit}>
-              <input
-                type="range"
-                min="10000"
-                max="500000"
-                defaultValue="100000"
-                step="10000"
-                //className={styles.slider}
-                id="populationSlider"
-                onInput={(e) => setPopulation(e.target.value)}
-              />
-              <p>Population: {population}</p>
-              <input
-                type="range"
-                min="50"
-                max="500"
-                defaultValue="500"
-                step="25"
-                //className={styles.slider}
-                id="radiusSlider"
-                onInput={(e) => setRadius(e.target.value)}
-              />
-              <p>Radius: {radius} miles</p>
-              <button>Update search</button>
-            </form>
+            <RangeForm />
             <ul className={styles.resultsList}>
               {cities.map((city) => (
                 <li key={city.properties.id}>
