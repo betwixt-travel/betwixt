@@ -45,6 +45,7 @@ export default function ResultsDetail() {
   return (
     <>
       <button
+        className={styles.goBack}
         onClick={() => (cities.length ? history.goBack() : history.push('/'))}
       >
         Go back

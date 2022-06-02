@@ -35,6 +35,10 @@
   column-count: 3;
 }
 
+.goBack {
+  margin: 20px;
+}
+
 @media only screen and (max-width: 600px) {
   .card-list {
     column-count: 1;
