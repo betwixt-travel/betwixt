@@ -44,15 +44,14 @@ export default function AboutUs() {
           </p>
           <div className="icons">
             <Link
-              to={{ pathname: 'https://github.com/aidanliddiard' }}
+              to={{ pathname: 'https://github.com/denvermccarthy' }}
               target="_blank"
             >
               <img src="github.png" />
             </Link>
             <Link
               to={{
-                pathname:
-                  'https://www.linkedin.com/in/aidan-liddiard-283a991b3/',
+                pathname: 'https://www.linkedin.com/in/denvermccarthy/',
               }}
               target="_blank"
             >
