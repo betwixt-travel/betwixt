@@ -6,15 +6,15 @@
   font-family: 'Josefin Sans';
   display: flex;
   justify-content: space-between;
-  padding: 0px 10px 5px 10px;
+  padding: 0px 5px 0px 0px;
   border-bottom: 1px solid black;
   height: 65px;
   background-color: var(--color1);
 }
 
-.header h1 {
-  margin-top: 20px;
-  color: var(--color5);
+.logo {
+  width: 100px;
+  margin: 10px 0px 10px 5px;
 }
 
 .nav {
