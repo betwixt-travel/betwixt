@@ -13,17 +13,18 @@ export default function RangeForm() {
 
   return (
     <form className={styles.slidecontainer} onSubmit={handleSubmit}>
+      <label>Population: {population}</label>
       <input
         type="range"
         min="10000"
         max="500000"
         defaultValue="100000"
         step="10000"
-        //className={styles.slider}
+        // className={styles.slider}
         id="populationSlider"
         onInput={(e) => setPopulation(e.target.value)}
       />
-      <p>Population: {population}</p>
+      <label>Radius: {radius} miles</label>
       <input
         type="range"
         min="50"
@@ -34,7 +35,6 @@ export default function RangeForm() {
         id="radiusSlider"
         onInput={(e) => setRadius(e.target.value)}
       />
-      <p>Radius: {radius} miles</p>
       <button>Update search</button>
     </form>
   );
