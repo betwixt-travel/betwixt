@@ -12,7 +12,7 @@ export default function MapItem() {
   const [long, lat] = midpoint.geometry.coordinates;
   const geoJSON = {
     type: 'FeatureCollection',
-    features: [...people, ...cities],
+    features: [...people],
   };
   const midpt = {
     type: 'FeatureCollection',
@@ -22,8 +22,8 @@ export default function MapItem() {
     id: 'point',
     type: 'circle',
     paint: {
-      'circle-radius': 10,
-      'circle-color': '#007cbf',
+      'circle-radius': 5,
+      'circle-color': '#FF0000',
     },
   };
   return (
@@ -48,7 +48,16 @@ export default function MapItem() {
         {/* <Source id="my-data" type="geojson" data={midpt}>
           <Layer {...layerStyle} />
         </Source> */}
-        <Marker longitude={long} latitude={lat} anchor="bottom"></Marker>
+        <Marker longitude={long} latitude={lat} anchor="center"></Marker>
+        {cities.map((city) => (
+          <Marker 
+            key={city.properties.distance} 
+            longitude={city.properties.longitude} 
+            latitude={city.properties.latitude} 
+            color='#DDDDDD'
+            anchor="center"
+          />
+        ))}
       </Map>
     </div>
   );
