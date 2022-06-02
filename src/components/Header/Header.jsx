@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <NavLink to="/">
-        <img className={styles.logo} src={logo} />
+        <img alt='betwiXt' className={styles.logo} src={logo} />
       </NavLink>
       {!onAuthPage &&
         (userSignedIn ? (
