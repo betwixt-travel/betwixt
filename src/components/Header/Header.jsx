@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useUser';
+import logo from '../../assets/images/logo.png';
 import styles from './Header.css';
 
 export default function Header() {
@@ -12,7 +13,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <NavLink to="/">
-        <h1>betwiXt</h1>
+        <img alt='betwiXt' className={styles.logo} src={logo} />
       </NavLink>
       {!onAuthPage &&
         (userSignedIn ? (

@@ -25,7 +25,7 @@ describe('behavioral testing for home page', () => {
     const submitButton = screen.getByText(`Let's go!`);
     userEvent.click(submitButton);
     const sacremento = await screen.findByText(
-      'Sacramento - 107.66',
+      'Sacramento',
       {},
       { timeout: 2000 }
     );
