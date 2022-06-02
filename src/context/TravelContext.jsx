@@ -67,7 +67,6 @@ export const TravelProvider = ({ children }) => {
 
   useEffect(() => {
     if (!coordinates) return;
-    console.log('coordinates', coordinates);
     let latArray = [];
     let longArray = [];
 
