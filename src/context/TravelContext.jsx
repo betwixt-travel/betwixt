@@ -23,6 +23,8 @@ export const TravelProvider = ({ children }) => {
   const [cities, setCities] = useState([]);
   const history = useHistory();
   const [bounds, setBounds] = useState([]);
+  const [population, setPopulation] = useState('');
+  const [radius, setRadius] = useState('');
 
   const handleFormSubmit = async (formValues) => {
     setFormError('');
@@ -162,6 +164,8 @@ export const TravelProvider = ({ children }) => {
         cities,
         saveHandler,
         bounds,
+        population,
+        setPopulation,
       }}
     >
       {children}

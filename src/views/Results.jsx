@@ -5,7 +5,7 @@ import MapItem from '../components/Map/MapItem';
 import styles from './Results.css';
 
 export default function Results() {
-  const { cities, loading } = useTravelContext();
+  const { cities, loading, population, setPopulation } = useTravelContext();
   const history = useHistory();
 
   if (loading) return <div>Loading...</div>;
@@ -21,17 +21,32 @@ export default function Results() {
             </button>
           </>
         ) : (
-          <ul className={styles.resultsList}>
-            {cities.map((city) => (
-              <li key={city.properties.id}>
-                <Link
-                  to={`/city?lat=${city.properties.latitude}&long=${city.properties.longitude}`}
-                >
-                  {city.properties.name} - {city.properties.distance}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <>
+            <form className={styles.slidecontainer}>
+              <input
+                type="range"
+                min="10000"
+                max="500000"
+                defaultValue="100000"
+                step="10000"
+                //className={styles.slider}
+                id="populationSlider"
+                onInput={(e) => setPopulation(e.target.value)}
+              />
+              <p>Population: {population}</p>
+            </form>
+            <ul className={styles.resultsList}>
+              {cities.map((city) => (
+                <li key={city.properties.id}>
+                  <Link
+                    to={`/city?lat=${city.properties.latitude}&long=${city.properties.longitude}`}
+                  >
+                    {city.properties.name} - {city.properties.distance}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </>
         )}
       </div>
       <div className={styles.mapItemContainer}>
