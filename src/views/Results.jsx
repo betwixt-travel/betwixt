@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import MapItem from '../components/Map/MapItem';
 import { useTravelContext } from '../context/TravelContext';
+import MapItem from '../components/Map/MapItem';
+import styles from './Results.css';
 
 export default function Results() {
   const { cities, loading } = useTravelContext();
@@ -10,9 +11,8 @@ export default function Results() {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div>
-      <div>
-        Results
+    <div className={styles.container}>
+      <div className={styles.resultsContainer}>
         {cities.length < 1 ? (
           <>
             <p>Looks like there are no cities near this midpoint.</p>
@@ -21,7 +21,7 @@ export default function Results() {
             </button>
           </>
         ) : (
-          <ul>
+          <ul className={styles.resultsList}>
             {cities.map((city) => (
               <li key={city.properties.id}>
                 <Link
@@ -34,7 +34,9 @@ export default function Results() {
           </ul>
         )}
       </div>
-      <MapItem />
+      <div className={styles.mapItemContainer}>
+        <MapItem />
+      </div>
     </div>
   );
 }
