@@ -11,6 +11,7 @@ import { Toaster } from 'react-hot-toast';
 import AboutUs from './views/AboutUs/AboutUs';
 import { useAuth } from './hooks/useUser';
 import { Redirect } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 export default function App() {
   const { user } = useAuth();
