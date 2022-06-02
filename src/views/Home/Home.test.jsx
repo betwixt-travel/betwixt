@@ -34,7 +34,6 @@ describe('behavioral testing for home page', () => {
       { timeout: 4000 }
     );
 
-    // TODO: mock endpoints for details page requests.
     userEvent.click(sacremento);
     const detailPageTitle = await screen.findByText(
       'Sacramento, California',

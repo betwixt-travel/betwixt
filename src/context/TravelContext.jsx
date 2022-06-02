@@ -91,8 +91,6 @@ export const TravelProvider = ({ children }) => {
       latArray[latArray.length - 1],
       longArray[longArray.length - 1],
     ]);
-
-    // sw corner lat < and long >  ne lat > long <+
   }, [coordinates]);
 
   const getCities = async (midpoint) => {

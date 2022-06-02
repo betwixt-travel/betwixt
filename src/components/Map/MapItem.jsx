@@ -1,9 +1,9 @@
 import Map, { Source, Layer, Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import styles from './Map.css';
-import { useTravelContext } from '../../context/TravelContext';
 import geoViewport from '@mapbox/geo-viewport';
 import markerImg from '../../assets/images/marker-png.png';
+import { useTravelContext } from '../../context/TravelContext';
+import styles from './Map.css';
 
 let API_KEY = process.env.REACT_APP_MAPBOX_API_KEY;
 
