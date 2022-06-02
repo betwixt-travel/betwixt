@@ -5,7 +5,8 @@ import MapItem from '../components/Map/MapItem';
 import styles from './Results.css';
 
 export default function Results() {
-  const { cities, loading, population, setPopulation } = useTravelContext();
+  const { cities, loading, population, setPopulation, radius, setRadius } =
+    useTravelContext();
   const history = useHistory();
 
   if (loading) return <div>Loading...</div>;
@@ -34,6 +35,17 @@ export default function Results() {
                 onInput={(e) => setPopulation(e.target.value)}
               />
               <p>Population: {population}</p>
+              <input
+                type="range"
+                min="50"
+                max="500"
+                defaultValue="500"
+                step="25"
+                //className={styles.slider}
+                id="radiusSlider"
+                onInput={(e) => setRadius(e.target.value)}
+              />
+              <p>Radius: {radius} miles</p>
             </form>
             <ul className={styles.resultsList}>
               {cities.map((city) => (
