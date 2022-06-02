@@ -10,10 +10,10 @@ const options = {
   },
 };
 
-export async function fetchPlaces({ lat, long }) {
+export async function fetchPlaces({ lat, long, population, radius }) {
   const params = new URLSearchParams();
-  params.set('minPopulation', '100000');
-  params.set('radius', '500');
+  params.set('minPopulation', population);
+  params.set('radius', radius);
   params.set('types', 'CITY');
   const data = await fetch(
     `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${lat}${long}/nearbyCities?${params.toString()}`,

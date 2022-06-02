@@ -23,12 +23,16 @@ export const TravelProvider = ({ children }) => {
   const [cities, setCities] = useState([]);
   const history = useHistory();
   const [bounds, setBounds] = useState([]);
+  const [population, setPopulation] = useState('100000');
+  const [radius, setRadius] = useState('500');
 
   const handleFormSubmit = async (formValues) => {
     setFormError('');
     setCoordinates([]);
     setMidpoint([]);
     setBounds([]);
+    setPopulation('100000');
+    setRadius('500');
 
     const data = formValues.map((value) => {
       const promise = new Promise((resolve, reject) => {
@@ -94,7 +98,7 @@ export const TravelProvider = ({ children }) => {
   const getCities = async (midpoint) => {
     let cityArray = [];
     const [long, lat] = midpoint.geometry.coordinates;
-    const cityData = await fetchPlaces({ lat, long });
+    const cityData = await fetchPlaces({ lat, long, population, radius });
     for (let city of cityData) {
       cityArray.push({
         type: 'Feature',
@@ -120,25 +124,25 @@ export const TravelProvider = ({ children }) => {
     );
   };
 
+  const handleMidpoint = async () => {
+    if (coordinates.length === 2) {
+      const point1 = turf.point(coordinates[0]);
+      const point2 = turf.point(coordinates[1]);
+      const midpoint = turf.midpoint(point1, point2);
+      await getCities(midpoint);
+      setMidpoint(midpoint);
+    }
+    if (coordinates.length > 2) {
+      const array = [...coordinates];
+      const features = turf.points(array);
+      const midpoint = turf.center(features);
+      await getCities(midpoint);
+      setMidpoint(midpoint);
+    }
+  };
+
   useEffect(() => {
     if (!coordinates) return;
-
-    const handleMidpoint = async () => {
-      if (coordinates.length === 2) {
-        const point1 = turf.point(coordinates[0]);
-        const point2 = turf.point(coordinates[1]);
-        const midpoint = turf.midpoint(point1, point2);
-        await getCities(midpoint);
-        setMidpoint(midpoint);
-      }
-      if (coordinates.length > 2) {
-        const array = [...coordinates];
-        const features = turf.points(array);
-        const midpoint = turf.center(features);
-        await getCities(midpoint);
-        setMidpoint(midpoint);
-      }
-    };
     handleMidpoint();
   }, [coordinates]);
 
@@ -161,6 +165,11 @@ export const TravelProvider = ({ children }) => {
         cities,
         saveHandler,
         bounds,
+        population,
+        setPopulation,
+        radius,
+        setRadius,
+        handleMidpoint,
       }}
     >
       {children}
