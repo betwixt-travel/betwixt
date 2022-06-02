@@ -61,7 +61,9 @@ export default function ResultsDetail() {
             Save this trip
           </button>
         ) : (
-          <button onClick={() => history.push('/login')}>Save this trip</button>
+          <button onClick={() => history.push('/login')}>
+            Sign in to save this trip
+          </button>
         )}
       </div>
       <div className={styles.cardList}>
