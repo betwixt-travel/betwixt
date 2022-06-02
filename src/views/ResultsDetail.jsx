@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { useTravelContext } from '../context/TravelContext';
+import { useAuth } from '../hooks/useUser';
 import { fetchImages } from '../services/images';
 import { fetchCity } from '../services/places';
 import Styles from '../views/ResultsDetails.css';
 
 export default function ResultsDetail() {
+  const { user } = useAuth();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const lat = params.get('lat');
   const long = params.get('long');
+  const history = useHistory();
   const { saveHandler } = useTravelContext();
   const [cityInfo, setCityInfo] = useState();
   const [loading, setLoading] = useState(true);
@@ -47,16 +49,20 @@ export default function ResultsDetail() {
         </h2>
         <p>{cityInfo.country}</p>
         <p>Population: {cityInfo.population}</p>
-        <button
-          onClick={() =>
-            saveHandler({
-              location: cityInfo.city,
-              url: location.pathname + location.search,
-            })
-          }
-        >
-          Save this trip
-        </button>
+        {user.email ? (
+          <button
+            onClick={() =>
+              saveHandler({
+                location: cityInfo.city,
+                url: location.pathname + location.search,
+              })
+            }
+          >
+            Save this trip
+          </button>
+        ) : (
+          <button onClick={() => history.push('/login')}>Save this trip</button>
+        )}
       </div>
       <div className={Styles.cardList}>
         {images.map((image) => (
