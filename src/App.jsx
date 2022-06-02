@@ -1,17 +1,17 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { useAuth } from './hooks/useUser';
+import { TravelProvider } from './context/TravelContext';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Home from './views/Home/Home';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import Auth from './views/Auth/Auth';
 import Profile from './views/Profile';
 import Results from './views/Results';
 import ResultsDetail from './views/ResultsDetail';
-import Header from './components/Header/Header';
-import { TravelProvider } from './context/TravelContext';
+import AboutUs from './views/AboutUs/AboutUs';
 import styles from './App.css';
 import { Toaster } from 'react-hot-toast';
-import AboutUs from './views/AboutUs/AboutUs';
-import { useAuth } from './hooks/useUser';
-import { Redirect } from 'react-router-dom';
-import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 export default function App() {
   const { user } = useAuth();
@@ -40,6 +40,7 @@ export default function App() {
             <AboutUs />
           </Route>
         </Switch>
+        <Footer />
       </TravelProvider>
     </>
   );
