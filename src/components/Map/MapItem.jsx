@@ -53,24 +53,30 @@ export default function MapItem() {
             key={city.properties.distance}
             longitude={city.properties.longitude}
             latitude={city.properties.latitude}
-            color="#DDDDDD"
+            color="#9C9A9C"
             anchor="center"
           />
         ))}
       </Map>
       <div className={styles.legend}>
-        <p>Starting Location:</p>{' '}
-        <div
-          style={{
-            backgroundColor: '#FF0000',
-            height: '7.5px',
-            width: '7.5px',
-            borderRadius: '50%',
-          }}
-        ></div>
-        <p>Midpoint:</p> <img src={markerImg} />
-        <p>Potential Destination:</p>
-        <img style={{ filter: 'grayscale(100%)' }} src={markerImg} />
+        <div className={styles.legendOption}>
+          <p>Starting Location:</p>{' '}
+          <div
+            style={{
+              backgroundColor: '#FF0000',
+              height: '7.5px',
+              width: '7.5px',
+              borderRadius: '50%',
+            }}
+          ></div>
+        </div>
+        <div className={styles.legendOption}>
+          <p>Midpoint:</p> <img src={markerImg} />
+        </div>
+        <div className={styles.legendOption}>
+          <p>Potential Destination:</p>
+          <img style={{ filter: 'grayscale(100%)' }} src={markerImg} />
+        </div>
       </div>
     </div>
   );
