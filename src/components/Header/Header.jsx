@@ -1,6 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation, NavLink } from 'react-router-dom';
 import { useAuth } from '../../hooks/useUser';
 import logo from '../../assets/images/logo.png';
 import styles from './Header.css';

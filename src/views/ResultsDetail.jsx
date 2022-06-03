@@ -27,7 +27,6 @@ export default function ResultsDetail() {
       setCityInfo(cityData[0]);
     };
     getCity();
-    console.log('history', history);
   }, [lat, long]);
 
   useEffect(() => {

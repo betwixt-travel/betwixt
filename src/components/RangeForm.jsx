@@ -20,7 +20,6 @@ export default function RangeForm() {
         max="500000"
         defaultValue="100000"
         step="10000"
-        // className={styles.slider}
         id="populationSlider"
         onInput={(e) => setPopulation(e.target.value)}
       />
@@ -31,7 +30,6 @@ export default function RangeForm() {
         max="500"
         defaultValue="500"
         step="25"
-        //className={styles.slider}
         id="radiusSlider"
         onInput={(e) => setRadius(e.target.value)}
       />
