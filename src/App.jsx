@@ -7,7 +7,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Auth from './views/Auth/Auth';
 import Profile from './views/Profile';
-import Results from './views/Results';
+import Results from './views/Results/Results';
 import ResultsDetail from './views/ResultsDetail';
 import AboutUs from './views/AboutUs/AboutUs';
 import styles from './App.css';

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import { useTravelContext } from '../context/TravelContext';
-import MapItem from '../components/Map/MapItem';
+import { useTravelContext } from '../../context/TravelContext';
+import MapItem from '../../components/Map/MapItem';
 import styles from './Results.css';
-import RangeForm from '../components/RangeForm';
+import RangeForm from '../../components/RangeForm';
 
 export default function Results() {
   const { cities, loading } = useTravelContext();
