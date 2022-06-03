@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { useTravelContext } from '../context/TravelContext';
+import { useAuth } from '../hooks/useUser';
 import { fetchImages } from '../services/images';
 import { fetchCity } from '../services/places';
-import Styles from '../views/ResultsDetails.css';
+import styles from '../views/ResultsDetails.css';
 
 export default function ResultsDetail() {
+  const { user } = useAuth();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const lat = params.get('lat');
   const long = params.get('long');
-  const { saveHandler } = useTravelContext();
+  const history = useHistory();
+  const { saveHandler, cities } = useTravelContext();
   const [cityInfo, setCityInfo] = useState();
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
@@ -41,28 +43,41 @@ export default function ResultsDetail() {
   if (loading) return <p>Loading...</p>;
   return (
     <>
-      <div>
+      <button
+        className={styles.goBack}
+        onClick={() => (cities.length ? history.goBack() : history.push('/'))}
+      >
+        Go back
+      </button>
+
+      <div className={styles.cityInfo}>
         <h2>
           {cityInfo.city}, {cityInfo.region}
         </h2>
         <p>{cityInfo.country}</p>
         <p>Population: {cityInfo.population}</p>
-        <button
-          onClick={() =>
-            saveHandler({
-              location: cityInfo.city,
-              url: location.pathname + location.search,
-            })
-          }
-        >
-          Save this trip
-        </button>
+        {user.email ? (
+          <button
+            onClick={() =>
+              saveHandler({
+                location: cityInfo.city,
+                url: location.pathname + location.search,
+              })
+            }
+          >
+            Save this trip
+          </button>
+        ) : (
+          <button onClick={() => history.push('/login')}>
+            Sign in to save this trip
+          </button>
+        )}
       </div>
-      <div className={Styles.cardList}>
+      <div className={styles.cardList}>
         {images.map((image) => (
-          <div className={Styles.card} key={image.id}>
+          <div className={styles.card} key={image.id}>
             <img
-              className={Styles.cardImage}
+              className={styles.cardImage}
               alt={image.alt_description}
               src={image.urls.full}
               width="50%"

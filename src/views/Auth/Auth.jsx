@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from '../../hooks/useForm';
 import { useAuth } from '../../hooks/useUser';
 import styles from './Auth.css';
+import toast from 'react-hot-toast';
 
 export default function Auth() {
   const [isSigningIn, setIsSigningIn] = useState(true);
@@ -23,7 +24,7 @@ export default function Auth() {
         ? await signIn(email, password)
         : await signUp(email, password, firstname, lastname);
     } catch (error) {
-      setError(error.message);
+      toast.error(error.message);
     }
   };
   const text = isSigningIn
@@ -36,7 +37,7 @@ export default function Auth() {
           {' '}
           <legend>{text.title}</legend>
           <label htmlFor="firstname">
-            firstname:
+            first name:
             <input
               type="firstname"
               name="firstname"
@@ -47,7 +48,7 @@ export default function Auth() {
             />
           </label>
           <label htmlFor="lastname">
-            lastname:
+            last name:
             <input
               type="lastname"
               name="lastname"
@@ -58,7 +59,7 @@ export default function Auth() {
             />
           </label>
           <label htmlFor="email">
-            email:
+            email: *
             <input
               type="email"
               name="email"
@@ -69,7 +70,7 @@ export default function Auth() {
             />
           </label>
           <label htmlFor="password">
-            password:
+            password: *
             <input
               type="password"
               name="password"
@@ -78,6 +79,7 @@ export default function Auth() {
               value={formState.password}
               onChange={handleChange}
             />
+            <p className={styles.required}>* required</p>
           </label>
           <button>{text.title}</button>
         </fieldset>
@@ -121,24 +123,16 @@ export default function Auth() {
   return isSigningIn ? (
     <>
       {signInFragment}
-      <p 
-        onClick={() => setIsSigningIn(false)}
-        className={styles.toggle}
-      >
+      <p onClick={() => setIsSigningIn(false)} className={styles.toggle}>
         {text.switch}
       </p>
-      {error && <p>{error}</p>}
     </>
   ) : (
     <>
       {signUpFragment}
-      <p 
-        onClick={() => setIsSigningIn(true)}
-        className={styles.toggle}
-      >
+      <p onClick={() => setIsSigningIn(true)} className={styles.toggle}>
         {text.switch}
       </p>
-      {error && <p>{error}</p>}
     </>
   );
 }

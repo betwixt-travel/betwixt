@@ -22,6 +22,12 @@ export const server = setupServer(
     (req, res, ctx) => {
       return res(ctx.json(profileResponse));
     }
+  ),
+  rest.post(
+    `${process.env.REACT_APP_SUPABASE_URL}/auth/v1/logout`,
+    (req, res, ctx) => {
+      return res(ctx.json());
+    }
   )
 );
 

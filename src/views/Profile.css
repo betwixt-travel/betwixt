@@ -1,0 +1,40 @@
+.profileContainer {
+  margin: 20px;
+}
+
+.profileContainer h1 {
+  font-family: 'Playfair Display';
+  margin-bottom: 10px;
+}
+
+.profileContainer h3 {
+  margin-bottom: 5px;
+}
+
+.profileContainer p {
+  font-family: 'Josefin Sans';
+}
+
+.profile {
+  margin-bottom: 20px;
+}
+
+.edit,
+.remove {
+  height: 25px;
+  width: 25px;
+  margin: 0px 10px;
+}
+
+.edit:hover,
+.remove:hover {
+  cursor: pointer;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.savedTrips {
+  display: flex;
+}

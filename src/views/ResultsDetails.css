@@ -1,3 +1,21 @@
+.cityInfo {
+  margin: 20px auto;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Josefin Sans';
+}
+
+.cityInfo * {
+  margin: 5px 0px;
+}
+
+.cityInfo h2 {
+  font-weight: 700;
+  font-family: 'Playfair Display';
+}
+
 .card {
   margin-bottom: 1rem;
   display: flex;
@@ -14,6 +32,10 @@
 
 .cardList {
   column-count: 3;
+}
+
+.goBack {
+  margin: 20px;
 }
 
 @media only screen and (max-width: 600px) {

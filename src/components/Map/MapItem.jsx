@@ -1,12 +1,20 @@
 import Map, { Source, Layer, Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import styles from './Map.css';
+import geoViewport from '@mapbox/geo-viewport';
+import markerImg from '../../assets/images/marker-png.png';
 import { useTravelContext } from '../../context/TravelContext';
+import styles from './Map.css';
 
 let API_KEY = process.env.REACT_APP_MAPBOX_API_KEY;
 
 export default function MapItem() {
-  const { people, midpoint, cities } = useTravelContext();
+  const { people, midpoint, cities, bounds } = useTravelContext();
+
+  const dynamicZoom = geoViewport.viewport(bounds, [600, 400]);
+  let zoom;
+  if (dynamicZoom.zoom > 2) {
+    zoom = dynamicZoom.zoom - 2;
+  } else zoom = dynamicZoom;
 
   if (!midpoint.geometry) return <div>Loading...</div>;
   const [long, lat] = midpoint.geometry.coordinates;
@@ -29,9 +37,9 @@ export default function MapItem() {
         className={styles.map}
         mapboxAccessToken={API_KEY}
         initialViewState={{
-          latitude: lat,
-          longitude: long,
-          zoom: 7,
+          latitude: dynamicZoom.center[1],
+          longitude: dynamicZoom.center[0],
+          zoom: zoom,
         }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
@@ -45,11 +53,31 @@ export default function MapItem() {
             key={city.properties.distance}
             longitude={city.properties.longitude}
             latitude={city.properties.latitude}
-            color="#DDDDDD"
+            color="#9C9A9C"
             anchor="center"
           />
         ))}
       </Map>
+      <div className={styles.legend}>
+        <div className={styles.legendOption}>
+          <p>People:</p>{' '}
+          <div
+            style={{
+              backgroundColor: '#FF0000',
+              height: '7.5px',
+              width: '7.5px',
+              borderRadius: '50%',
+            }}
+          ></div>
+        </div>
+        <div className={styles.legendOption}>
+          <p>Midpoint:</p> <img src={markerImg} />
+        </div>
+        <div className={styles.legendOption}>
+          <p>Nearby Cities:</p>
+          <img style={{ filter: 'grayscale(100%)' }} src={markerImg} />
+        </div>
+      </div>
     </div>
   );
 }

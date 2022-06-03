@@ -1,4 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../../App';
@@ -25,15 +29,16 @@ describe('behavioral testing for home page', () => {
     const submitButton = screen.getByText(`Let's go!`);
     userEvent.click(submitButton);
     const sacremento = await screen.findByText(
-      'Sacramento - 107.66',
+      'Sacramento',
       {},
-      { timeout: 2000 }
+      { timeout: 4000 }
     );
+
     userEvent.click(sacremento);
     const detailPageTitle = await screen.findByText(
       'Sacramento, California',
       {},
-      { timeout: 2000 }
+      { timeout: 4000 }
     );
     expect(detailPageTitle).toBeInTheDocument();
   });

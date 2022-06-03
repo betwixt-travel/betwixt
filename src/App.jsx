@@ -1,16 +1,20 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { useAuth } from './hooks/useUser';
+import { TravelProvider } from './context/TravelContext';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Home from './views/Home/Home';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import Auth from './views/Auth/Auth';
 import Profile from './views/Profile';
-import Results from './views/Results';
+import Results from './views/Results/Results';
 import ResultsDetail from './views/ResultsDetail';
-import Header from './components/Header/Header';
-import { TravelProvider } from './context/TravelContext';
-import styles from './App.css'
-import { Toaster } from 'react-hot-toast';
 import AboutUs from './views/AboutUs/AboutUs';
+import styles from './App.css';
+import { Toaster } from 'react-hot-toast';
 
 export default function App() {
+  const { user } = useAuth();
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
@@ -20,12 +24,12 @@ export default function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/auth">
-            <Auth />
+          <Route path="/login">
+            {user.email ? <Redirect to={'/'} /> : <Auth />}
           </Route>
-          <Route path="/profile">
+          <PrivateRoute path="/profile">
             <Profile />
-          </Route>
+          </PrivateRoute>
           <Route exact path="/city">
             <ResultsDetail />
           </Route>
@@ -36,6 +40,7 @@ export default function App() {
             <AboutUs />
           </Route>
         </Switch>
+        <Footer />
       </TravelProvider>
     </>
   );

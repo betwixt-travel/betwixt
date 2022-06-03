@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTravelContext } from '../../context/TravelContext';
+import { useAuth } from '../../hooks/useUser';
 import styles from './TravelersForm.css';
 
 export default function TravelersIIntakeForm() {
   const { people, handleFormSubmit, formError, loading } = useTravelContext();
+  const { user } = useAuth();
   const history = useHistory();
 
   const [formValues, setFormValues] = useState([
-    { name: '', location: '' },
+    { name: user?.first_name || '', location: user?.home_zip || '' },
     { name: '', location: '' },
   ]);
   if (!people) return;

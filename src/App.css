@@ -2,13 +2,14 @@
 
 * {
   /* CSS HSL */
-  --color1: hsla(118, 17%, 40%, 1);
-  --color2: hsla(6, 34%, 44%, 1);
-  --color3: hsla(234, 24%, 24%, 1);
-  --color4: hsla(240, 6%, 68%, 1);
-  --color5: hsla(40, 10%, 95%, 1);
+  --color1: rgb(241, 143, 38);
+  --color2: rgb(232, 216, 197);
+  --color3: rgb(88, 78, 63);
+  --color4: rgb(25, 116, 191);
+  --color5: rgb(255, 255, 255);
 
   margin: 0;
+  color: var(--color3);
 }
 
 form {
@@ -21,4 +22,6 @@ form {
 button:hover {
   cursor: pointer;
 }
+
+
 
