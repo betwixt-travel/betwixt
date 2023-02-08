@@ -36,7 +36,7 @@ export default function TravelersIIntakeForm() {
   };
 
   return (
-    <div>
+    <>
       <form onSubmit={handleSubmit} className={styles.travelersForm}>
         <p>Enter zip codes* to figure out where to meet up:</p>
         {formValues.map((element, index) => (
@@ -78,6 +78,6 @@ export default function TravelersIIntakeForm() {
         </div>
         <p className={styles.disclaimer}>*US only, for now</p>
       </form>
-    </div>
+    </>
   );
 }
