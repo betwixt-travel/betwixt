@@ -36,7 +36,10 @@
 }
 
 .buttonSection {
-  margin: 0, auto;
+  width: 70%;
+  margin: 0px auto;
+  padding-left: 20px;
+  /* margin-left: 55px; */
 }
 
 button {
@@ -58,14 +61,15 @@ button:hover {
   /* position: relative;
   left: 50px;
   bottom: 15px; */
-  margin: 12px 0px 4px 48px;
+  margin: 12px auto 4px auto;
 }
 
 .addButton {
   font-family: 'Helvetica';
   font-weight: 500;
   font-size: 1.8rem;
-  margin-left: 55px;
+  /* margin-left: 55px; */
+  display: block;
   /* position: relative;
   bottom: 20px; */
 }
