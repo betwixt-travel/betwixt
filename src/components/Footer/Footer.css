@@ -1,7 +1,7 @@
 .footer {
   position: fixed;
   width: 100%;
-  height: 20px;
+  height: 1.6rem;
   font-family: 'Josefin Sans';
   font-size: 0.8rem;
   left: 0;
@@ -10,7 +10,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3px;
+  padding: 4px 8px;
+  box-sizing: border-box;
 }
 
 .footer span {
