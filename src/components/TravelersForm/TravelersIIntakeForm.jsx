@@ -58,18 +58,18 @@ export default function TravelersIIntakeForm() {
               onChange={(e) => handleChange(index, e)}
             />
             {index > 1 ? (
-              <p
+              <span
                 className={styles.removeButton}
                 onClick={() => removeFormFields(index)}
               >
-                -
-              </p>
+                —
+              </span>
             ) : null}
           </div>
         ))}
-        <p className={styles.addButton} onClick={() => addFormFields()}>
+        <span className={styles.addButton} onClick={() => addFormFields()}>
           +
-        </p>
+        </span>
         <div className={styles.buttonSection}>
           <button className="button submit" type="submit">
             Let's go!
