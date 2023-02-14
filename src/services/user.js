@@ -13,10 +13,6 @@ export async function getUser() {
   }
 }
 
-export function getSession() {
-  return client.auth.session();
-}
-
 function handleError({ user, error }) {
   if (error) throw error;
   return user;
@@ -51,18 +47,16 @@ export async function signInUser(email, password) {
 }
 
 export async function signOutUser() {
-  const response = await client.auth.signOut();
-  handleError(response);
+  try {
+    await fetch(url + '/api/v1/users/sessions', {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-export const createProfile = async (id, first_name, last_name) => {
-  const resp = await client
-    .from('profiles')
-    .update({ first_name, last_name })
-    .match({ id })
-    .single();
-  return parseData(resp);
-};
 export const updateProfile = async ({ first_name, last_name, home_zip }) => {
   const id = getUser().id;
   const resp = await client
