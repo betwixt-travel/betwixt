@@ -57,15 +57,22 @@ export async function signOutUser() {
   }
 }
 
-export const updateProfile = async ({ first_name, last_name, home_zip }) => {
-  const id = getUser().id;
-  const resp = await client
-    .from('profiles')
-    .update({ first_name, last_name, home_zip })
-    .match({ id })
-    .single();
-  return parseData(resp);
-};
+export async function updateUser(firstName, lastName, homeZip) {
+  const { id } = await getUser();
+  const data = await fetch(url + `/api/v1/users/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    mode: 'cors',
+    body: JSON.stringify(firstName, lastName, homeZip),
+  });
+  if (!data.ok) {
+    throw new Error('Please sign in to update your info.');
+  }
+  const data1 = await data.json();
+  console.log('data', data1);
+  return data1;
+}
 
 export const fetchUserData = async () => {
   const resp = await client.from('profiles').select().single();

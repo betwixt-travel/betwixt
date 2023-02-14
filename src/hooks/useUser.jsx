@@ -13,6 +13,7 @@ const useAuth = () => {
   const signIn = async (email, password) => {
     const response = await signInUser(email, password);
     const user = await getUser();
+    console.log('signin', user);
     setUser(user);
     localStorage.setItem('user', JSON.stringify(user));
     history.goBack();
@@ -20,6 +21,7 @@ const useAuth = () => {
 
   const signUp = async (email, password, firstname, lastname) => {
     const response = await signUpUser(email, password, firstname, lastname);
+    console.log('signup', response);
     setUser(response);
     history.goBack();
   };
