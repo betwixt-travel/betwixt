@@ -1,13 +1,7 @@
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
-import {
-  signInUser,
-  signUpUser,
-  createProfile,
-  fetchUserData,
-  signOutUser,
-} from '../services/user';
+import { signInUser, signUpUser, getUser, signOutUser } from '../services/user';
 
 const useAuth = () => {
   const context = useContext(UserContext);
@@ -17,9 +11,8 @@ const useAuth = () => {
   const history = useHistory();
 
   const signIn = async (email, password) => {
-    await signInUser(email, password);
-    const profileData = await fetchUserData();
-    const user = { email, ...profileData };
+    const response = await signInUser(email, password);
+    const user = await getUser();
     setUser(user);
     localStorage.setItem('user', JSON.stringify(user));
     history.goBack();
@@ -27,7 +20,6 @@ const useAuth = () => {
 
   const signUp = async (email, password, firstname, lastname) => {
     const response = await signUpUser(email, password, firstname, lastname);
-    console.log(response);
     setUser(response);
     history.goBack();
   };
@@ -44,7 +36,6 @@ const useAuth = () => {
     await signOutUser();
   };
   const userSignedIn = user.email;
-
   return { signIn, signUp, signOut, userSignedIn, user, updateUserState };
 };
 

@@ -13,18 +13,24 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.navWrapper}>
         <NavLink to="/">
-          <img alt='betwiXt' className={styles.logo} src={logo} />
+          <img alt="betwiXt" className={styles.logo} src={logo} />
         </NavLink>
         {!onAuthPage &&
           (userSignedIn ? (
             <div className={styles.nav}>
-              <p>Welcome, {user.first_name || 'traveler'}</p>
-              <NavLink exact to='/' className={styles.home}>Home</NavLink>
+              <p>Welcome, {user.firstName || 'traveler'}</p>
+              <NavLink exact to="/" className={styles.home}>
+                Home
+              </NavLink>
               <NavLink to="/profile">Profile</NavLink>
-              <button className={styles.signOut} onClick={signOut}>Sign Out</button>
+              <button className={styles.signOut} onClick={signOut}>
+                Sign Out
+              </button>
             </div>
           ) : (
-            <NavLink className={styles.auth} to="/login">Sign in or sign up!</NavLink>
+            <NavLink className={styles.auth} to="/login">
+              Sign in or sign up!
+            </NavLink>
           ))}
       </div>
     </header>

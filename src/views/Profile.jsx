@@ -40,7 +40,7 @@ export default function Profile() {
           </span>
         </h1>
         <h3>
-          {user.first_name} {user.last_name}
+          {user.firstName} {user.lastName}
         </h3>
         {user.home_zip ? (
           <p>Default location: {user.home_zip}</p>

@@ -1,7 +1,16 @@
 import { client, parseData } from './client';
+const url = process.env.REACT_APP_API_URL;
 
-export function getUser() {
-  return client.auth.user();
+export async function getUser() {
+  try {
+    const user = await fetch(url + '/api/v1/users/me', {
+      credentials: 'include',
+    });
+    const userData = await user.json();
+    return userData;
+  } catch (e) {
+    return null;
+  }
 }
 
 export function getSession() {
@@ -13,13 +22,6 @@ function handleError({ user, error }) {
   return user;
 }
 
-export async function signInUser(email, password) {
-  const response = await client.auth.signIn({ email, password });
-  return handleError(response);
-}
-
-const url = process.env.REACT_APP_API_URL;
-
 export async function signUpUser(email, password, firstName, lastName) {
   const user = await fetch(url + '/api/v1/users', {
     method: 'POST',
@@ -27,6 +29,20 @@ export async function signUpUser(email, password, firstName, lastName) {
     credentials: 'include',
     mode: 'cors',
     body: JSON.stringify({ email, password, firstName, lastName }),
+  });
+  if (!user.ok) {
+    throw new Error('Invalid email or password');
+  }
+  return await user.json();
+}
+
+export async function signInUser(email, password) {
+  const user = await fetch(url + '/api/v1/users/sessions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    mode: 'cors',
+    body: JSON.stringify({ email, password }),
   });
   if (!user.ok) {
     throw new Error('Invalid email or password');
