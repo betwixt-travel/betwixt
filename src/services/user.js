@@ -18,9 +18,20 @@ export async function signInUser(email, password) {
   return handleError(response);
 }
 
-export async function signUpUser(email, password) {
-  const response = await client.auth.signUp({ email, password });
-  return handleError(response);
+const url = process.env.REACT_APP_API_URL;
+
+export async function signUpUser(email, password, firstName, lastName) {
+  const user = await fetch(url + '/api/v1/users', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    mode: 'cors',
+    body: JSON.stringify({ email, password, firstName, lastName }),
+  });
+  if (!user.ok) {
+    throw new Error('Invalid email or password');
+  }
+  return await user.json();
 }
 
 export async function signOutUser() {

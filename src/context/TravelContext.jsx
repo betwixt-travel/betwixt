@@ -27,6 +27,7 @@ export const TravelProvider = ({ children }) => {
   const [radius, setRadius] = useState('500');
 
   const handleFormSubmit = async (formValues) => {
+    console.log(formValues);
     setFormError('');
     setCoordinates([]);
     setMidpoint([]);

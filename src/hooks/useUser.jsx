@@ -26,11 +26,9 @@ const useAuth = () => {
   };
 
   const signUp = async (email, password, firstname, lastname) => {
-    const response = await signUpUser(email, password);
-    await createProfile(response.id, firstname, lastname);
-    const profileData = await fetchUserData();
-    const user = { email, ...profileData };
-    setUser(user);
+    const response = await signUpUser(email, password, firstname, lastname);
+    console.log(response);
+    setUser(response);
     history.goBack();
   };
 
