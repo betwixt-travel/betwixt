@@ -1,5 +1,6 @@
 .travelersForm {
   width: 80%;
+  max-width: 1000px;
   background: rgba(255, 255, 255, 0.822);
   margin: auto;
   border: 1px solid black;
@@ -21,6 +22,7 @@
   margin: 20px auto;
   display: flex;
   flex-direction: column;
+  width: 70%;
 }
 
 .formSection input {
@@ -121,12 +123,21 @@ button:hover {
   }
 }
 
-@media screen and (min-width: 1450px) {
+@media screen and (min-width: 1200px) {
   .formSection {
     font-size: 0.8rem;
     flex-direction: row;
     align-items: center;
     position: relative;
+    width: auto;
+  }
+
+  .buttonSection {
+    flex-direction: column;
+  }
+
+  .buttonSection button {
+    margin-top: 40px;
   }
 
   .removeButton {
