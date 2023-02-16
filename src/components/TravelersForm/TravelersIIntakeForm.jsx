@@ -67,7 +67,7 @@ export default function TravelersIIntakeForm() {
             ) : null}
           </div>
         ))}
-        <div className={styles.buttonSection}>
+        <div className={`${styles.buttonSection} + ${styles.formSection}`}>
           <span className={styles.addButton} onClick={() => addFormFields()}>
             +
           </span>

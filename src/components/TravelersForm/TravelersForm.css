@@ -18,7 +18,6 @@
 }
 
 .formSection {
-  width: 70%;
   margin: 20px auto;
   display: flex;
   flex-direction: column;
@@ -38,7 +37,6 @@
 .buttonSection {
   width: 70%;
   margin: 0px auto;
-  padding-left: 20px;
   /* margin-left: 55px; */
 }
 
@@ -62,6 +60,10 @@ button:hover {
   left: 50px;
   bottom: 15px; */
   margin: 12px auto 4px auto;
+}
+
+.buttonSection span {
+  margin-left: 10px;
 }
 
 .addButton {
@@ -109,13 +111,10 @@ button:hover {
 
 @media screen and (min-width: 800px) {
   .travelersForm {
-    width: 40%;
     font-size: 0.8rem;
-    margin-top: -5%;
   }
 
   .formSection {
-    width: 60%;
     font-size: 0.8rem;
     flex-direction: column;
     justify-content: center;
@@ -124,23 +123,16 @@ button:hover {
 
 @media screen and (min-width: 1450px) {
   .formSection {
-    width: 80%;
     font-size: 0.8rem;
     flex-direction: row;
     align-items: center;
+    position: relative;
   }
 
   .removeButton {
     position: absolute;
-    bottom: 150px;
-    right: 20px;
+    right: -7%;
+    top: 14px;
   }
 }
 
-@media screen and (min-width: 1650px) {
-  .removeButton {
-    position: absolute;
-    bottom: 150px;
-    right: 80px;
-  }
-}
