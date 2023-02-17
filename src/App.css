@@ -27,5 +27,9 @@ button:hover {
   cursor: pointer;
 }
 
+input:focus {
+  outline: auto 5px var(--color1);
+}
+
 
 
