@@ -1,5 +1,6 @@
 .profileContainer {
-  margin: 20px;
+  margin: 30px auto;
+  width: 80%;
 }
 
 .profileContainer h1 {
@@ -16,7 +17,7 @@
 }
 
 .profile {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .edit,

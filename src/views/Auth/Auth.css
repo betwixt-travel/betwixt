@@ -1,7 +1,7 @@
 .authForm {
   display: flex;
   flex-direction: column;
-  margin: 50px auto 0px auto;
+  margin: 25px auto 0px auto;
   width: 70%;
   background-color: hsl(25, 30%, 97%);
   border-style: ridge;
@@ -19,7 +19,7 @@
 
 .authForm label {
   margin: 10px auto;
-  width: 50%;
+  width: 75%;
 }
 
 .authForm input {
@@ -57,8 +57,20 @@
 }
 
 @media screen and (min-width: 545px) {
+  .authForm {
+    margin-top: 50px;
+  }
   .authForm label {
     width: 60%;
+  }
+  .authForm label:first-of-type {
+    margin-top: 40px;
+  }
+  .authForm label:last-of-type {
+    margin-bottom: 40px;
+  }
+  .authForm button {
+    margin-bottom: 40px;
   }
 }
 
