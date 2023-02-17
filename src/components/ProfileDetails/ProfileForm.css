@@ -1,9 +1,8 @@
 .profileForm {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   margin: 20px auto;
-  width: 80%;
   max-width: 500px;
   background-color: hsl(25, 30%, 97%);
   border-style: ridge;
@@ -23,20 +22,40 @@
   color: hsl(25, 40%, 60%);
 }
 
+.profileForm label {
+  width: 80%;
+}
+
+.profileForm label:first-of-type {
+  margin-top: 12px;
+}
+
 .profileForm input {
   width: 90%;
   font-size: 1.2rem;
   padding: 5px;
   font-family: 'Josefin Sans';
+  margin-bottom: 10px;
 }
 
 .profileForm button {
-  margin: 20px 0px 8px 0px;
+  margin: 20px 0px 12px 0px;
   align-self: center;
 }
 
+@media screen and (min-width: 500px) {
+  .profileForm {
+    padding: 50px;
+  }
+
+  .profileForm input {
+    padding: 8px;
+    font-size: 1.4rem;
+  }
+}
+/* 
 @media screen and (min-width: 700px) {
   .profileForm {
     margin: 20px 10px;
   }
-}
+} */

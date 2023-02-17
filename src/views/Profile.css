@@ -39,3 +39,17 @@
 .savedTrips {
   display: flex;
 }
+
+@media screen and (min-width: 500px) {
+  .profileContainer {
+    margin-top: 60px;
+    width: 80%;
+    max-width: 800px;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .profileContainer {
+    margin-top: 100px;
+  }
+}
