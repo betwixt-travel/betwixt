@@ -4,9 +4,6 @@
 
 .header {
   font-family: 'Josefin Sans';
-  /* display: flex;
-  justify-content: space-between;
-  padding: 0px 5px 0px 0px; */
   border-bottom: 1px solid black;
   height: 65px;
   background-color: var(--color1);
@@ -14,7 +11,7 @@
 
 .navWrapper {
   height: 100%;
-  width: 92%;
+  width: 97%;
   display: flex;
   justify-content: space-between;
   margin: auto;
@@ -33,13 +30,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10px;
   padding: 0px;
 }
 
 .nav * {
   margin: 0px 10px;
   color: var(--color5);
+}
+
+.nav p {
+  text-align: center;
+  font-size: 0.9rem;
 }
 
 .nav a {

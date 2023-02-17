@@ -42,8 +42,6 @@
   color: hsl(223, 74%, 64%);
   font-family: 'Josefin Sans';
   font-size: 1.2rem;
-  /* transition: transform 0.2s; */
-  
 }
 
 .toggle:hover {
