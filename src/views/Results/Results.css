@@ -52,19 +52,24 @@
 }
 
 @media screen and (min-width: 700px) {
-  .result {
+  /* .result {
     width: 80%;
-  }
+  } */
 
   .result a {
     display: flex;
     justify-content: space-between;
   }
 
+  .result a span:first-child {
+    width: 50%;
+  }
+
   .resultsContainer {
     position: relative;
     top: 200px;
   }
+
   .container {
     display: grid;
     grid-template-columns: 1fr 2fr;
