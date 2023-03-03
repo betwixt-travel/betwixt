@@ -1,27 +1,48 @@
 .resultsContainer {
   position: absolute;
-  width: 80%;
+  width: 100%;
   top: 520px;
+}
+
+.rangeForm {
+  width: 100%;
 }
 
 .resultsList {
   font-family: 'Josefin Sans';
   font-size: 1.8rem;
-  width: 100%;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 50px;
 }
 
 .resultsList ul {
   list-style: none;
   margin: auto;
   padding-inline-start: 0px;
+  width: 90%;
 }
 
 .result {
   padding: 10px;
   border: 1px solid lightgray;
   text-decoration: none;
-  margin: 0px 20px;
   width: 100%;
+  box-sizing: border-box;
+}
+
+.result a {
+  display: flex;
+  justify-content: space-between;
+}
+
+.result a span:first-child {
+  flex-basis: 50%;
+}
+
+.result a span:last-child {
+  flex-basis: 25%;
+  text-align: right;
 }
 
 .result:hover {
