@@ -1,5 +1,5 @@
 .cityInfo {
-  margin: 20px auto;
+  margin: 10px auto;
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -16,26 +16,35 @@
   font-family: 'Playfair Display';
 }
 
+.signInButton {
+  font-size: 1rem;
+  border-width: 2px;
+}
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+}
+
 .card {
-  margin-bottom: 1rem;
+  margin: 8px 32px;
   display: flex;
 }
 
 .cardImage {
   flex: 100%;
-  margin-top: 1rem;
   border-radius: 10px;
   -webkit-column-break-inside: avoid;
   page-break-inside: avoid;
   break-inside: avoid;
 }
 
-.cardList {
-  column-count: 3;
-}
-
 .goBack {
-  margin: 20px;
+  margin: 10px;
+  margin-bottom: 0px;
+  font-size: 0.8rem;
+  border-width: 1px;
+  padding: 4px 8px;
 }
 
 @media only screen and (max-width: 600px) {

@@ -47,7 +47,7 @@ export default function ResultsDetail() {
         className={styles.goBack}
         onClick={() => (cities.length ? history.goBack() : history.push('/'))}
       >
-        Go back
+        {'<< '}Go back
       </button>
 
       <div className={styles.cityInfo}>
@@ -68,7 +68,7 @@ export default function ResultsDetail() {
             Save this trip
           </button>
         ) : (
-          <button onClick={() => history.push('/login')}>
+          <button className={styles.signInButton} onClick={() => history.push('/login')}>
             Sign in to save this trip
           </button>
         )}
