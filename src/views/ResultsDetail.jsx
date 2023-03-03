@@ -42,7 +42,7 @@ export default function ResultsDetail() {
 
   if (loading) return <p>Loading...</p>;
   return (
-    <>
+    <div className={styles.resultsWrapper}>
       <button
         className={styles.goBack}
         onClick={() => (cities.length ? history.goBack() : history.push('/'))}
@@ -86,6 +86,6 @@ export default function ResultsDetail() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
