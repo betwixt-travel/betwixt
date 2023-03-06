@@ -1,7 +1,11 @@
 .resultsContainer {
   position: absolute;
+  right: 0px;
+  left: 0px;
+  margin: auto;
   width: 100%;
   top: 520px;
+  max-width: 500px;
 }
 
 .rangeForm {
@@ -37,11 +41,11 @@
 }
 
 .result a span:first-child {
-  flex-basis: 50%;
+  flex-basis: 55%;
 }
 
 .result a span:last-child {
-  flex-basis: 25%;
+  flex-basis: 35%;
   text-align: right;
 }
 
@@ -63,22 +67,42 @@
 }
 
 @media screen and (min-width: 700px) {
-  /* .result {
-    width: 80%;
-  } */
+  .resultsList {
+    width: 95%;
+  }
+
+  .resultsList ul {
+    width: 90%;
+  }
+
+  .result {
+    width: 100%;
+  }
 
   .result a {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    width: 100%;
+    align-items: center;
   }
 
-  .result a span:first-child {
-    width: 50%;
+  .result a span {
+    width: 100%;
   }
+
+  .result a :nth-child(2) {
+    display: none;
+  }
+
+  /* .result a span:first-child {
+    width: 50%;
+  } */
 
   .resultsContainer {
     position: relative;
-    top: 200px;
+    top: 70px;
+
   }
 
   .container {
