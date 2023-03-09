@@ -4,8 +4,8 @@ import Styles from './AboutUs.css';
 
 export default function AboutUs() {
   return (
-    <div>
-      <h2>About the Devs</h2>
+    <>
+      <h2 className={Styles.about}>About the Devs</h2>
       <section className={Styles.creators}>
         <div className={Styles.creatorCard}>
           <h3>Aidan Liddiard</h3>
@@ -110,6 +110,6 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

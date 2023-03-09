@@ -1,8 +1,22 @@
-.creators {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+.about {
+  font-size: 2rem;
+  font-family: 'Playfair Display';
+  text-align: center;
+  margin-top: 12px;
 }
+
+.creators {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+.creators :nth-of-type(4) {
+  margin-bottom: 50px;
+}
+
 .creatorCard {
   border: 2px black solid;
   display: flex;
@@ -11,16 +25,48 @@
   margin-bottom: 50px;
   background-color: white;
   border-radius: 25px;
-  width: 30%;
+  width: 80%;
   padding: 10px;
   margin: 20px;
   text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 .creatorCard span {
+  font-family: 'Playfair Display';
   text-decoration: underline;
 }
 
+.creatorCard p {
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
 .creatorCard h3 {
+  font-family: 'Playfair Display';
+  font-size: 1.6rem;
   font-weight: bold;
+  margin: 10px 0px 20px 0px;
+}
+
+.creatorCard div {
+  margin-top: 10px;
+}
+
+@media screen and (min-width: 700px) {
+  .creators {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .creatorCard {
+    flex-basis: 38%;
+    max-width: 350px;
+    height: 280px;
+  }
+
+  .creators :nth-of-type(4) {
+    margin-bottom: 20px;
+  }
 }
