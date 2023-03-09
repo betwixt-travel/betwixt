@@ -88,4 +88,8 @@ a {
   .home {
     display: inline;
   }
+
+  .logo {
+    margin-left: 15px;
+  }
 }
