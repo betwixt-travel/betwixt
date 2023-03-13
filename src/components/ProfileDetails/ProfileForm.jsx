@@ -28,7 +28,6 @@ export default function ProfileForm({ setIsEditing }) {
         <legend>Edit Your Profile</legend>
         <label htmlFor="first_name">
           First name:
-          </label>
           <input
             type="text"
             name="first_name"
@@ -37,9 +36,9 @@ export default function ProfileForm({ setIsEditing }) {
             value={formState.first_name}
             onChange={handleChange}
           />
+        </label>
         <label htmlFor="last_name">
           Last name:
-          </label>
           <input
             type="text"
             name="last_name"
@@ -48,9 +47,9 @@ export default function ProfileForm({ setIsEditing }) {
             value={formState.last_name}
             onChange={handleChange}
           />
+        </label>
         <label htmlFor="home_zip">
           Zip-code:
-          </label>
           <input
             type="text"
             name="home_zip"
@@ -59,6 +58,7 @@ export default function ProfileForm({ setIsEditing }) {
             value={formState.home_zip}
             onChange={handleChange}
           />
+        </label>
         <button>Save</button>
       </fieldset>
     </form>

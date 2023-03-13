@@ -1,10 +1,13 @@
 .travelersForm {
   width: 80%;
-  background: white;
+  max-width: 1000px;
+  background: rgba(255, 255, 255, 0.822);
   margin: auto;
   border: 1px solid black;
   border-radius: 5px;
   font-family: 'Playfair Display';
+  max-height: 75%;
+  overflow-y: scroll;
 }
 
 .travelersForm p {
@@ -16,10 +19,10 @@
 }
 
 .formSection {
-  width: 70%;
   margin: 20px auto;
   display: flex;
   flex-direction: column;
+  width: 70%;
 }
 
 .formSection input {
@@ -29,15 +32,20 @@
   margin: 5px;
 }
 
+.formSection:nth-last-of-type(2) {
+  margin-bottom: 0px;
+}
+
 .buttonSection {
-  margin: 0, auto;
+  width: 70%;
+  margin: 0px auto;
 }
 
 button {
   background-color: var(--color1);
   padding: 10px;
   font-size: 1.2rem;
-  font-weight: 500;
+  font-weight: 300;
   font-family: 'Josefin Sans';
   border: 3px solid var(--color3);
   border-radius: 5px;
@@ -49,29 +57,26 @@ button:hover {
 }
 
 .buttonSection button {
-  position: relative;
-  left: 50px;
-  bottom: 15px;
-  margin: auto;
+  margin: 12px auto 4px auto;
+}
+
+.buttonSection span {
+  margin-left: 10px;
 }
 
 .addButton {
   font-family: 'Helvetica';
   font-weight: 500;
   font-size: 1.8rem;
-  padding-left: 50px;
-  position: relative;
-  bottom: 20px;
+  display: block;
+
 }
 
 .removeButton {
   font-family: 'Helvetica';
-  font-weight: 500;
-  font-size: 1.8rem;
-  padding-left: 50px;
-  position: relative;
-  right: 44px;
-  bottom: 10px;
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin: 0px 0px 8px 8px;
 }
 
 .addButton:hover {
@@ -98,39 +103,37 @@ button:hover {
 
 @media screen and (min-width: 800px) {
   .travelersForm {
-    width: 40%;
-    position: absolute;
-    left: 90px;
-    top: 250px;
     font-size: 0.8rem;
   }
 
   .formSection {
-    width: 60%;
     font-size: 0.8rem;
     flex-direction: column;
+    justify-content: center;
   }
 }
 
-@media screen and (min-width: 1450px) {
+@media screen and (min-width: 1200px) {
   .formSection {
-    width: 80%;
     font-size: 0.8rem;
     flex-direction: row;
     align-items: center;
+    position: relative;
+    width: auto;
+  }
+
+  .buttonSection {
+    flex-direction: column;
+  }
+
+  .buttonSection button {
+    margin-top: 40px;
   }
 
   .removeButton {
     position: absolute;
-    bottom: 150px;
-    right: 20px;
+    right: -7%;
+    top: 14px;
   }
 }
 
-@media screen and (min-width: 1650px) {
-  .removeButton {
-    position: absolute;
-    bottom: 150px;
-    right: 80px;
-  }
-}

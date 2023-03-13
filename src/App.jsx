@@ -10,7 +10,7 @@ import Profile from './views/Profile';
 import Results from './views/Results/Results';
 import ResultsDetail from './views/ResultsDetail';
 import AboutUs from './views/AboutUs/AboutUs';
-import styles from './App.css';
+import './App.css';
 import { Toaster } from 'react-hot-toast';
 
 export default function App() {

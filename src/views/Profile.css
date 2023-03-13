@@ -1,5 +1,6 @@
 .profileContainer {
-  margin: 20px;
+  margin: 30px auto;
+  width: 80%;
 }
 
 .profileContainer h1 {
@@ -16,7 +17,7 @@
 }
 
 .profile {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .edit,
@@ -37,4 +38,18 @@
 
 .savedTrips {
   display: flex;
+}
+
+@media screen and (min-width: 500px) {
+  .profileContainer {
+    margin-top: 60px;
+    width: 80%;
+    max-width: 800px;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .profileContainer {
+    margin-top: 100px;
+  }
 }

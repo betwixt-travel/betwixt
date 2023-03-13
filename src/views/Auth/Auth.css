@@ -1,35 +1,54 @@
 .authForm {
   display: flex;
   flex-direction: column;
-  margin: 50px auto 0px auto;
+  margin: 25px auto 0px auto;
   width: 70%;
+  background-color: hsl(25, 30%, 97%);
+  border-style: ridge;
+  border-width: 3px;
+  border-radius: 4px;
+  border-color: hsl(25, 10%, 60%);
+}
+
+.authForm legend {
+  font-size: 1.6rem;
+  font-family: 'Josefin Sans';
+  font-weight: 500;
+  color: hsl(25, 40%, 60%);
 }
 
 .authForm label {
   margin: 10px auto;
-  width: 50%;
+  width: 75%;
 }
 
 .authForm input {
   font-size: 1.2rem;
   padding: 8px;
   font-family: 'Josefin Sans';
+  margin-top: 4px;
+  width: 90%;
 }
 
 .authForm button {
   width: 50%;
   margin: 10px auto 20px auto;
+  max-width: 160px;
 }
 
 .toggle {
   margin: 20px;
   text-align: center;
-  color: blue;
-  text-decoration: underline;
+  color: hsl(223, 74%, 64%);
+  font-family: 'Josefin Sans';
+  font-size: 1.2rem;
 }
 
 .toggle:hover {
   cursor: pointer;
+  color: hsl(223, 74%, 54%);
+  transform: scale(1.1, 1.1);
+  transition: transform 0.4s;
 }
 
 .required {
@@ -38,17 +57,25 @@
 }
 
 @media screen and (min-width: 545px) {
+  .authForm {
+    margin-top: 50px;
+  }
   .authForm label {
-    width: 40%;
+    width: 60%;
+  }
+  .authForm label:first-of-type {
+    margin-top: 40px;
+  }
+  .authForm label:last-of-type {
+    margin-bottom: 40px;
+  }
+  .authForm button {
+    margin-bottom: 40px;
   }
 }
 
 @media screen and (min-width: 820px) {
   .authForm {
     width: 550px;
-  }
-  
-  .authForm label {
-    width: 40%;
   }
 }

@@ -1,27 +1,52 @@
 .resultsContainer {
   position: absolute;
-  width: 80%;
+  right: 0px;
+  left: 0px;
+  margin: auto;
+  width: 100%;
   top: 520px;
+  max-width: 500px;
+}
+
+.rangeForm {
+  width: 100%;
 }
 
 .resultsList {
   font-family: 'Josefin Sans';
   font-size: 1.8rem;
-  width: 100%;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 50px;
 }
 
 .resultsList ul {
   list-style: none;
   margin: auto;
   padding-inline-start: 0px;
+  width: 90%;
 }
 
 .result {
   padding: 10px;
   border: 1px solid lightgray;
   text-decoration: none;
-  margin: 0px 20px;
   width: 100%;
+  box-sizing: border-box;
+}
+
+.result a {
+  display: flex;
+  justify-content: space-between;
+}
+
+.result a span:first-child {
+  flex-basis: 55%;
+}
+
+.result a span:last-child {
+  flex-basis: 35%;
+  text-align: right;
 }
 
 .result:hover {
@@ -30,20 +55,52 @@
   cursor: pointer;
 }
 
+.noResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.noResults p {
+  margin-bottom: 16px;
+}
+
 @media screen and (min-width: 700px) {
+  .resultsList {
+    width: 95%;
+  }
+
+  .resultsList ul {
+    width: 90%;
+  }
+
   .result {
-    width: 80%;
+    width: 100%;
   }
 
   .result a {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    align-items: center;
   }
 
+  .result a span {
+    width: 100%;
+  }
+
+  .result a :nth-child(2) {
+    display: none;
+  }
   .resultsContainer {
     position: relative;
-    top: 200px;
+    top: 70px;
+
   }
+
   .container {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -51,9 +108,18 @@
   }
 }
 
-.noResults {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-left: 3vw;
+@media screen and (min-width: 950px) {
+  .result a {
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+  }
+
+  .result a span {
+    width: initial;
+  }
+
+  .result a :nth-child(2) {
+    display: initial;
+  }
 }

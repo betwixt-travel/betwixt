@@ -42,12 +42,12 @@ export default function ResultsDetail() {
 
   if (loading) return <p>Loading...</p>;
   return (
-    <>
+    <div className={styles.resultsWrapper}>
       <button
         className={styles.goBack}
         onClick={() => (cities.length ? history.goBack() : history.push('/'))}
       >
-        Go back
+        {'<< '}Go back
       </button>
 
       <div className={styles.cityInfo}>
@@ -68,7 +68,7 @@ export default function ResultsDetail() {
             Save this trip
           </button>
         ) : (
-          <button onClick={() => history.push('/login')}>
+          <button className={styles.signInButton} onClick={() => history.push('/login')}>
             Sign in to save this trip
           </button>
         )}
@@ -86,6 +86,6 @@ export default function ResultsDetail() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

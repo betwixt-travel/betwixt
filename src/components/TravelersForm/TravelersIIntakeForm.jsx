@@ -36,7 +36,7 @@ export default function TravelersIIntakeForm() {
   };
 
   return (
-    <div>
+    <>
       <form onSubmit={handleSubmit} className={styles.travelersForm}>
         <p>Enter zip codes* to figure out where to meet up:</p>
         {formValues.map((element, index) => (
@@ -58,19 +58,19 @@ export default function TravelersIIntakeForm() {
               onChange={(e) => handleChange(index, e)}
             />
             {index > 1 ? (
-              <p
+              <span
                 className={styles.removeButton}
                 onClick={() => removeFormFields(index)}
               >
-                -
-              </p>
+                —
+              </span>
             ) : null}
           </div>
         ))}
-        <p className={styles.addButton} onClick={() => addFormFields()}>
-          +
-        </p>
-        <div className={styles.buttonSection}>
+        <div className={`${styles.buttonSection} + ${styles.formSection}`}>
+          <span className={styles.addButton} onClick={() => addFormFields()}>
+            +
+          </span>
           <button className="button submit" type="submit">
             Let's go!
           </button>
@@ -78,6 +78,6 @@ export default function TravelersIIntakeForm() {
         </div>
         <p className={styles.disclaimer}>*US only, for now</p>
       </form>
-    </div>
+    </>
   );
 }
